@@ -6,6 +6,7 @@ import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { cn } from '../lib/utils';
+import logo from '../assets/logos/amirdh-logo.png';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -27,33 +28,37 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-white border-b border-orange-100 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-20">
-          <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-2">
-              <Leaf className="h-8 w-8 text-orange-500 fill-orange-500" />
-              <span className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-yellow-500 bg-clip-text text-transparent">
-                Amridh Mango
-              </span>
-            </Link>
-          </div>
+    <>
+      {/* Desktop Header - Full Width Top */}
+      <nav className="fixed top-0 left-0 right-0 z-50 hidden lg:block w-full bg-white/80 backdrop-blur-xl border-b border-orange-100 shadow-sm">
+        <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
+          <Link to="/" className="flex items-center space-x-2 shrink-0 group">
+            {/* <div className="bg-orange-500 p-1.5 rounded-lg group-hover:rotate-12 transition-transform"> */}
+              {/* <Leaf className="h-5 w-5 text-white fill-white" /> */}
+            {/* </div> */}
+            {/* <span className="text-xl font-black tracking-tighter text-gray-900">
+              AMRIDH
+            </span> */}
+            <img src={logo} alt="Amridh Logo" width={120} height={40} className="object-contain" />
+          </Link>
 
           <div className="flex items-center space-x-8">
             <Link to="/" className="text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest transition-colors">Home</Link>
-            
+
+            <Link to="/about" className="text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest transition-colors">About Us</Link>
+
             <div className="relative group">
-              <button 
+              <button
                 onMouseEnter={() => setIsProductOpen(true)}
                 className="flex items-center space-x-1 text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest transition-colors"
               >
                 <span>Products</span>
                 <ChevronDown className="h-3 w-3" />
               </button>
-              
+
               <AnimatePresence>
                 {isProductOpen && (
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, y: 10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
@@ -61,7 +66,7 @@ export default function Navbar() {
                     className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-48 bg-white/95 backdrop-blur-md border border-orange-50 shadow-2xl rounded-2xl py-2 overflow-hidden"
                   >
                     {productCategories.map((cat) => (
-                      <Link 
+                      <Link
                         key={cat.name}
                         to={cat.path}
                         className="block px-4 py-2 text-xs font-bold text-gray-600 hover:bg-orange-50 hover:text-orange-600 transition-colors"
@@ -111,7 +116,7 @@ export default function Navbar() {
                   <User className="h-4 w-4" />
                   <span className="text-[10px] font-bold uppercase tracking-widest">{user.name.split(' ')[0]}</span>
                 </Link>
-                <button 
+                <button
                   onClick={() => { logout(); navigate('/'); }}
                   className="p-2 text-gray-400 hover:text-red-600 transition-colors"
                 >
@@ -119,8 +124,8 @@ export default function Navbar() {
                 </button>
               </div>
             ) : (
-              <Link 
-                to="/login" 
+              <Link
+                to="/login"
                 className="bg-orange-600 text-white px-8 py-2.5 rounded-full font-bold hover:bg-orange-700 transition-all hover:scale-105 active:scale-95 text-[10px] uppercase tracking-widest"
               >
                 Login
@@ -134,10 +139,9 @@ export default function Navbar() {
       <nav className="fixed top-0 left-0 right-0 z-50 lg:hidden w-full bg-white/95 backdrop-blur-lg border-b border-orange-100 shadow-sm">
         <div className="px-6 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-            <Leaf className="h-5 w-5 text-orange-500 fill-orange-500" />
-            <span className="text-sm font-black tracking-tighter">AMRIDH</span>
+            <img src={logo} alt="Amridh Logo" className="h-10 w-24" />
           </Link>
-          
+
           <div className="flex items-center space-x-4">
             <Link to="/cart" className="relative p-2 text-gray-400 hover:text-orange-600 transition-colors">
               <ShoppingCart className="h-5 w-5" />
@@ -148,7 +152,7 @@ export default function Navbar() {
               )}
             </Link>
 
-            <button 
+            <button
               onClick={() => setIsOpen(true)}
               className="p-2 text-gray-400 hover:text-orange-600 transition-colors"
             >
@@ -161,13 +165,13 @@ export default function Navbar() {
       {/* Mobile Full Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] lg:hidden"
           >
-            <motion.div 
+            <motion.div
               initial={{ y: '100%' }}
               animate={{ y: 0 }}
               exit={{ y: '100%' }}
@@ -194,9 +198,9 @@ export default function Navbar() {
                   <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Mango Products</h3>
                   <div className="grid grid-cols-2 gap-3">
                     {productCategories.map(cat => (
-                      <Link 
-                        key={cat.name} 
-                        to={cat.path} 
+                      <Link
+                        key={cat.name}
+                        to={cat.path}
                         className="p-3 border border-gray-100 rounded-xl text-sm text-gray-600 hover:bg-orange-50 hover:border-orange-200 transition-colors"
                         onClick={() => setIsOpen(false)}
                       >
@@ -229,7 +233,7 @@ export default function Navbar() {
                           <p className="text-xs text-gray-500 uppercase tracking-tighter">{user.role}</p>
                         </div>
                       </div>
-                      <button 
+                      <button
                         onClick={() => { logout(); setIsOpen(false); navigate('/'); }}
                         className="w-full py-4 bg-red-50 text-red-600 font-bold rounded-2xl"
                       >
@@ -237,8 +241,8 @@ export default function Navbar() {
                       </button>
                     </div>
                   ) : (
-                    <Link 
-                      to="/login" 
+                    <Link
+                      to="/login"
                       className="block w-full py-4 bg-orange-600 text-white text-center font-bold rounded-2xl shadow-lg shadow-orange-200"
                       onClick={() => setIsOpen(false)}
                     >

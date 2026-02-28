@@ -9,7 +9,7 @@ import { cn } from '../lib/utils';
 const HERO_SLIDES = [
   {
     image: "https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&q=80&w=1920",
-    productImg: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?auto=format&fit=crop&q=80&w=800", // Pulp can/jar
+    productImg: "/images/product-Amirdh-Mango-pulp.webp", // Pulp can/jar
     title: "Enjoy the rich aroma and golden sweetness of real Alphonso Mango Pulp",
     subtitle: "Experience the pure essence of Ratnagiri's finest mangoes in every spoonful.",
     accent: "Premium Pulp",
@@ -116,7 +116,7 @@ export default function Home() {
               transition={{ delay: 0.5, duration: 0.8, type: "spring" }}
               className="relative"
             >
-              <div className="relative z-10 w-80 h-[450px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20">
+              <div className="relative z-10 w-96 h-[350px] rounded overflow-hidden">
                 <img 
                   src={HERO_SLIDES[currentSlide].productImg} 
                   alt="Product" 

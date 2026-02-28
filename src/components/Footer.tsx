@@ -1,6 +1,7 @@
 import React from 'react';
 import { Leaf, Mail, Phone, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import logo from '../assets/logos/amirdh-logo.png';
 
 export default function Footer() {
   return (
@@ -9,8 +10,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="space-y-6">
             <Link to="/" className="flex items-center space-x-2">
-              <Leaf className="h-8 w-8 text-orange-500 fill-orange-500" />
-              <span className="text-2xl font-bold text-white">Amridh Mango</span>
+              <img src={logo} alt="Amridh Logo" className="h-16 w-28" />
             </Link>
             <p className="text-gray-400 leading-relaxed">
               Bringing the world's finest organic mangoes directly from our orchards to your table. 
