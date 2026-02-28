@@ -27,18 +27,17 @@ export default function Navbar() {
   ];
 
   return (
-    <>
-      {/* Desktop Header - Full Width Top */}
-      <nav className="fixed top-0 left-0 right-0 z-50 hidden lg:block w-full bg-white/80 backdrop-blur-xl border-b border-orange-100 shadow-sm">
-        <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2 shrink-0 group">
-            <div className="bg-orange-500 p-1.5 rounded-lg group-hover:rotate-12 transition-transform">
-              <Leaf className="h-5 w-5 text-white fill-white" />
-            </div>
-            <span className="text-xl font-black tracking-tighter text-gray-900">
-              AMRIDH
-            </span>
-          </Link>
+    <nav className="bg-white border-b border-orange-100 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-20">
+          <div className="flex items-center">
+            <Link to="/" className="flex items-center space-x-2">
+              <Leaf className="h-8 w-8 text-orange-500 fill-orange-500" />
+              <span className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-yellow-500 bg-clip-text text-transparent">
+                Amridh Mango
+              </span>
+            </Link>
+          </div>
 
           <div className="flex items-center space-x-8">
             <Link to="/" className="text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest transition-colors">Home</Link>
