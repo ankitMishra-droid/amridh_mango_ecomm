@@ -9,21 +9,27 @@ import { cn } from '../lib/utils';
 const HERO_SLIDES = [
   {
     image: "https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&q=80&w=1920",
-    title: "The King of Fruits, Delivered.",
-    subtitle: "Premium Ratnagiri Alphonso mangoes, hand-picked for perfection.",
-    accent: "Alphonso"
+    productImg: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?auto=format&fit=crop&q=80&w=800", // Pulp can/jar
+    title: "Enjoy the rich aroma and golden sweetness of real Alphonso Mango Pulp",
+    subtitle: "Experience the pure essence of Ratnagiri's finest mangoes in every spoonful.",
+    accent: "Premium Pulp",
+    bgColor: "from-yellow-400 via-orange-500 to-orange-600"
   },
   {
     image: "https://images.unsplash.com/photo-1591073113125-e46713c829ed?auto=format&fit=crop&q=80&w=1920",
-    title: "Saffron Sweetness in Every Bite.",
-    subtitle: "Authentic Kesar mangoes from the sun-drenched orchards of Gujarat.",
-    accent: "Kesar"
+    productImg: "https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&q=80&w=800", // Fresh mangoes
+    title: "Saffron Sweetness in Every Bite of Authentic Kesar Mangoes",
+    subtitle: "Hand-picked from the sun-drenched orchards of Gujarat for your delight.",
+    accent: "Fresh Harvest",
+    bgColor: "from-orange-400 via-orange-500 to-yellow-500"
   },
   {
     image: "https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?auto=format&fit=crop&q=80&w=1920",
-    title: "Summer's Best Kept Secret.",
-    subtitle: "Discover our exclusive collection of organic mango treats and preserves.",
-    accent: "Organic"
+    productImg: "https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&q=80&w=800", // Juice
+    title: "Refreshing Natural Mango Juice for the Perfect Summer Cool-down",
+    subtitle: "100% natural, cold-pressed juice with no added preservatives.",
+    accent: "Pure Juice",
+    bgColor: "from-yellow-300 via-yellow-500 to-orange-500"
   }
 ];
 
@@ -60,7 +66,7 @@ export default function Home() {
 
     const slideInterval = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % HERO_SLIDES.length);
-    }, 5000);
+    }, 8000);
 
     return () => clearInterval(slideInterval);
   }, []);
@@ -73,8 +79,8 @@ export default function Home() {
 
   return (
     <div className="space-y-24 pb-24">
-      {/* Hero Slider */}
-      <section className="relative h-[85vh] overflow-hidden bg-gray-900">
+      {/* Hero Slider - Redesigned for Background Images & Mobile Perfection */}
+      <section className="relative h-[90vh] lg:h-[95vh] flex items-center overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -86,44 +92,82 @@ export default function Home() {
           >
             <img 
               src={HERO_SLIDES[currentSlide].image} 
-              alt="Hero" 
-              className="w-full h-full object-cover opacity-60"
+              alt="" 
+              className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            {/* Sunburst Effect from the image */}
+            <div className="absolute inset-0 opacity-40 pointer-events-none overflow-hidden">
+              <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(circle,rgba(255,255,255,0.6)_0%,transparent_60%)] animate-pulse" />
+              <div className="absolute inset-0 bg-[repeating-conic-gradient(from_0deg,transparent_0deg_15deg,rgba(255,255,255,0.05)_15deg_30deg)]" />
+            </div>
+            {/* Perfection color overlay - Darker on right for text readability on desktop */}
+            <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-l from-black/60 via-black/20 to-transparent" />
           </motion.div>
         </AnimatePresence>
 
-        <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
-          <div className="max-w-3xl">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-12">
+          {/* Left Side: Product Image (Now on left for desktop) */}
+          <div className="hidden lg:flex w-full lg:w-1/2 justify-center lg:justify-start">
+            <motion.div
+              key={`product-${currentSlide}`}
+              initial={{ opacity: 0, scale: 0.8, x: -50 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              transition={{ delay: 0.5, duration: 0.8, type: "spring" }}
+              className="relative"
+            >
+              <div className="relative z-10 w-80 h-[450px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20">
+                <img 
+                  src={HERO_SLIDES[currentSlide].productImg} 
+                  alt="Product" 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              {/* Floating Decorative Elements */}
+              <motion.div 
+                animate={{ y: [0, -15, 0] }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="absolute -top-10 -left-10 w-32 h-32 bg-yellow-400/30 rounded-full blur-3xl" 
+              />
+              <motion.div 
+                animate={{ y: [0, 15, 0] }}
+                transition={{ duration: 5, repeat: Infinity }}
+                className="absolute -bottom-10 -right-10 w-40 h-40 bg-orange-500/30 rounded-full blur-3xl" 
+              />
+            </motion.div>
+          </div>
+
+          {/* Right Side: Text Content (Primary on Mobile, Right on Desktop) */}
+          <div className="w-full lg:w-1/2 text-center lg:text-right flex flex-col items-center lg:items-end">
             <motion.div
               key={`content-${currentSlide}`}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
             >
-              <span className="inline-block bg-orange-500 text-white text-xs font-bold px-4 py-1 rounded-full uppercase tracking-[0.2em] mb-6">
-                {HERO_SLIDES[currentSlide].accent} Collection
+              <span className="inline-block bg-orange-500 text-white text-[10px] md:text-xs font-bold px-4 py-1 rounded-full uppercase tracking-[0.2em] mb-4 md:mb-6">
+                {HERO_SLIDES[currentSlide].accent}
               </span>
-              <h1 className="text-5xl md:text-7xl font-black text-white leading-tight mb-6">
+              <h1 className="text-3xl md:text-5xl lg:text-5xl font-black text-white leading-tight mb-6 md:mb-8 drop-shadow-2xl italic">
                 {HERO_SLIDES[currentSlide].title}
               </h1>
-              <p className="text-xl text-gray-200 mb-10 leading-relaxed max-w-xl">
+              <p className="text-base md:text-lg lg:text-xl text-white/90 mb-8 md:mb-10 leading-relaxed max-w-xl mx-auto lg:mr-0 drop-shadow-md">
                 {HERO_SLIDES[currentSlide].subtitle}
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 justify-center lg:justify-end">
                 <Link 
                   to="/shop" 
-                  className="bg-orange-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-700 transition-all flex items-center group shadow-xl shadow-orange-900/20"
+                  className="bg-orange-600 text-white px-6 py-2.5 md:px-8 md:py-3 rounded-full font-bold text-sm md:text-base hover:bg-orange-700 transition-all flex items-center group shadow-2xl"
                 >
-                  Explore Shop
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  Shop Now
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link 
                   to="/bulk-booking" 
-                  className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-10 py-4 rounded-full font-bold text-lg hover:bg-white/20 transition-all"
+                  className="bg-white/10 backdrop-blur-md text-white border-2 border-white/50 px-6 py-2.5 md:px-8 md:py-3 rounded-full font-bold text-sm md:text-base hover:bg-white/20 transition-all"
                 >
-                  Bulk Orders
+                  Bulk Inquiry
                 </Link>
               </div>
             </motion.div>
@@ -205,20 +249,40 @@ export default function Home() {
 
       {/* Featured Products */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-end mb-12">
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 gap-6">
           <div>
-            <h2 className="text-4xl font-black text-gray-900 mb-4">Seasonal Favorites</h2>
-            <p className="text-gray-600">Our most popular picks this week.</p>
+            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 text-center md:text-left">Seasonal Favorites</h2>
+            <div className="flex flex-wrap justify-center md:justify-start gap-4">
+              {['Fresh Mangoes', 'Pickles', 'Pulp', 'Jam', 'Cubes', 'Beverages'].map(cat => (
+                <Link 
+                  key={cat}
+                  to={`/shop?cat=${cat}`}
+                  className="text-xs font-bold px-4 py-2 rounded-full border border-orange-100 text-gray-600 hover:bg-orange-600 hover:text-white transition-all"
+                >
+                  {cat}
+                </Link>
+              ))}
+            </div>
           </div>
-          <Link to="/shop" className="text-orange-600 font-bold flex items-center hover:underline">
+          <Link to="/shop" className="text-orange-600 font-bold flex items-center hover:underline whitespace-nowrap">
             View All <ArrowRight className="ml-1 h-4 w-4" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
           {products.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
+        </div>
+
+        <div className="mt-12 text-center md:hidden">
+          <Link 
+            to="/shop" 
+            className="inline-flex items-center justify-center bg-orange-600 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-lg shadow-orange-900/20 w-full"
+          >
+            View All Products
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Link>
         </div>
       </section>
 

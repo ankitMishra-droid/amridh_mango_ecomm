@@ -1,8 +1,9 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { ShoppingCart, Star, Info } from 'lucide-react';
+import { ShoppingCart, Star, Info, Heart } from 'lucide-react';
 import { Product } from '../types';
 import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/WishlistContext';
 import { formatPrice } from '../lib/utils';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
@@ -11,13 +12,23 @@ interface ProductCardProps {
   product: Product;
 }
 
+import { useNavigate } from 'react-router-dom';
+
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { addItem } = useCart();
+  const { toggleWishlist, isInWishlist } = useWishlist();
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   const displayPrice = user?.role === 'wholesale' ? product.wholesale_price : product.price;
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent navigating to detail page
+    if (!user) {
+      toast.error('Please login to add items to cart');
+      navigate('/login');
+      return;
+    }
     if (product.stock <= 0) {
       toast.error('Out of stock!');
       return;
@@ -26,12 +37,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     toast.success(`${product.name} added to cart!`);
   };
 
+  const handleToggleWishlist = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    toggleWishlist(product);
+  };
+
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="bg-white rounded-2xl overflow-hidden shadow-sm border border-orange-50 hover:shadow-xl transition-all group"
+      onClick={() => navigate(`/product/${product.id}`)}
+      className="bg-white rounded-2xl overflow-hidden shadow-sm border border-orange-50 hover:shadow-xl transition-all group cursor-pointer"
     >
       <div className="relative aspect-square overflow-hidden">
         <img 
@@ -51,14 +68,20 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               Sold Out
             </span>
           )}
+          <button 
+            onClick={handleToggleWishlist}
+            className={`p-2 rounded-full shadow-lg transition-all ${isInWishlist(product.id) ? 'bg-red-500 text-white' : 'bg-white text-gray-400 hover:text-red-500'}`}
+          >
+            <Heart className={`h-5 w-5 ${isInWishlist(product.id) ? 'fill-current' : ''}`} />
+          </button>
         </div>
       </div>
       
       <div className="p-5">
         <div className="flex justify-between items-start mb-2">
           <div>
-            <p className="text-xs font-bold text-orange-500 uppercase tracking-widest mb-1">{product.category}</p>
-            <h3 className="text-lg font-bold text-gray-900">{product.name}</h3>
+            <p className="text-[10px] md:text-xs font-bold text-orange-500 uppercase tracking-widest mb-1">{product.category}</p>
+            <h3 className="text-base md:text-lg font-bold text-gray-900 group-hover:text-orange-600 transition-colors line-clamp-1">{product.name}</h3>
           </div>
           <div className="flex items-center text-yellow-500">
             <Star className="h-4 w-4 fill-current" />
@@ -66,15 +89,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
         </div>
         
-        <p className="text-sm text-gray-500 line-clamp-2 mb-4 h-10">
+        <p className="text-xs md:text-sm text-gray-500 line-clamp-2 mb-4 h-8 md:h-10">
           {product.description}
         </p>
 
         <div className="flex items-center justify-between mt-auto">
           <div>
-            <p className="text-xl font-black text-gray-900">{formatPrice(displayPrice)}</p>
+            <p className="text-lg md:text-xl font-black text-gray-900">{formatPrice(displayPrice)}</p>
             {user?.role === 'wholesale' && (
-              <p className="text-[10px] text-orange-600 font-bold uppercase">Wholesale Price</p>
+              <p className="text-[8px] md:text-[10px] text-orange-600 font-bold uppercase">Wholesale Price</p>
             )}
           </div>
           
@@ -82,13 +105,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             onClick={handleAddToCart}
             disabled={product.stock === 0}
             className={cn(
-              "p-3 rounded-xl transition-all",
+              "p-2 md:p-3 rounded-xl transition-all relative z-10",
               product.stock > 0 
                 ? "bg-orange-600 text-white hover:bg-orange-700 shadow-lg shadow-orange-200" 
                 : "bg-gray-100 text-gray-400 cursor-not-allowed"
             )}
           >
-            <ShoppingCart className="h-5 w-5" />
+            <ShoppingCart className="h-4 w-4 md:h-5 w-5" />
           </button>
         </div>
       </div>

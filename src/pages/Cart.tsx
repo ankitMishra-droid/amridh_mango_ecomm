@@ -30,32 +30,13 @@ export default function Cart() {
 
   const finalTotal = total * (1 - discount / 100);
 
-  const handleCheckout = async () => {
+  const handleCheckout = () => {
     if (!user) {
       toast.error('Please login to checkout');
       navigate('/login');
       return;
     }
-
-    try {
-      const res = await fetch('/api/orders', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          user_id: user.id,
-          total: finalTotal,
-          items: items
-        })
-      });
-
-      if (res.ok) {
-        toast.success('Order placed successfully!');
-        clearCart();
-        navigate('/profile');
-      }
-    } catch (e) {
-      toast.error('Checkout failed');
-    }
+    navigate('/checkout');
   };
 
   if (items.length === 0) {
