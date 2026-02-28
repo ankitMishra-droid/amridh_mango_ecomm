@@ -1,0 +1,14 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Redirect API calls to Netlify Functions (optional)
+# If you choose to port your Express routes to Lambda-style functions,
+# place them under `netlify/functions/` and this redirect will forward
+# all `/api/*` requests to the corresponding function.
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+  force = false

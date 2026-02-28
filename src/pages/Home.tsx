@@ -60,9 +60,15 @@ export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = React.useState(0);
 
   React.useEffect(() => {
-    fetch('/api/products')
+    // allow a different backend host in production (e.g. Netlify env var)
+    const base = process.env.REACT_APP_API_URL || '';
+
+    fetch(`${base}/api/products`)
       .then(res => res.json())
-      .then(data => setProducts(data.slice(0, 4)));
+      .then(data => setProducts(data.slice(0, 4)))
+      .catch(() => {
+        // optionally log or display an error message
+      });
 
     const slideInterval = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % HERO_SLIDES.length);
