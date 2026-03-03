@@ -14,12 +14,12 @@ export default function Shop() {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    // respect REACT_APP_API_URL for environments like Netlify functions
-    let base = process.env.REACT_APP_API_URL || '';
-    if (!base && typeof window !== 'undefined' && window.location.hostname.endsWith('.netlify.app')) {
-      base = '/.netlify/functions';
-    }
-    fetch(`${base}/api/products`)
+    // always call the Netlify redirect path; the rules in netlify.toml
+    // will forward `/api/*` to the proper function. this keeps the
+    // client code simple and works regardless of hostname.
+    const shopUrl = '/api/products';
+    console.debug('fetching shop products from', shopUrl);
+    fetch(shopUrl)
       .then(res => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();

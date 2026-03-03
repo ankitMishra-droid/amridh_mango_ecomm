@@ -7,6 +7,7 @@ import path from 'path';
 // except for /tmp; writes will be lost between cold starts.
 const dbPath = path.join(__dirname, '..', '..', 'mango.db');
 const db = new Database(dbPath, { readonly: true });
+console.log('products function starting, dbPath =', dbPath, 'exists?', require('fs').existsSync(dbPath));
 
 export const handler: Handler = async (event) => {
   try {

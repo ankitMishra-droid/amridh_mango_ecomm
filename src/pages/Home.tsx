@@ -61,17 +61,19 @@ export default function Home() {
 
   React.useEffect(() => {
     // allow a different backend host in production (e.g. Netlify env var)
-    let base = process.env.REACT_APP_API_URL || '';
-    // if not configured, assume Netlify functions path when deployed there
-    if (!base && window.location.hostname.endsWith('.netlify.app')) {
-      base = '/.netlify/functions';
-    }
+    // simply fetch via `/api`; Netlify will rewrite to the function.
+    const base = process.env.REACT_APP_API_URL || '';
+    const url = base ? `${base}/api/products` : '/api/products';
 
-    fetch(`${base}/api/products`)
-      .then(res => res.json())
+    console.debug('fetching home products from', url);
+    fetch(url)
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
       .then(data => setProducts(data.slice(0, 4)))
-      .catch(() => {
-        // optionally log or display an error message
+      .catch(err => {
+        console.error('home products fetch failed', err);
       });
 
     const slideInterval = setInterval(() => {
