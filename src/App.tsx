@@ -5,6 +5,7 @@ import { CartProvider } from './context/CartContext';
 import { WishlistProvider } from './context/WishlistContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Shop from './pages/Shop';
 import Cart from './pages/Cart';
@@ -28,6 +29,8 @@ export default function App() {
           <Router>
           <div className="min-h-screen flex flex-col bg-orange-50/20">
             <Navbar />
+            {/* ensures any navigation resets scroll position */}
+            <ScrollToTop />
             <main className="flex-grow pt-16 lg:pt-20">
               <Routes>
                 <Route path="/" element={<Home />} />

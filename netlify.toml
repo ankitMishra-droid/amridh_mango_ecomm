@@ -12,3 +12,10 @@
   to = "/.netlify/functions/:splat"
   status = 200
   force = false
+
+# Single‑page app rule: serve index.html for all other paths so client routing works
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false

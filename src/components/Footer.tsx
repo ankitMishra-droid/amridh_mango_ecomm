@@ -68,6 +68,13 @@ export default function Footer() {
                 <span>hello@amridhmango.com</span>
               </li>
             </ul>
+
+            <div className="mt-8 flex items-center space-x-4">
+              <img src="/images/jiomart-logo.png" alt="Amridh Mango Logo" className="w-12 h-16 object-contain" />
+              <img src="/images/zepto.png" alt="Amridh Mango Logo" className="w-12 h-16 object-contain" />
+              <img src="/images/bigbasket.png" alt="Amridh Mango Logo" className="w-12 h-16 object-contain" />
+              <img src="/images/Instamart-03.png" alt="Amridh Mango Logo" className="w-12 h-16 object-contain" />
+            </div>
           </div>
         </div>
 

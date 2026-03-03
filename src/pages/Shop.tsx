@@ -2,17 +2,44 @@ import React from 'react';
 import { Product } from '../types';
 import ProductCard from '../components/ProductCard';
 import { Search, Filter } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function Shop() {
   const [products, setProducts] = React.useState<Product[]>([]);
   const [search, setSearch] = React.useState('');
   const [category, setCategory] = React.useState('All');
 
+  // read query params from URL so we can pre‑select a category
+  const location = useLocation();
+  const navigate = useNavigate();
+
   React.useEffect(() => {
-    fetch('/api/products')
-      .then(res => res.json())
-      .then(data => setProducts(data));
+    // respect REACT_APP_API_URL for environments like Netlify functions
+    let base = process.env.REACT_APP_API_URL || '';
+    if (!base && typeof window !== 'undefined' && window.location.hostname.endsWith('.netlify.app')) {
+      base = '/.netlify/functions';
+    }
+    fetch(`${base}/api/products`)
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
+      .then(data => setProducts(data))
+      .catch(err => {
+        console.error('failed to fetch products', err);
+      });
   }, []);
+
+  // when products or search params change, apply category from URL if available
+  React.useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const cat = params.get('cat');
+    if (cat && cat !== category) {
+      // if the category exists in our set (or if we have no products yet we'll still accept it)
+      setCategory(cat);
+    }
+  }, [location.search, products]);
+
 
   const categories = ['All', ...new Set(products.map(p => p.category))];
 
@@ -21,6 +48,11 @@ export default function Shop() {
     const matchesCategory = category === 'All' || p.category === category;
     return matchesSearch && matchesCategory;
   });
+
+  // ensure we start at the top when the page/category changes
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, [category]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -46,7 +78,18 @@ export default function Shop() {
             <Filter className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
             <select 
               value={category}
-              onChange={(e) => setCategory(e.target.value)}
+              onChange={(e) => {
+                const val = e.target.value;
+                setCategory(val);
+                // reflect selection in query string for sharing/bookmarking
+                const params = new URLSearchParams(location.search);
+                if (val === 'All') {
+                  params.delete('cat');
+                } else {
+                  params.set('cat', val);
+                }
+                navigate({ search: params.toString() }, { replace: true });
+              }}
               className="pl-12 pr-10 py-3 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-orange-500 outline-none appearance-none bg-white w-full"
             >
               {categories.map(c => (

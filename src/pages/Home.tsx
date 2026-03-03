@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, Truck, ShieldCheck, Leaf, Gift, ChevronLeft, ChevronRight, Star, Quote, Zap, Heart, Globe } from 'lucide-react';
+import { ArrowRight, Truck, ShieldCheck, Leaf, Gift, ChevronLeft, ChevronRight, Star, Quote, Zap, Heart, Globe, Sun, CrossIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import { Product } from '../types';
@@ -8,24 +8,24 @@ import { cn } from '../lib/utils';
 
 const HERO_SLIDES = [
   {
-    image: "https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&q=80&w=1920",
-    productImg: "/images/product-Amirdh-Mango-pulp.webp", // Pulp can/jar
+    image: "/images/Banner1.png",
+    productImg: "/images/Banner-Img-1.png", // Pulp can/jar
     title: "Enjoy the rich aroma and golden sweetness of real Alphonso Mango Pulp",
     subtitle: "Experience the pure essence of Ratnagiri's finest mangoes in every spoonful.",
     accent: "Premium Pulp",
     bgColor: "from-yellow-400 via-orange-500 to-orange-600"
   },
   {
-    image: "https://images.unsplash.com/photo-1591073113125-e46713c829ed?auto=format&fit=crop&q=80&w=1920",
-    productImg: "https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&q=80&w=800", // Fresh mangoes
+    image: "/images/bnnr-image-2.png",
+    productImg: "/images/Banner-Img-2.png", // Fresh mangoes
     title: "Saffron Sweetness in Every Bite of Authentic Kesar Mangoes",
     subtitle: "Hand-picked from the sun-drenched orchards of Gujarat for your delight.",
     accent: "Fresh Harvest",
     bgColor: "from-orange-400 via-orange-500 to-yellow-500"
   },
   {
-    image: "https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?auto=format&fit=crop&q=80&w=1920",
-    productImg: "https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&q=80&w=800", // Juice
+    image: "/images/image.png",
+    productImg: "/images/Banner-Img-3.png ", // Juice
     title: "Refreshing Natural Mango Juice for the Perfect Summer Cool-down",
     subtitle: "100% natural, cold-pressed juice with no added preservatives.",
     accent: "Pure Juice",
@@ -61,7 +61,11 @@ export default function Home() {
 
   React.useEffect(() => {
     // allow a different backend host in production (e.g. Netlify env var)
-    const base = process.env.REACT_APP_API_URL || '';
+    let base = process.env.REACT_APP_API_URL || '';
+    // if not configured, assume Netlify functions path when deployed there
+    if (!base && window.location.hostname.endsWith('.netlify.app')) {
+      base = '/.netlify/functions';
+    }
 
     fetch(`${base}/api/products`)
       .then(res => res.json())
@@ -86,7 +90,7 @@ export default function Home() {
   return (
     <div className="space-y-24 pb-24">
       {/* Hero Slider - Redesigned for Background Images & Mobile Perfection */}
-      <section className="relative h-[90vh] lg:h-[95vh] flex items-center overflow-hidden">
+      <section className="relative h-[90vh] lg:h-[90vh] flex items-center overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -99,14 +103,14 @@ export default function Home() {
             <img 
               src={HERO_SLIDES[currentSlide].image} 
               alt="" 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-center object-center"
               referrerPolicy="no-referrer"
             />
             {/* Sunburst Effect from the image */}
-            <div className="absolute inset-0 opacity-40 pointer-events-none overflow-hidden">
+            {/* <div className="absolute inset-0 opacity-40 pointer-events-none overflow-hidden">
               <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(circle,rgba(255,255,255,0.6)_0%,transparent_60%)] animate-pulse" />
               <div className="absolute inset-0 bg-[repeating-conic-gradient(from_0deg,transparent_0deg_15deg,rgba(255,255,255,0.05)_15deg_30deg)]" />
-            </div>
+            </div> */}
             {/* Perfection color overlay - Darker on right for text readability on desktop */}
             <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-l from-black/60 via-black/20 to-transparent" />
           </motion.div>
@@ -122,7 +126,7 @@ export default function Home() {
               transition={{ delay: 0.5, duration: 0.8, type: "spring" }}
               className="relative"
             >
-              <div className="relative z-10 w-96 h-[350px] rounded overflow-hidden">
+              <div className="relative z-10 w-96 h-full rounded overflow-hidden">
                 <img 
                   src={HERO_SLIDES[currentSlide].productImg} 
                   alt="Product" 
@@ -155,7 +159,7 @@ export default function Home() {
               <span className="inline-block bg-orange-500 text-white text-[10px] md:text-xs font-bold px-4 py-1 rounded-full uppercase tracking-[0.2em] mb-4 md:mb-6">
                 {HERO_SLIDES[currentSlide].accent}
               </span>
-              <h1 className="text-3xl md:text-5xl lg:text-5xl font-black text-white leading-tight mb-6 md:mb-8 drop-shadow-2xl italic">
+              <h1 className="text-3xl md:text-4xl lg:text-4xl font-black text-white leading-tight mb-6 md:mb-8 drop-shadow-2xl italic">
                 {HERO_SLIDES[currentSlide].title}
               </h1>
               <p className="text-base md:text-lg lg:text-xl text-white/90 mb-8 md:mb-10 leading-relaxed max-w-xl mx-auto lg:mr-0 drop-shadow-md">
@@ -171,7 +175,7 @@ export default function Home() {
                 </Link>
                 <Link 
                   to="/bulk-booking" 
-                  className="bg-white/10 backdrop-blur-md text-white border-2 border-white/50 px-6 py-2.5 md:px-8 md:py-3 rounded-full font-bold text-sm md:text-base hover:bg-white/20 transition-all"
+                  className="hidden md:block bg-white/10 backdrop-blur-md text-white border-2 border-white/50 px-6 py-2.5 md:px-8 md:py-3 rounded-full font-bold text-sm md:text-base hover:bg-white/20 transition-all"
                 >
                   Bulk Inquiry
                 </Link>
@@ -212,29 +216,35 @@ export default function Home() {
       </section>
 
       {/* Our Services Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-black text-gray-900 mb-4">Our Premium Services</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">We provide a comprehensive range of mango-related services tailored for every need.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {[
             { 
               icon: Globe, 
-              title: "Pan-India Delivery", 
-              desc: "We ship our fresh harvests to every corner of India with temperature-controlled logistics.",
+              title: "Superior Taste", 
+              desc: "Ratnagiri mango pulp is celebrated for its rich sweetness and unique flavor profile, ideal for various culinary creations.",
               color: "bg-blue-50 text-blue-600"
             },
             { 
-              icon: Zap, 
-              title: "Express Wholesale", 
-              desc: "Dedicated supply chain for retailers and distributors with guaranteed fresh inventory.",
+              icon: Sun, 
+              title: "Natural Color", 
+              desc: "The pulp boasts a vibrant yellow-orange color from the ripe mangoes, enhancing the visual appeal of any dish.",
               color: "bg-yellow-50 text-yellow-600"
             },
             { 
               icon: Heart, 
-              title: "Custom Gifting", 
-              desc: "Personalized corporate and wedding gift boxes featuring our finest mango assortments.",
+              title: "Rich Nutritional Profile", 
+              desc: "acked with vitamins and minerals, Ratnagiri mango pulp is a nutritious choice for health-conscious consumers.",
+              color: "bg-red-50 text-red-600"
+            },
+            { 
+              icon: CrossIcon, 
+              title: "No Artificial Additives", 
+              desc: "Enjoy 100% pure mango pulp, free from artificial preservatives, colors, or flavors for a wholesome experience.",
               color: "bg-red-50 text-red-600"
             }
           ].map((s, i) => (
@@ -277,7 +287,7 @@ export default function Home() {
 
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
           {products.map(product => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.id} product={product} redirectToShop />
           ))}
         </div>
 
@@ -328,12 +338,12 @@ export default function Home() {
             </AnimatePresence>
 
             <div className="absolute top-1/2 -translate-y-1/2 -left-6 md:-left-12">
-              <button onClick={prevTestimonial} className="p-4 rounded-full bg-white shadow-lg text-gray-400 hover:text-orange-600 transition-all">
+              <button onClick={prevTestimonial} className="p-4 rounded-full bg-white shadow-lg text-gray-400 hover:text-orange-600 transition-all cursor-pointer">
                 <ChevronLeft className="h-6 w-6" />
               </button>
             </div>
             <div className="absolute top-1/2 -translate-y-1/2 -right-6 md:-right-12">
-              <button onClick={nextTestimonial} className="p-4 rounded-full bg-white shadow-lg text-gray-400 hover:text-orange-600 transition-all">
+              <button onClick={nextTestimonial} className="p-4 rounded-full bg-white shadow-lg text-gray-400 hover:text-orange-600 transition-all cursor-pointer">
                 <ChevronRight className="h-6 w-6" />
               </button>
             </div>
@@ -358,9 +368,9 @@ export default function Home() {
               <input 
                 type="email" 
                 placeholder="Enter your email address" 
-                className="px-8 py-5 rounded-2xl text-gray-900 w-full sm:w-96 focus:ring-4 focus:ring-orange-500/50 outline-none text-lg"
+                className="px-8 py-5 rounded-2xl border border-orange-500 focus:ring-4 focus:ring-orange-500/50 text-white outline-none text-lg"
               />
-              <button className="bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-orange-700 transition-all shadow-lg shadow-orange-900/40">
+              <button className="bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-orange-700 transition-all shadow-lg shadow-orange-900/40 cursor-pointer">
                 Subscribe Now
               </button>
             </form>

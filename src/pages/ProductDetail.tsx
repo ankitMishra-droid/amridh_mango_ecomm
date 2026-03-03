@@ -164,14 +164,14 @@ export default function ProductDetail() {
               <button 
                 onClick={handleAddToCart}
                 disabled={product.stock <= 0}
-                className="flex-1 bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-orange-700 transition-all flex items-center justify-center space-x-3 shadow-xl shadow-orange-900/20 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                className="flex-1 bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-orange-700 transition-all flex items-center justify-center space-x-3 shadow-xl shadow-orange-900/20 disabled:bg-gray-300 disabled:cursor-not-allowed cursor-pointer"
               >
                 <ShoppingCart className="h-6 w-6" />
                 <span>Add to Cart</span>
               </button>
               <button 
                 onClick={() => toggleWishlist(product)}
-                className={`flex-1 border-2 px-10 py-5 rounded-2xl font-bold text-lg transition-all flex items-center justify-center space-x-3 ${isInWishlist(product.id) ? 'bg-red-50 border-red-200 text-red-600' : 'border-gray-200 text-gray-900 hover:bg-gray-50'}`}
+                className={`flex-1 border-2 px-10 py-5 rounded-2xl font-bold text-lg transition-all flex items-center justify-center space-x-3 ${isInWishlist(product.id) ? 'bg-red-50 border-red-200 text-red-600' : 'border-gray-200 text-gray-900 hover:bg-gray-50 cursor-pointer'}`}
               >
                 <Heart className={`h-6 w-6 ${isInWishlist(product.id) ? 'fill-current' : ''}`} />
                 <span>{isInWishlist(product.id) ? 'In Wishlist' : 'Add to Wishlist'}</span>

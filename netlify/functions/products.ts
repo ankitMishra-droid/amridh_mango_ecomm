@@ -17,9 +17,11 @@ export const handler: Handler = async (event) => {
       body: JSON.stringify(products),
     };
   } catch (err: any) {
+    console.error('database query failed', err);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: err.message }),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ error: err.message || 'unknown error' }),
     };
   }
 };

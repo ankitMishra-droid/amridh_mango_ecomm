@@ -10,11 +10,14 @@ import toast from 'react-hot-toast';
 
 interface ProductCardProps {
   product: Product;
+  /** when true clicking the card goes to the shop page filtered by this product's category
+   * instead of the product detail view */
+  redirectToShop?: boolean;
 }
 
 import { useNavigate } from 'react-router-dom';
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, redirectToShop }) => {
   const { addItem } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
   const { user } = useAuth();
@@ -47,7 +50,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      onClick={() => navigate(`/product/${product.id}`)}
+      onClick={() => {
+        if (redirectToShop) {
+          navigate(`/shop?cat=${encodeURIComponent(product.category)}`);
+        } else {
+          navigate(`/product/${product.id}`);
+        }
+      }}
       className="bg-white rounded-2xl overflow-hidden shadow-sm border border-orange-50 hover:shadow-xl transition-all group cursor-pointer"
     >
       <div className="relative aspect-square overflow-hidden">
@@ -105,7 +114,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             onClick={handleAddToCart}
             disabled={product.stock === 0}
             className={cn(
-              "p-2 md:p-3 rounded-xl transition-all relative z-10",
+              "p-2 md:p-3 rounded-xl transition-all relative z-10 cursor-pointer",
               product.stock > 0 
                 ? "bg-orange-600 text-white hover:bg-orange-700 shadow-lg shadow-orange-200" 
                 : "bg-gray-100 text-gray-400 cursor-not-allowed"
