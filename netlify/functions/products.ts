@@ -2,10 +2,11 @@ import type { Handler } from '@netlify/functions';
 import Database from 'better-sqlite3';
 import path from 'path';
 
-// open the same database file that your local server uses
-// keep in mind that Netlify Functions run in a read-only filesystem
-// except for /tmp; writes will be lost between cold starts.
-const dbPath = path.join(__dirname, '..', '..', 'mango.db');
+// open the database file that was copied into the functions folder
+// Netlify deploys the `netlify/functions` directory as the function source,
+// so placing mango.db directly beside the JS ensures it is available.
+// Functions have a read‑only fs except for /tmp, so we only read it.
+const dbPath = path.join(__dirname, 'mango.db');
 const db = new Database(dbPath, { readonly: true });
 console.log('products function starting, dbPath =', dbPath, 'exists?', require('fs').existsSync(dbPath));
 
