@@ -6,6 +6,13 @@
 
 This contains everything you need to run your app locally.
 
+**Product descriptions**
+To support extended, per-product details (like Amazon/Flipkart), the `products` table now
+includes an optional `details` column. Store a JSON array of strings here; the UI will
+render each entry as a bullet point below the main description. You can also include
+multiple paragraphs in `description` separated by newlines.
+
+
 View your app in AI Studio: https://ai.studio/apps/0fa30627-ad31-4130-8585-d18db956c088
 
 ## Run Locally

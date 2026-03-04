@@ -90,10 +90,10 @@ if (productCount.count === 0) {
       180,
       500,
       "Traditional spicy and tangy mango pickle.",
-      "/images/Product-showcases_image1-5.webp",
+      "/images/pickle.png",
     ],
     [
-      "Mango Papad",
+      "Aam Papad",
       "Papad",
       200,
       150,
@@ -126,7 +126,7 @@ if (productCount.count === 0) {
       280,
       120,
       "Dehydrated sweet mango cubes, perfect for snacking.",
-      "/images/cubes.avif",
+      "/images/cubes.jpeg",
     ],
     // [
     //   "Dasheri Mango",
@@ -153,7 +153,7 @@ if (productCount.count === 0) {
       220,
       80,
       "Sweet and tangy mango jam made from fresh pulp.",
-      "/images/mango-jam.jpeg",
+      "/images/jam.jpeg",
     ],
     // [
     //   "Kesar Mango",

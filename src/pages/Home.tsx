@@ -8,16 +8,16 @@ import { cn } from '../lib/utils';
 
 const HERO_SLIDES = [
   {
-    image: "/images/Banner1.png",
-    productImg: "/images/Banner-Img-1.png", // Pulp can/jar
+    image: "/images/banner-1.jpeg",
+    // productImg: "/images/Banner-Img-1.png", // Pulp can/jar
     title: "Enjoy the rich aroma and golden sweetness of real Alphonso Mango Pulp",
     subtitle: "Experience the pure essence of Ratnagiri's finest mangoes in every spoonful.",
     accent: "Premium Pulp",
     bgColor: "from-yellow-400 via-orange-500 to-orange-600"
   },
   {
-    image: "/images/bnnr-image-2.png",
-    productImg: "/images/Banner-Img-2.png", // Fresh mangoes
+    image: "/images/banner-2.jpeg",
+    // productImg: "/images/Banner-Img-2.png", // Fresh mangoes
     title: "Saffron Sweetness in Every Bite of Authentic Kesar Mangoes",
     subtitle: "Hand-picked from the sun-drenched orchards of Gujarat for your delight.",
     accent: "Fresh Harvest",
@@ -131,7 +131,7 @@ export default function Home() {
               <div className="relative z-10 w-96 h-full rounded overflow-hidden">
                 <img 
                   src={HERO_SLIDES[currentSlide].productImg} 
-                  alt="Product" 
+                  // alt="Product" 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
@@ -361,7 +361,7 @@ export default function Home() {
           
           <div className="relative z-10 max-w-3xl mx-auto">
             <span className="text-orange-500 font-black uppercase tracking-widest text-sm mb-6 block">Exclusive Community</span>
-            <h2 className="text-4xl md:text-6xl font-black mb-8">Join the Mango Club</h2>
+            <h2 className="text-4xl md:text-6xl font-black mb-8">Join the Amirdh</h2>
             <p className="text-xl text-gray-400 mb-12 leading-relaxed">
               Be the first to know about seasonal harvests, limited varieties, and exclusive member-only discounts. 
               Get <span className="text-orange-500 font-bold">10% OFF</span> your first order today!
