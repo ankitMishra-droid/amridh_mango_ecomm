@@ -46,7 +46,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, redirectToShop }) =>
   };
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -60,8 +60,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, redirectToShop }) =>
       className="bg-white rounded-2xl overflow-hidden shadow-sm border border-orange-50 hover:shadow-xl transition-all group cursor-pointer"
     >
       <div className="relative aspect-square overflow-hidden">
-        <img 
-          src={product.image_url} 
+        <img
+          src={product.image_url}
           alt={product.name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
           referrerPolicy="no-referrer"
@@ -77,7 +77,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, redirectToShop }) =>
               Sold Out
             </span>
           )}
-          <button 
+          <button
             onClick={handleToggleWishlist}
             className={`p-2 rounded-full shadow-lg transition-all ${isInWishlist(product.id) ? 'bg-red-500 text-white' : 'bg-white text-gray-400 hover:text-red-500'}`}
           >
@@ -85,7 +85,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, redirectToShop }) =>
           </button>
         </div>
       </div>
-      
+
       <div className="p-5">
         <div className="flex justify-between items-start mb-2">
           <div>
@@ -97,11 +97,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, redirectToShop }) =>
             <span className="text-xs font-bold ml-1">4.9</span>
           </div>
         </div>
-        
-        <p className="text-xs md:text-sm text-gray-500 line-clamp-2 mb-4 h-8 md:h-10">
-          {product.description}
-        </p>
 
+        {/* <p className="text-xs md:text-sm text-gray-500 line-clamp-2 mb-4 h-8 md:h-10">
+          {product.description}
+        </p> */}
+        <div
+          className="text-xs md:text-sm text-gray-500 line-clamp-2 mb-4 h-8 md:h-10"
+          dangerouslySetInnerHTML={{ __html: product.description }}
+        />
         <div className="flex items-center justify-between mt-auto">
           <div>
             <p className="text-lg md:text-xl font-black text-gray-900">{formatPrice(displayPrice)}</p>
@@ -109,14 +112,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, redirectToShop }) =>
               <p className="text-[8px] md:text-[10px] text-orange-600 font-bold uppercase">Wholesale Price</p>
             )}
           </div>
-          
-          <button 
+
+          <button
             onClick={handleAddToCart}
             disabled={product.stock === 0}
             className={cn(
               "p-2 md:p-3 rounded-xl transition-all relative z-10 cursor-pointer",
-              product.stock > 0 
-                ? "bg-orange-600 text-white hover:bg-orange-700 shadow-lg shadow-orange-200" 
+              product.stock > 0
+                ? "bg-orange-600 text-white hover:bg-orange-700 shadow-lg shadow-orange-200"
                 : "bg-gray-100 text-gray-400 cursor-not-allowed"
             )}
           >

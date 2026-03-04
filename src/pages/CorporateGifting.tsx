@@ -69,11 +69,11 @@ export default function CorporateGifting() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-orange-50 p-8 rounded-3xl">
+              {/* <div className="bg-orange-50 p-8 rounded-3xl">
                 <Gift className="h-10 w-10 text-orange-600 mb-4" />
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Employee Rewards</h3>
                 <p className="text-gray-600">Perfect for festivals, milestones, and appreciation programs.</p>
-              </div>
+              </div> */}
               <div className="bg-yellow-50 p-8 rounded-3xl">
                 <Heart className="h-10 w-10 text-yellow-600 mb-4" />
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Client Relations</h3>

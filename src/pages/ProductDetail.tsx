@@ -88,13 +88,13 @@ export default function ProductDetail() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Product Image */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             className="relative aspect-square rounded-[3rem] overflow-hidden bg-gray-100 shadow-2xl"
           >
-            <img 
-              src={product.image_url} 
+            <img
+              src={product.image_url}
               alt={product.name}
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
@@ -107,7 +107,7 @@ export default function ProductDetail() {
           </motion.div>
 
           {/* Product Info */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             className="flex flex-col"
@@ -134,13 +134,17 @@ export default function ProductDetail() {
             </div>
 
             <div className="prose prose-orange max-w-none mb-10">
-              <p className="text-lg text-gray-600 leading-relaxed">
+              {/* <p className="text-lg text-gray-600 leading-relaxed">
                 {product.description}
-              </p>
+              </p> */}
+              <div
+                className="prose prose-orange max-w-none mb-10 text-gray-600"
+                dangerouslySetInnerHTML={{ __html: product.description }}
+              />
               <p className="text-gray-600 leading-relaxed mt-4">
-                Experience the authentic taste of summer with our premium {product.name}. 
-                Sourced directly from our certified organic orchards, each fruit is hand-picked 
-                to ensure the highest quality, sweetness, and aroma. Perfect for direct consumption, 
+                Experience the authentic taste of summer with our premium {product.name}.
+                Sourced directly from our certified organic orchards, each fruit is hand-picked
+                to ensure the highest quality, sweetness, and aroma. Perfect for direct consumption,
                 desserts, or as a healthy snack.
               </p>
             </div>
@@ -161,7 +165,7 @@ export default function ProductDetail() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-              <button 
+              <button
                 onClick={handleAddToCart}
                 disabled={product.stock <= 0}
                 className="flex-1 bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-orange-700 transition-all flex items-center justify-center space-x-3 shadow-xl shadow-orange-900/20 disabled:bg-gray-300 disabled:cursor-not-allowed cursor-pointer"
@@ -169,7 +173,7 @@ export default function ProductDetail() {
                 <ShoppingCart className="h-6 w-6" />
                 <span>Add to Cart</span>
               </button>
-              <button 
+              <button
                 onClick={() => toggleWishlist(product)}
                 className={`flex-1 border-2 px-10 py-5 rounded-2xl font-bold text-lg transition-all flex items-center justify-center space-x-3 ${isInWishlist(product.id) ? 'bg-red-50 border-red-200 text-red-600' : 'border-gray-200 text-gray-900 hover:bg-gray-50 cursor-pointer'}`}
               >
