@@ -70,10 +70,16 @@ export default function Footer() {
             </ul>
 
             <div className="mt-8 flex items-center space-x-4">
-              <img src="/images/jiomart-logo.png" alt="Amridh Mango Logo" className="w-12 h-16 object-contain" />
+              <Link to="https://www.jiomart.com/?tab=smart-buys" className="text-sm font-semibold text-gray-400 uppercase tracking-wide"><img src="/images/jiomart-.png" alt="Amridh Mango Logo" className="w-12 h-16 object-contain" /></Link>
+              <Link to="https://www.zepto.com/" className="text-sm font-semibold text-gray-400 uppercase tracking-wide">
               <img src="/images/zepto.png" alt="Amridh Mango Logo" className="w-12 h-16 object-contain" />
+              </Link>
+              <Link to="https://www.bigbasket.com/" className="text-sm font-semibold text-gray-400 uppercase tracking-wide">
               <img src="/images/bigbasket.png" alt="Amridh Mango Logo" className="w-12 h-16 object-contain" />
+              </Link>
+              <Link to="https://www.instamart.com/" className="text-sm font-semibold text-gray-400 uppercase tracking-wide">
               <img src="/images/Instamart-03.png" alt="Amridh Mango Logo" className="w-12 h-16 object-contain" />
+              </Link>
             </div>
           </div>
         </div>

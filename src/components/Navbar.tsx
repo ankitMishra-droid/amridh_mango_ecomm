@@ -19,7 +19,7 @@ export default function Navbar() {
   const cartCount = items.reduce((acc, item) => acc + item.quantity, 0);
 
   const productCategories = [
-    { name: 'Mango Jam', path: '/shop?cat=Jam' },
+    // { name: 'Mango Jam', path: '/shop?cat=Jam' },
     { name: 'Mango Cubes', path: '/shop?cat=Cubes' },
     { name: 'Mango Juice', path: '/shop?cat=Beverages' },
     { name: 'Mango Pulp', path: '/shop?cat=Pulp' },
