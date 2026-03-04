@@ -24,7 +24,7 @@ export default function Navbar() {
     { name: 'Mango Juice', path: '/shop?cat=Beverages' },
     { name: 'Mango Pulp', path: '/shop?cat=Pulp' },
     { name: 'Mango Pickle', path: '/shop?cat=Pickles' },
-    { name: 'Papad', path: '/shop?cat=Papad' },
+    // { name: 'Papad', path: '/shop?cat=Papad' },
   ];
 
   return (
