@@ -92,7 +92,7 @@ export default function Home() {
   return (
     <div className="space-y-24 pb-24">
       {/* Hero Slider - Redesigned for Background Images & Mobile Perfection */}
-      <section className="relative h-[90vh] lg:h-[90vh] flex items-center overflow-hidden">
+      <section className="max-w-[1800px] mx-auto relative h-[85vh] lg:h-[90vh] rounded flex items-center overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}

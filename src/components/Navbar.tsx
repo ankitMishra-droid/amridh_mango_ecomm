@@ -19,12 +19,12 @@ export default function Navbar() {
   const cartCount = items.reduce((acc, item) => acc + item.quantity, 0);
 
   const productCategories = [
-    // { name: 'Mango Jam', path: '/shop?cat=Jam' },
-    { name: 'Mango Cubes', path: '/shop?cat=Cubes' },
+    { name: 'Mango Jam', path: '/shop?cat=Jam' },
     { name: 'Mango Juice', path: '/shop?cat=Beverages' },
     { name: 'Mango Pulp', path: '/shop?cat=Pulp' },
     { name: 'Mango Pickle', path: '/shop?cat=Pickles' },
-    // { name: 'Papad', path: '/shop?cat=Papad' },
+    { name: 'Mango Papad', path: '/shop?cat=Papad' },
+    { name: 'Mango Cubes', path: '/shop?cat=Cubes' },
   ];
 
   return (
