@@ -15,10 +15,14 @@ export default function ProductDetail() {
   const [product, setProduct] = React.useState<Product | null>(null);
   const [relatedProducts, setRelatedProducts] = React.useState<Product[]>([]);
   const [loading, setLoading] = React.useState(true);
+  const [expanded, setExpanded] = React.useState(false);
   const { addItem } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
   const { user } = useAuth();
   const navigate = useNavigate();
+
+  const firstParagraph = product?.description.split("</p>")[0] + "</p>";
+  const remainingDescription = product?.description.replace(firstParagraph, "");
 
   React.useEffect(() => {
     setLoading(true);
@@ -133,20 +137,35 @@ export default function ProductDetail() {
               </div>
             </div>
 
-            <div className="prose prose-orange max-w-none mb-10">
+            <div className="prose prose-orange max-w-none">
               {/* <p className="text-lg text-gray-600 leading-relaxed">
                 {product.description}
               </p> */}
-              <div
-                className="prose prose-orange max-w-none mb-10 text-gray-600"
-                dangerouslySetInnerHTML={{ __html: product.description }}
-              />
-              <p className="text-gray-600 leading-relaxed mt-4">
+              <div className="prose prose-orange max-w-none mb-4 text-gray-600">
+
+                {/* First Paragraph */}
+                <div dangerouslySetInnerHTML={{ __html: firstParagraph }} />
+
+                {/* Remaining Content */}
+                {expanded && (
+                  <div dangerouslySetInnerHTML={{ __html: remainingDescription }} />
+                )}
+
+                {/* Show More Button */}
+                <button
+                  onClick={() => setExpanded(!expanded)}
+                  className="mt-4 text-orange-600 font-semibold hover:underline cursor-pointer"
+                >
+                  {expanded ? "Show Less" : "Show More"}
+                </button>
+
+              </div>
+              {/* <p className="text-gray-600 leading-relaxed mt-4">
                 Experience the authentic taste of summer with our premium {product.name}.
                 Sourced directly from our certified organic orchards, each fruit is hand-picked
                 to ensure the highest quality, sweetness, and aroma. Perfect for direct consumption,
                 desserts, or as a healthy snack.
-              </p>
+              </p> */}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
