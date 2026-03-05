@@ -8,7 +8,7 @@ import { cn } from '../lib/utils';
 
 const HERO_SLIDES = [
   {
-    image: "/images/banner-1.jpeg",
+    image: "/images/amirdh mango banner-06.jpg.jpeg",
     // productImg: "/images/Banner-Img-1.png", // Pulp can/jar
     title: "Enjoy the rich aroma and golden sweetness of real Alphonso Mango Pulp",
     subtitle: "Experience the pure essence of Ratnagiri's finest mangoes in every spoonful.",
@@ -24,7 +24,7 @@ const HERO_SLIDES = [
     bgColor: "from-orange-400 via-orange-500 to-yellow-500"
   },
   {
-    image: "/images/image.png",
+    image: "/images/Banner-3-Img.png",
     productImg: "/images/Banner-Img-3.png ", // Juice
     title: "Refreshing Natural Mango Juice for the Perfect Summer Cool-down",
     subtitle: "100% natural, cold-pressed juice with no added preservatives.",
@@ -37,7 +37,7 @@ const TESTIMONIALS = [
   {
     name: "Rajesh Kumar",
     role: "Wholesale Partner",
-    text: "The quality of Alphonso mangoes from Amridh is unmatched. My customers keep coming back for more. The wholesale pricing is very competitive.",
+    text: "The quality of Alphonso mango pulp and its products from Amridh is unmatched. My customers keep coming back for more. The wholesale pricing is very competitive.",
     avatar: "https://i.pravatar.cc/150?u=rajesh"
   },
   {
@@ -92,7 +92,7 @@ export default function Home() {
   return (
     <div className="space-y-24 pb-24">
       {/* Hero Slider - Redesigned for Background Images & Mobile Perfection */}
-      <section className="max-w-[1800px] mx-auto relative h-[85vh] lg:h-[90vh] rounded flex items-center overflow-hidden">
+      <section className="relative h-[85vh] lg:h-[90vh] rounded flex items-center overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}

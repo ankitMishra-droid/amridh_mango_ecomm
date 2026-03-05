@@ -140,7 +140,7 @@ At Amridh, we ensure:</p>
 <p>Every batch is crafted to maintain the authentic flavor and vibrant color that mango lovers cherish.</p><br><p>A Traditional Indian Delight with Modern Quality
 Mango Cubes (Aam Papad) are a classic fruit confection enjoyed across generations. Amridh brings you this traditional mango sweet in a hygienically prepared, export-quality format — perfect for retail, bulk supply, and international markets.</p><br><p>Enjoy the chewy, fruity richness of real mango in every bite.</p>
 `,
-        "/images/papad.jpeg",
+        "/images/image.png",
       ],
       [
         "Mango Juice",
@@ -160,44 +160,44 @@ Mango Cubes (Aam Papad) are a classic fruit confection enjoyed across generation
         "The King of Mangoes from Ratnagiri.",
         "/images/AdobeStock_43300661.jpeg",
       ],
-      [
-        "Mango Cubes",
-        "Cubes",
-        350,
-        280,
-        120,
-        `<h3>Traditional sun-dried mango leather (Aam Papad).</h3><br><p>A Bite-Sized Burst of Real Mango Goodness
-Relive the authentic taste of traditional Indian mango delight with Amridh Mango Cubes (Aam Papad) — crafted from premium quality mango pulp and carefully processed to preserve natural flavor, color, and nutrition.</p><br><p>Our Aam Papad is made by blending ripe mango pulp with a touch of natural sweetener, then spreading it thin and drying it under the sun to create a chewy, tangy-sweet treat that captures the true essence of mango in every bite.</p><br><p>Our mango cubes offer the perfect balance of sweetness and tanginess, delivering a chewy, fruity indulgence in convenient bite-sized pieces. Made from sun-ripened mangoes, this timeless treat combines tradition with modern quality standards.</p><br><h4>What Makes Amridh Mango Cubes Special?</h4><br><p>🥭 Made from Real Mango Pulp</p><br><p>Prepared using high-quality mango pulp, our Aam Papad cubes capture the rich tropical essence and natural sweetness of ripe mangoes.</p><br>
-<h4>🌿 Naturally Flavorful & Nutrient-Rich</h4><p>Mangoes are naturally rich in:</p>
-<ul>
-<li>Vitamin A for skin and vision health</li>
-<li>Vitamin C for immune support</li>
-<li>Dietary fiber for digestion</li>
-<li>Antioxidants for overall wellness</li>
-</ul>
-<p>Our mango cubes provide a delicious fruit-based snack option that satisfies sweet cravings while offering natural goodness.</p><br>
-<h4>🍬 Perfect Anytime Snack</h4><p>Convenient, portable, and loved by all age groups, Mango Cubes (Aam Papad) are ideal for:</p><br>
-<ul>
-<li>Healthy snacking</li>
-<li>School tiffin treats</li>
-<li>Travel snacks</li>
-<li>Festive gifting</li>
-<li>Traditional sweet platters</li>
-</ul>
-<p>Their soft, chewy texture and authentic mango taste make them a nostalgic favorite.</p>
-<br><p>✔ Hygienically Processed & Quality Assured
-At Amridh, we ensure:</p>
-<br><ul>
-<li>Premium grade mango pulp selection</li>
-<li>Controlled processing for consistent taste</li>
-<li>Uniform texture and cube sizing</li>
-<li>Strict quality checks for safety and freshness</li>
-</ul><br>
-<p>Every batch is crafted to maintain the authentic flavor and vibrant color that mango lovers cherish.</p><br><p>A Traditional Indian Delight with Modern Quality
-Mango Cubes (Aam Papad) are a classic fruit confection enjoyed across generations. Amridh brings you this traditional mango sweet in a hygienically prepared, export-quality format — perfect for retail, bulk supply, and international markets.</p><br><p>Enjoy the chewy, fruity richness of real mango in every bite.</p>
-`,
-        "/images/cubes.jpeg",
-      ],
+//       [
+//         "Mango Cubes",
+//         "Cubes",
+//         350,
+//         280,
+//         120,
+//         `<h3>Traditional sun-dried mango leather (Aam Papad).</h3><br><p>A Bite-Sized Burst of Real Mango Goodness
+// Relive the authentic taste of traditional Indian mango delight with Amridh Mango Cubes (Aam Papad) — crafted from premium quality mango pulp and carefully processed to preserve natural flavor, color, and nutrition.</p><br><p>Our Aam Papad is made by blending ripe mango pulp with a touch of natural sweetener, then spreading it thin and drying it under the sun to create a chewy, tangy-sweet treat that captures the true essence of mango in every bite.</p><br><p>Our mango cubes offer the perfect balance of sweetness and tanginess, delivering a chewy, fruity indulgence in convenient bite-sized pieces. Made from sun-ripened mangoes, this timeless treat combines tradition with modern quality standards.</p><br><h4>What Makes Amridh Mango Cubes Special?</h4><br><p>🥭 Made from Real Mango Pulp</p><br><p>Prepared using high-quality mango pulp, our Aam Papad cubes capture the rich tropical essence and natural sweetness of ripe mangoes.</p><br>
+// <h4>🌿 Naturally Flavorful & Nutrient-Rich</h4><p>Mangoes are naturally rich in:</p>
+// <ul>
+// <li>Vitamin A for skin and vision health</li>
+// <li>Vitamin C for immune support</li>
+// <li>Dietary fiber for digestion</li>
+// <li>Antioxidants for overall wellness</li>
+// </ul>
+// <p>Our mango cubes provide a delicious fruit-based snack option that satisfies sweet cravings while offering natural goodness.</p><br>
+// <h4>🍬 Perfect Anytime Snack</h4><p>Convenient, portable, and loved by all age groups, Mango Cubes (Aam Papad) are ideal for:</p><br>
+// <ul>
+// <li>Healthy snacking</li>
+// <li>School tiffin treats</li>
+// <li>Travel snacks</li>
+// <li>Festive gifting</li>
+// <li>Traditional sweet platters</li>
+// </ul>
+// <p>Their soft, chewy texture and authentic mango taste make them a nostalgic favorite.</p>
+// <br><p>✔ Hygienically Processed & Quality Assured
+// At Amridh, we ensure:</p>
+// <br><ul>
+// <li>Premium grade mango pulp selection</li>
+// <li>Controlled processing for consistent taste</li>
+// <li>Uniform texture and cube sizing</li>
+// <li>Strict quality checks for safety and freshness</li>
+// </ul><br>
+// <p>Every batch is crafted to maintain the authentic flavor and vibrant color that mango lovers cherish.</p><br><p>A Traditional Indian Delight with Modern Quality
+// Mango Cubes (Aam Papad) are a classic fruit confection enjoyed across generations. Amridh brings you this traditional mango sweet in a hygienically prepared, export-quality format — perfect for retail, bulk supply, and international markets.</p><br><p>Enjoy the chewy, fruity richness of real mango in every bite.</p>
+// `,
+//         "/images/cubes.jpeg",
+//       ],
       // [
       //   "Dasheri Mango",
       //   "Fresh Mangoes",

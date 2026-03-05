@@ -20,6 +20,8 @@ import Contact from './pages/Contact';
 import Wishlist from './pages/Wishlist';
 import TrackOrder from './pages/TrackOrder';
 import Checkout from './pages/Checkout';
+import { Link } from 'react-router-dom';
+import { FaWhatsapp } from 'react-icons/fa';
 
 export default function App() {
   return (
@@ -27,34 +29,42 @@ export default function App() {
       <CartProvider>
         <WishlistProvider>
           <Router>
-          <div className="min-h-screen flex flex-col bg-orange-50/20">
-            <Navbar />
-            {/* ensures any navigation resets scroll position */}
-            <ScrollToTop />
-            <main className="flex-grow pt-16 lg:pt-20">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/shop" element={<Shop />} />
-                <Route path="/product/:id" element={<ProductDetail />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/admin" element={<Admin />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/bulk-booking" element={<BulkBooking />} />
-                <Route path="/corporate-gifting" element={<CorporateGifting />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/wishlist" element={<Wishlist />} />
-                <Route path="/track-order" element={<TrackOrder />} />
-                <Route path="/checkout" element={<Checkout />} />
-              </Routes>
-            </main>
-            <Footer />
-            <Toaster position="bottom-right" />
-          </div>
-        </Router>
-      </WishlistProvider>
-    </CartProvider>
+            <div className="min-h-screen flex flex-col bg-orange-50/20">
+              <Navbar />
+              {/* ensures any navigation resets scroll position */}
+              <ScrollToTop />
+              <main className="flex-grow pt-16 lg:pt-20">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/shop" element={<Shop />} />
+                  <Route path="/product/:id" element={<ProductDetail />} />
+                  <Route path="/cart" element={<Cart />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/admin" element={<Admin />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/bulk-booking" element={<BulkBooking />} />
+                  <Route path="/corporate-gifting" element={<CorporateGifting />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/wishlist" element={<Wishlist />} />
+                  <Route path="/track-order" element={<TrackOrder />} />
+                  <Route path="/checkout" element={<Checkout />} />
+                </Routes>
+              </main>
+              <Footer />
+              <Link
+                to="https://wa.me/917021489372"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300"
+              >
+                <FaWhatsapp size={28} />
+              </Link>
+              <Toaster position="bottom-right" />
+            </div>
+          </Router>
+        </WishlistProvider>
+      </CartProvider>
     </AuthProvider>
   );
 }

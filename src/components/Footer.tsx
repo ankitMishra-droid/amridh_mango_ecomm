@@ -45,10 +45,11 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Categories</h4>
             <ul className="space-y-4">
-              <li><Link to="/shop?cat=Fresh" className="hover:text-orange-500 transition-colors">Fresh Mangoes</Link></li>
-              <li><Link to="/shop?cat=Pickle" className="hover:text-orange-500 transition-colors">Mango Pickles</Link></li>
+              <li><Link to="/shop?cat=Jam" className="hover:text-orange-500 transition-colors">Mango Jam</Link></li>
+              <li><Link to="/shop?cat=Beverages" className="hover:text-orange-500 transition-colors">Mango Juice</Link></li>
               <li><Link to="/shop?cat=Pulp" className="hover:text-orange-500 transition-colors">Mango Pulp</Link></li>
-              <li><Link to="/shop?cat=Gifts" className="hover:text-orange-500 transition-colors">Gift Boxes</Link></li>
+              <li><Link to="/shop?cat=Pickles" className="hover:text-orange-500 transition-colors">Mango Pickle</Link></li>
+              <li><Link to="/shop?cat=Papad" className="hover:text-orange-500 transition-colors">Aam Papad</Link></li>
             </ul>
           </div>
 
