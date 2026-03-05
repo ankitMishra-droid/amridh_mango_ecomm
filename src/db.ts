@@ -81,7 +81,7 @@ if (productCount.count === 0) {
         300,
         300,
         `<h3>100% pure Alphonso mango pulp.</h3><br><p>Amridh Mango Pulp is a premium, ready-to-use product made from 100% pure Alphonso mangoes. Carefully processed to preserve the fruit's natural sweetness, vibrant color, and rich flavor, our mango pulp offers a convenient way to enjoy the essence of ripe mangoes all year round.</p><br><p>Premium Alphonso Mango Puree – The Crown Jewel of Nature’s Finest Treasures</p><br><p>Welcome to Amridh, where we bring you the purest treasures of nature. Among our most celebrated offerings stands the legendary Alphonso Mango Puree — a product that embodies richness, aroma, and unmatched tropical flavor.</p><br><p>Carefully crafted from hand-selected Alphonso mangoes grown in premium orchards, our puree captures the true essence of India’s most prized mango variety. Every batch is processed under controlled ripening conditions to preserve its natural sweetness, vibrant color, and signature fragrance — ensuring consistent, export-quality excellence year after year.<p><br><p>What Makes Amridh Alphonso Mango Puree Exceptional?<p><br><p>🥭 Made from Authentic Alphonso Mangoes</p><br><p>We source our mangoes from trusted growers in Ratnagiri, Maharashtra — the heartland of Alphonso cultivation. Each mango is carefully handpicked at peak ripeness to ensure the highest quality and flavor in every jar.</p><br><p>🌿 Rich in Natural Goodness</p><br><p>Alphonso mangoes are naturally packed with:</p><br><p>🌿 Nutrient-Rich Natural Goodn</p>`,
-        "/images/product-Amirdh-Mango-pulp.webp",
+        "/images/pulp.jpeg",
       ],
       [
         "Mango Pickle",
@@ -157,7 +157,48 @@ Mango Cubes (Aam Papad) are a classic fruit confection enjoyed across generation
         1200,
         900,
         100,
-        "The King of Mangoes from Ratnagiri.",
+        `<h3>Fresh Alphonso Mango – The King of Mangoes</h3><br>
+
+<p>Experience the unmatched taste of India’s most celebrated mango variety – the Alphonso Mango. Known as the "King of Mangoes", Alphonso mangoes are prized for their rich sweetness, smooth texture, vibrant golden color, and irresistible tropical aroma.</p><br>
+
+<p>Our fresh Alphonso mangoes are carefully sourced from the premium orchards of Ratnagiri, Maharashtra, where the unique coastal climate and fertile soil create the perfect conditions for growing the world’s finest mangoes.</p><br>
+
+<h4>Why Our Alphonso Mangoes Are Special</h4><br>
+
+<ul>
+<li>Handpicked at peak ripeness for maximum sweetness</li>
+<li>Naturally ripened without harmful chemicals</li>
+<li>Rich, creamy pulp with a smooth fiberless texture</li>
+<li>Premium export-quality fruit selected from trusted farmers</li>
+</ul><br>
+
+<h4>Rich in Natural Nutrients</h4><br>
+
+<p>Alphonso mangoes are not only delicious but also packed with essential nutrients that support overall health:</p><br>
+
+<ul>
+<li>Vitamin A for healthy skin and eyesight</li>
+<li>Vitamin C to strengthen the immune system</li>
+<li>Dietary fiber for better digestion</li>
+<li>Antioxidants that support overall wellness</li>
+</ul><br>
+
+<h4>Perfect for Many Uses</h4><br>
+
+<p>Fresh Alphonso mangoes are incredibly versatile and can be enjoyed in many ways:</p><br>
+
+<ul>
+<li>Eating fresh as a sweet summer treat</li>
+<li>Preparing milkshakes, smoothies, and juices</li>
+<li>Making desserts like mango ice cream, cakes, and puddings</li>
+<li>Preparing traditional Indian dishes such as aamras</li>
+</ul><br>
+
+<h4>Carefully Packed & Delivered Fresh</h4><br>
+
+<p>Each box of Alphonso mangoes is carefully sorted, quality checked, and hygienically packed to ensure freshness and safety during delivery. We take great care to maintain the natural aroma, taste, and texture that makes Alphonso mangoes truly special.</p><br>
+
+<p>Bring home the authentic taste of premium Alphonso mangoes and enjoy the true flavor of summer with every bite.</p>`,
         "/images/AdobeStock_43300661.jpeg",
       ],
 //       [

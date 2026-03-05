@@ -50,6 +50,7 @@ export default function Footer() {
               <li><Link to="/shop?cat=Pulp" className="hover:text-orange-500 transition-colors">Mango Pulp</Link></li>
               <li><Link to="/shop?cat=Pickles" className="hover:text-orange-500 transition-colors">Mango Pickle</Link></li>
               <li><Link to="/shop?cat=Papad" className="hover:text-orange-500 transition-colors">Aam Papad</Link></li>
+              <li><Link to="/shop?cat=Fresh Mangoes" className="hover:text-orange-500 transition-colors">Fresh Mangoes</Link></li>
             </ul>
           </div>
 
