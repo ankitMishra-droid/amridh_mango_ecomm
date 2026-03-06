@@ -361,7 +361,7 @@ export default function Home() {
           
           <div className="relative z-10 max-w-3xl mx-auto">
             <span className="text-orange-500 font-black uppercase tracking-widest text-sm mb-6 block">Exclusive Community</span>
-            <h2 className="text-4xl md:text-6xl font-black mb-8">Join the Amirdh</h2>
+            <h2 className="text-4xl md:text-6xl font-black mb-8">Join the Amirdh Club</h2>
             <p className="text-xl text-gray-400 mb-12 leading-relaxed">
               Be the first to know about seasonal harvests, limited varieties, and exclusive member-only discounts. 
               Get <span className="text-orange-500 font-bold">10% OFF</span> your first order today!
