@@ -23,7 +23,7 @@ export default function Navbar() {
     { name: 'Mango Juice', path: '/shop?cat=Beverages' },
     { name: 'Mango Pulp', path: '/shop?cat=Pulp' },
     { name: 'Mango Pickle', path: '/shop?cat=Pickles' },
-    { name: 'Aam Papad', path: '/shop?cat=Papad' },
+    { name: 'Aam Papad / Mango Cubes', path: '/shop?cat=Papad' },
     { name: 'Fresh Mangoes', path: '/shop?cat=Fresh Mangoes' },
     // { name: 'Mango Cubes', path: '/shop?cat=Cubes' },
   ];
