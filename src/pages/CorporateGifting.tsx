@@ -88,7 +88,7 @@ export default function CorporateGifting() {
               {/* Why Choose */}
               <div>
                 <h3 className="text-2xl font-black text-gray-900 mb-6">
-                  Why Choose Alphonso Mangoes &amp; Mango Products as a Gift?
+                  Why Choose Amirdh Alphonso Mangoes &amp; Mango Products as a Gift?
                 </h3>
                 <ul className="space-y-5">
                   {whyChooseItems.map((item, i) => (

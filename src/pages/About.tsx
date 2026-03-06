@@ -178,7 +178,7 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <div>
             <h2 className="text-4xl font-black text-gray-900 mb-10 leading-tight">
-              Why Choose Alphonso Mangoes &amp; <br />
+              Why Choose Amirdh Alphonso Mangoes &amp; <br />
               <span className="text-orange-600">Amridh Products as a Gift?</span>
             </h2>
             <ul className="space-y-6">

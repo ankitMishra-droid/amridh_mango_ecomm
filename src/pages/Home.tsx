@@ -10,6 +10,7 @@ const HERO_SLIDES = [
   {
     image: "/images/amirdh mango banner-06.jpg.jpeg",
     // productImg: "/images/Banner-Img-1.png", // Pulp can/jar
+    mobileImage: "/images/mobile-bg.jpeg",
     title: "Enjoy the rich aroma and golden sweetness of real Alphonso Mango Pulp",
     subtitle: "Experience the pure essence of Ratnagiri's finest mangoes in every spoonful.",
     accent: "Premium Pulp",
@@ -18,6 +19,7 @@ const HERO_SLIDES = [
   {
     image: "/images/banner-2.jpeg",
     // productImg: "/images/Banner-Img-2.png", // Fresh mangoes
+    mobileImage: "/images/mobile-bg2.jpeg",
     title: "Saffron Sweetness in Every Bite of Authentic Kesar Mangoes",
     subtitle: "Hand-picked from the sun-drenched orchards of Gujarat for your delight.",
     accent: "Fresh Harvest",
@@ -26,6 +28,7 @@ const HERO_SLIDES = [
   {
     image: "/images/Banner-3-Img.png",
     productImg: "/images/Banner-Img-3.png ", // Juice
+    mobileImage: "/images/mobile-bg3.jpeg",
     title: "Refreshing Natural Mango Juice for the Perfect Summer Cool-down",
     subtitle: "100% natural, cold-pressed juice with no added preservatives.",
     accent: "Pure Juice",
@@ -58,6 +61,18 @@ export default function Home() {
   const [products, setProducts] = React.useState<Product[]>([]);
   const [currentSlide, setCurrentSlide] = React.useState(0);
   const [currentTestimonial, setCurrentTestimonial] = React.useState(0);
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkScreen = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
 
   React.useEffect(() => {
     // allow a different backend host in production (e.g. Netlify env var)
@@ -102,9 +117,11 @@ export default function Home() {
             transition={{ duration: 1 }}
             className="absolute inset-0"
           >
-            <img 
-              src={HERO_SLIDES[currentSlide].image} 
-              alt="" 
+            <img
+              src={isMobile
+                ? HERO_SLIDES[currentSlide].mobileImage
+                : HERO_SLIDES[currentSlide].image}
+              alt=""
               className="w-full h-full object-center object-center"
               referrerPolicy="no-referrer"
             />
@@ -129,23 +146,23 @@ export default function Home() {
               className="relative"
             >
               <div className="relative z-10 w-96 h-full rounded overflow-hidden">
-                <img 
-                  src={HERO_SLIDES[currentSlide].productImg} 
+                <img
+                  src={HERO_SLIDES[currentSlide].productImg}
                   // alt="Product" 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
               </div>
               {/* Floating Decorative Elements */}
-              <motion.div 
+              <motion.div
                 animate={{ y: [0, -15, 0] }}
                 transition={{ duration: 4, repeat: Infinity }}
-                className="absolute -top-10 -left-10 w-32 h-32 bg-yellow-400/30 rounded-full blur-3xl" 
+                className="absolute -top-10 -left-10 w-32 h-32 bg-yellow-400/30 rounded-full blur-3xl"
               />
-              <motion.div 
+              <motion.div
                 animate={{ y: [0, 15, 0] }}
                 transition={{ duration: 5, repeat: Infinity }}
-                className="absolute -bottom-10 -right-10 w-40 h-40 bg-orange-500/30 rounded-full blur-3xl" 
+                className="absolute -bottom-10 -right-10 w-40 h-40 bg-orange-500/30 rounded-full blur-3xl"
               />
             </motion.div>
           </div>
@@ -168,15 +185,15 @@ export default function Home() {
                 {HERO_SLIDES[currentSlide].subtitle}
               </p>
               <div className="flex flex-wrap gap-4 justify-center lg:justify-end">
-                <Link 
-                  to="/shop" 
+                <Link
+                  to="/shop"
                   className="bg-orange-600 text-white px-6 py-2.5 md:px-8 md:py-3 rounded-full font-bold text-sm md:text-base hover:bg-orange-700 transition-all flex items-center group shadow-2xl"
                 >
                   Shop Now
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <Link 
-                  to="/bulk-booking" 
+                <Link
+                  to="/bulk-booking"
                   className="hidden md:block bg-white/10 backdrop-blur-md text-white border-2 border-white/50 px-6 py-2.5 md:px-8 md:py-3 rounded-full font-bold text-sm md:text-base hover:bg-white/20 transition-all"
                 >
                   Bulk Inquiry
@@ -188,13 +205,13 @@ export default function Home() {
 
         {/* Slider Controls */}
         <div className="absolute bottom-10 right-10 flex space-x-4 z-20">
-          <button 
+          <button
             onClick={prevSlide}
             className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all"
           >
             <ChevronLeft className="h-6 w-6" />
           </button>
-          <button 
+          <button
             onClick={nextSlide}
             className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all"
           >
@@ -205,7 +222,7 @@ export default function Home() {
         {/* Progress Indicators */}
         <div className="absolute bottom-10 left-10 flex space-x-2 z-20">
           {HERO_SLIDES.map((_, i) => (
-            <button 
+            <button
               key={i}
               onClick={() => setCurrentSlide(i)}
               className={cn(
@@ -225,32 +242,32 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {[
-            { 
-              icon: Globe, 
-              title: "Superior Taste", 
+            {
+              icon: Globe,
+              title: "Superior Taste",
               desc: "Ratnagiri mango pulp is celebrated for its rich sweetness and unique flavor profile, ideal for various culinary creations.",
               color: "bg-blue-50 text-blue-600"
             },
-            { 
-              icon: Sun, 
-              title: "Natural Color", 
+            {
+              icon: Sun,
+              title: "Natural Color",
               desc: "The pulp boasts a vibrant yellow-orange color from the ripe mangoes, enhancing the visual appeal of any dish.",
               color: "bg-yellow-50 text-yellow-600"
             },
-            { 
-              icon: Heart, 
-              title: "Rich Nutritional Profile", 
+            {
+              icon: Heart,
+              title: "Rich Nutritional Profile",
               desc: "acked with vitamins and minerals, Ratnagiri mango pulp is a nutritious choice for health-conscious consumers.",
               color: "bg-red-50 text-red-600"
             },
-            { 
-              icon: CrossIcon, 
-              title: "No Artificial Additives", 
+            {
+              icon: CrossIcon,
+              title: "No Artificial Additives",
               desc: "Enjoy 100% pure mango pulp, free from artificial preservatives, colors, or flavors for a wholesome experience.",
               color: "bg-red-50 text-red-600"
             }
           ].map((s, i) => (
-            <motion.div 
+            <motion.div
               key={i}
               whileHover={{ y: -10 }}
               className="bg-white p-10 rounded-[2.5rem] border border-orange-50 shadow-sm hover:shadow-xl transition-all"
@@ -272,7 +289,7 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 text-center md:text-left">Seasonal Favorites</h2>
             <div className="flex flex-wrap justify-center md:justify-start gap-4">
               {['Fresh Mangoes', 'Pickles', 'Pulp', 'Jam', 'Cubes', 'Beverages'].map(cat => (
-                <Link 
+                <Link
                   key={cat}
                   to={`/shop?cat=${cat}`}
                   className="text-xs font-bold px-4 py-2 rounded-full border border-orange-100 text-gray-600 hover:bg-orange-600 hover:text-white transition-all"
@@ -294,8 +311,8 @@ export default function Home() {
         </div>
 
         <div className="mt-12 text-center md:hidden">
-          <Link 
-            to="/shop" 
+          <Link
+            to="/shop"
             className="inline-flex items-center justify-center bg-orange-600 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-lg shadow-orange-900/20 w-full"
           >
             View All Products
@@ -308,7 +325,7 @@ export default function Home() {
       <section className="bg-orange-50 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-black text-gray-900 mb-4">What Our Lovers Say</h2>
+            <h2 className="text-4xl font-black text-gray-900 mb-4">What Our Followers Say</h2>
             <div className="flex justify-center space-x-1 text-yellow-500">
               {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
             </div>
@@ -328,8 +345,8 @@ export default function Home() {
                   "{TESTIMONIALS[currentTestimonial].text}"
                 </p>
                 <div className="flex flex-col items-center">
-                  <img 
-                    src={TESTIMONIALS[currentTestimonial].avatar} 
+                  <img
+                    src={TESTIMONIALS[currentTestimonial].avatar}
                     alt={TESTIMONIALS[currentTestimonial].name}
                     className="w-20 h-20 rounded-full border-4 border-orange-100 mb-4"
                   />
@@ -358,18 +375,18 @@ export default function Home() {
         <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-[3rem] p-12 md:p-20 text-center text-white relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500/10 rounded-full translate-x-32 -translate-y-32 blur-3xl" />
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-yellow-500/10 rounded-full -translate-x-32 translate-y-32 blur-3xl" />
-          
+
           <div className="relative z-10 max-w-3xl mx-auto">
             <span className="text-orange-500 font-black uppercase tracking-widest text-sm mb-6 block">Exclusive Community</span>
-            <h2 className="text-4xl md:text-6xl font-black mb-8">Join the Amirdh</h2>
+            <h2 className="text-4xl md:text-6xl font-black mb-8">Join the Amirdh Club</h2>
             <p className="text-xl text-gray-400 mb-12 leading-relaxed">
-              Be the first to know about seasonal harvests, limited varieties, and exclusive member-only discounts. 
+              Be the first to know about seasonal harvests, limited varieties, and exclusive member-only discounts.
               Get <span className="text-orange-500 font-bold">10% OFF</span> your first order today!
             </p>
             <form className="flex flex-col sm:flex-row gap-4 justify-center" onSubmit={(e) => e.preventDefault()}>
-              <input 
-                type="email" 
-                placeholder="Enter your email address" 
+              <input
+                type="email"
+                placeholder="Enter your email address"
                 className="px-8 py-5 rounded-2xl border border-orange-500 focus:ring-4 focus:ring-orange-500/50 text-white outline-none text-lg"
               />
               <button className="bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-orange-700 transition-all shadow-lg shadow-orange-900/40 cursor-pointer">
