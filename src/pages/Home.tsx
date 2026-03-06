@@ -308,7 +308,7 @@ export default function Home() {
       <section className="bg-orange-50 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-black text-gray-900 mb-4">What Our Lovers Say</h2>
+            <h2 className="text-4xl font-black text-gray-900 mb-4">What Our Followers Say</h2>
             <div className="flex justify-center space-x-1 text-yellow-500">
               {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
             </div>
