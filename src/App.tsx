@@ -22,6 +22,7 @@ import TrackOrder from './pages/TrackOrder';
 import Checkout from './pages/Checkout';
 import { Link } from 'react-router-dom';
 import { FaWhatsapp } from 'react-icons/fa';
+import Events from './pages/Events';
 
 export default function App() {
   return (
@@ -49,6 +50,7 @@ export default function App() {
                   <Route path="/wishlist" element={<Wishlist />} />
                   <Route path="/track-order" element={<TrackOrder />} />
                   <Route path="/checkout" element={<Checkout />} />
+                  <Route path="/events" element={<Events />} />
                 </Routes>
               </main>
               <Footer />

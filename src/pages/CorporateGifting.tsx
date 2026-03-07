@@ -29,8 +29,8 @@ export default function CorporateGifting() {
     <div className="pb-24">
 
       {/* ── Hero ── */}
-      <section className="relative h-[60vh] flex items-center overflow-hidden bg-gray-900">
-        <div className="absolute inset-0">
+      <section className="relative h-[60vh] flex items-center overflow-hidden bg-orange-600">
+        {/* <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1549465220-1d8c9d9c6703?auto=format&fit=crop&q=80&w=1920"
             alt="Gift Box"
@@ -38,6 +38,9 @@ export default function CorporateGifting() {
             referrerPolicy="no-referrer"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900" />
+        </div> */}
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
+          <div className="absolute inset-0 bg-[repeating-conic-gradient(from_0deg,transparent_0deg_10deg,rgba(255,255,255,0.1)_10deg_20deg)]" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white w-full">
           <motion.h1
@@ -45,9 +48,9 @@ export default function CorporateGifting() {
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-7xl font-black mb-6"
           >
-            Premium <span className="text-orange-500">Corporate</span> Gifting
+            Premium <span className="text-yellow-300">Corporate</span> Gifting
           </motion.h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-white max-w-3xl mx-auto leading-relaxed">
             A Premium Gift of Sweetness from Ratnagiri &amp; Devgad
           </p>
         </div>
