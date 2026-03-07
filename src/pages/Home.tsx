@@ -8,7 +8,7 @@ import { cn } from '../lib/utils';
 
 const HERO_SLIDES = [
   {
-    image: "/images/amirdh mango banner-06.jpg.jpeg",
+    image: "/images/banner-img.jpg",
     // productImg: "/images/Banner-Img-1.png", // Pulp can/jar
     mobileImage: "/images/mobile-bg.jpeg",
     title: "Enjoy the rich aroma and golden sweetness of real Alphonso Mango Pulp",
@@ -17,7 +17,7 @@ const HERO_SLIDES = [
     bgColor: "from-yellow-400 via-orange-500 to-orange-600"
   },
   {
-    image: "/images/banner-2.jpeg",
+    image: "/images/banner-img2.jpg",
     // productImg: "/images/Banner-Img-2.png", // Fresh mangoes
     mobileImage: "/images/mobile-bg2.jpeg",
     title: "Saffron Sweetness in Every Bite of Authentic Kesar Mangoes",
@@ -26,8 +26,8 @@ const HERO_SLIDES = [
     bgColor: "from-orange-400 via-orange-500 to-yellow-500"
   },
   {
-    image: "/images/Banner-3-Img.png",
-    productImg: "/images/Banner-Img-3.png ", // Juice
+    image: "/images/banner-img3.jpg",
+    // productImg: "/images/Banner-Img-3.png ", // Juice
     mobileImage: "/images/mobile-bg3.jpeg",
     title: "Refreshing Natural Mango Juice for the Perfect Summer Cool-down",
     subtitle: "100% natural, cold-pressed juice with no added preservatives.",
@@ -108,6 +108,7 @@ export default function Home() {
     <div className="space-y-24 pb-24">
       {/* Hero Slider - Redesigned for Background Images & Mobile Perfection */}
       <section className="relative h-[85vh] lg:h-[90vh] rounded flex items-center overflow-hidden">
+        
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -137,6 +138,41 @@ export default function Home() {
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-12">
           {/* Left Side: Product Image (Now on left for desktop) */}
+          <div className="w-full lg:w-1/2 text-center lg:text-left flex flex-col items-center lg:items-end">
+            <motion.div
+              key={`content-${currentSlide}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            >
+              <span className="inline-block bg-orange-500 text-white text-[10px] md:text-xs font-bold px-4 py-1 rounded-full uppercase tracking-[0.2em] mb-4 md:mb-6">
+                {HERO_SLIDES[currentSlide].accent}
+              </span>
+              <h1 className="text-3xl md:text-4xl lg:text-4xl font-black text-white leading-tight mb-6 md:mb-8 drop-shadow-2xl italic">
+                {HERO_SLIDES[currentSlide].title}
+              </h1>
+              <p className="text-base md:text-lg lg:text-xl text-white/90 mb-8 md:mb-10 leading-relaxed max-w-xl mx-auto lg:mr-0 drop-shadow-md">
+                {HERO_SLIDES[currentSlide].subtitle}
+              </p>
+              <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+                <Link
+                  to="/shop"
+                  className="bg-orange-600 text-white px-6 py-2.5 md:px-8 md:py-3 rounded-full font-bold text-sm md:text-base hover:bg-orange-700 transition-all flex items-center group shadow-2xl"
+                >
+                  Shop Now
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link
+                  to="/bulk-booking"
+                  className="hidden md:block bg-white/10 backdrop-blur-md text-white border-2 border-white/50 px-6 py-2.5 md:px-8 md:py-3 rounded-full font-bold text-sm md:text-base hover:bg-white/20 transition-all"
+                >
+                  Bulk Inquiry
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right Side: Text Content (Primary on Mobile, Right on Desktop) */}
           <div className="hidden lg:flex w-full lg:w-1/2 justify-center lg:justify-start">
             <motion.div
               key={`product-${currentSlide}`}
@@ -164,41 +200,6 @@ export default function Home() {
                 transition={{ duration: 5, repeat: Infinity }}
                 className="absolute -bottom-10 -right-10 w-40 h-40 bg-orange-500/30 rounded-full blur-3xl"
               />
-            </motion.div>
-          </div>
-
-          {/* Right Side: Text Content (Primary on Mobile, Right on Desktop) */}
-          <div className="w-full lg:w-1/2 text-center lg:text-right flex flex-col items-center lg:items-end">
-            <motion.div
-              key={`content-${currentSlide}`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-            >
-              <span className="inline-block bg-orange-500 text-white text-[10px] md:text-xs font-bold px-4 py-1 rounded-full uppercase tracking-[0.2em] mb-4 md:mb-6">
-                {HERO_SLIDES[currentSlide].accent}
-              </span>
-              <h1 className="text-3xl md:text-4xl lg:text-4xl font-black text-white leading-tight mb-6 md:mb-8 drop-shadow-2xl italic">
-                {HERO_SLIDES[currentSlide].title}
-              </h1>
-              <p className="text-base md:text-lg lg:text-xl text-white/90 mb-8 md:mb-10 leading-relaxed max-w-xl mx-auto lg:mr-0 drop-shadow-md">
-                {HERO_SLIDES[currentSlide].subtitle}
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center lg:justify-end">
-                <Link
-                  to="/shop"
-                  className="bg-orange-600 text-white px-6 py-2.5 md:px-8 md:py-3 rounded-full font-bold text-sm md:text-base hover:bg-orange-700 transition-all flex items-center group shadow-2xl"
-                >
-                  Shop Now
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link
-                  to="/bulk-booking"
-                  className="hidden md:block bg-white/10 backdrop-blur-md text-white border-2 border-white/50 px-6 py-2.5 md:px-8 md:py-3 rounded-full font-bold text-sm md:text-base hover:bg-white/20 transition-all"
-                >
-                  Bulk Inquiry
-                </Link>
-              </div>
             </motion.div>
           </div>
         </div>
