@@ -157,7 +157,7 @@ export default function Home() {
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
                 <Link
                   to="/shop"
-                  className="hidden md:block bg-orange-600 text-white px-6 py-2.5 md:px-8 md:py-3 rounded-full font-bold text-sm md:text-base hover:bg-orange-700 transition-all flex items-center group shadow-2xl"
+                  className="hidden md:flex bg-orange-600 text-white px-6 py-2.5 md:px-8 md:py-3 rounded-full font-bold text-sm md:text-base hover:bg-orange-700 transition-all flex items-center group shadow-2xl"
                 >
                   Shop Now
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
