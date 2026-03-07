@@ -116,7 +116,7 @@ if (productCount.count === 0) {
 <p>Mango pickle is cherished for its intense taste, long shelf life, and ability to instantly enhance any meal with a spicy, tangy kick.</p>`,
         "/images/pickle.png",
       ],
-      extraImages: ["/images/tilles 5.jpg"],
+      extraImages: ["/images/tilles-5.jpg"],
     },
     {
       data: [
@@ -168,7 +168,7 @@ Mango Cubes (Aam Papad) are a classic fruit confection enjoyed across generation
         `<h3>Refreshing natural mango juice.</h3><br><p>Amridh Mango Juice is a nutrient-dense tropical beverage made by blending ripe mango pulp with water, ice, and optional natural sweeteners. Bursting with rich flavor and natural goodness, it delivers a thick, smooth texture that captures the true essence of mango.</p><br><p>Naturally high in Vitamin A, Vitamin C, antioxidants, and dietary fiber, this refreshing drink helps support skin health, boost immunity, and provide natural energy — making it a perfect summer staple.</p><br><p>Unlike many other fruits, mangoes cannot be extracted using a regular juicer because they are high in fiber. The fiber holds much of the fruit's flavor and nutrition, which is why mango juice is best prepared by blending the whole pulp rather than traditional juicing. This method preserves its wholesome taste, natural thickness, and full nutritional value.</p><br><p>Best served chilled, Amridh Mango Juice is a delicious and healthy way to enjoy the king of fruits in every sip.</p>`,
         "/images/juice.jpeg",
       ],
-      extraImages: ["/images/tilles 2-01.jpg"],
+      extraImages: ["/images/tilles-2-01.jpg"],
     },
     {
       data: [
