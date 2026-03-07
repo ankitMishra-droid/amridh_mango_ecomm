@@ -39,7 +39,22 @@ async function startServer() {
   // Product Routes
   app.get("/api/products", (req, res) => {
     const products = db.prepare('SELECT * FROM products').all();
-    res.json(products);
+
+    // For each product, fetch its extra images from product_images table
+    const getExtraImages = db.prepare(
+      'SELECT image_url FROM product_images WHERE product_id = ? ORDER BY sort_order ASC'
+    );
+
+    const productsWithImages = products.map((product: any) => {
+      const extraImages = (getExtraImages.all(product.id) as { image_url: string }[]).map(row => row.image_url);
+      return {
+        ...product,
+        // First image is always the main image_url, followed by extra images
+        images: [product.image_url, ...extraImages],
+      };
+    });
+
+    res.json(productsWithImages);
   });
 
   app.post("/api/products", (req, res) => {

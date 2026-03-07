@@ -10,8 +10,8 @@ const HERO_SLIDES = [
   {
     image: "/images/banner-img.jpg",
     // productImg: "/images/Banner-Img-1.png", // Pulp can/jar
-    mobileImage: "/images/mobile-bg.jpeg",
-    title: "Enjoy the rich aroma and golden sweetness of real Alphonso Mango Pulp",
+    mobileImage: "/images/mb-bg.jpg",
+    title: "Enjoy Alphonso mango sweetness in every bite",
     subtitle: "Experience the pure essence of Ratnagiri's finest mangoes in every spoonful.",
     accent: "Premium Pulp",
     bgColor: "from-yellow-400 via-orange-500 to-orange-600"
@@ -19,8 +19,8 @@ const HERO_SLIDES = [
   {
     image: "/images/banner-img2.jpg",
     // productImg: "/images/Banner-Img-2.png", // Fresh mangoes
-    mobileImage: "/images/mobile-bg2.jpeg",
-    title: "Saffron Sweetness in Every Bite of Authentic Kesar Mangoes",
+    mobileImage: "/images/mb-bg2.jpg",
+    title: "Enjoy refreshing natural Alphonso Mango Juice",
     subtitle: "Hand-picked from the sun-drenched orchards of Gujarat for your delight.",
     accent: "Fresh Harvest",
     bgColor: "from-orange-400 via-orange-500 to-yellow-500"
@@ -28,8 +28,8 @@ const HERO_SLIDES = [
   {
     image: "/images/banner-img3.jpg",
     // productImg: "/images/Banner-Img-3.png ", // Juice
-    mobileImage: "/images/mobile-bg3.jpeg",
-    title: "Refreshing Natural Mango Juice for the Perfect Summer Cool-down",
+    mobileImage: "/images/mb-bg3.jpg",
+    title: "Enjoy the rich aroma of Alphonso Mango Pulp",
     subtitle: "100% natural, cold-pressed juice with no added preservatives.",
     accent: "Pure Juice",
     bgColor: "from-yellow-300 via-yellow-500 to-orange-500"
@@ -138,7 +138,7 @@ export default function Home() {
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-12">
           {/* Left Side: Product Image (Now on left for desktop) */}
-          <div className="w-full lg:w-1/2 text-center lg:text-left flex flex-col items-center lg:items-end">
+          <div className="w-full mt-[-8rem] lg:mt-0 lg:w-1/2 text-center lg:text-left flex flex-col items-center lg:items-end">
             <motion.div
               key={`content-${currentSlide}`}
               initial={{ opacity: 0, y: 20 }}
@@ -151,13 +151,13 @@ export default function Home() {
               <h1 className="text-3xl md:text-4xl lg:text-4xl font-black text-white leading-tight mb-6 md:mb-8 drop-shadow-2xl italic">
                 {HERO_SLIDES[currentSlide].title}
               </h1>
-              <p className="text-base md:text-lg lg:text-xl text-white/90 mb-8 md:mb-10 leading-relaxed max-w-xl mx-auto lg:mr-0 drop-shadow-md">
+              {/* <p className="text-base md:text-lg lg:text-xl text-white/90 mb-8 md:mb-10 leading-relaxed max-w-xl mx-auto lg:mr-0 drop-shadow-md">
                 {HERO_SLIDES[currentSlide].subtitle}
-              </p>
+              </p> */}
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
                 <Link
                   to="/shop"
-                  className="bg-orange-600 text-white px-6 py-2.5 md:px-8 md:py-3 rounded-full font-bold text-sm md:text-base hover:bg-orange-700 transition-all flex items-center group shadow-2xl"
+                  className="hidden md:block bg-orange-600 text-white px-6 py-2.5 md:px-8 md:py-3 rounded-full font-bold text-sm md:text-base hover:bg-orange-700 transition-all flex items-center group shadow-2xl"
                 >
                   Shop Now
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />

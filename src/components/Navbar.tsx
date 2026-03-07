@@ -23,7 +23,7 @@ export default function Navbar() {
     { name: 'Mango Juice', path: '/shop?cat=Beverages' },
     { name: 'Mango Pulp', path: '/shop?cat=Pulp' },
     { name: 'Mango Pickle', path: '/shop?cat=Pickles' },
-    { name: 'Mango Cubes / Aam Papad', path: '/shop?cat=Papad' },
+    { name: 'Mango Cubes / Aam Papad', path: '/shop?cat=Papad&cat=Mango Cubes' },
     { name: 'Fresh Mangoes', path: '/shop?cat=Fresh Mangoes' },
     // { name: 'Mango Cubes', path: '/shop?cat=Cubes' },
   ];
@@ -83,6 +83,7 @@ export default function Navbar() {
 
             <Link to="/bulk-booking" className="text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest transition-colors">Bulk</Link>
             <Link to="/corporate-gifting" className="text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest transition-colors">Gifting</Link>
+            <Link to="/events" className="text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest transition-colors">Events</Link>
             <Link to="/track-order" className="text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest flex items-center gap-1 transition-colors">
               <Truck className="h-3 w-3" />
               <span>Track</span>
