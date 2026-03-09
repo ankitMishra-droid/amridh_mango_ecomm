@@ -13,7 +13,7 @@ const HERO_SLIDES = [
     mobileImage: "/images/mb-bg.jpg",
     title: "Enjoy Alphonso mango sweetness in every bite",
     subtitle: "Experience the pure essence of Ratnagiri's finest mangoes in every spoonful.",
-    accent: "Premium Pulp",
+    accent: "Premium Cubes",
     bgColor: "from-yellow-400 via-orange-500 to-orange-600"
   },
   {
@@ -22,16 +22,16 @@ const HERO_SLIDES = [
     mobileImage: "/images/mb-bg2.jpg",
     title: "Enjoy refreshing natural Alphonso Mango Juice",
     subtitle: "Hand-picked from the sun-drenched orchards of Gujarat for your delight.",
-    accent: "Fresh Harvest",
+    accent: "Pure Juice",
     bgColor: "from-orange-400 via-orange-500 to-yellow-500"
   },
   {
     image: "/images/banner-img3.jpg",
     // productImg: "/images/Banner-Img-3.png ", // Juice
-    mobileImage: "/images/mb-bg3.jpg",
+    mobileImage: "/images/amirdh-mango-09.jpg",
     title: "Enjoy the rich aroma of Alphonso Mango Pulp",
     subtitle: "100% natural, cold-pressed juice with no added preservatives.",
-    accent: "Pure Juice",
+    accent: "Fresh Pulp",
     bgColor: "from-yellow-300 via-yellow-500 to-orange-500"
   }
 ];

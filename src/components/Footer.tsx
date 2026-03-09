@@ -13,7 +13,7 @@ export default function Footer() {
               <img src={logo} alt="Amridh Logo" className="h-16 w-28" />
             </Link>
             <p className="text-gray-400 leading-relaxed">
-              Bringing the world's finest organic mangoes directly from our orchards to your table. 
+              Bringing the world's finest organic mangoes and it's products directly from our orchards to your table. 
               Sustainability and quality in every bite.
             </p>
             <div className="flex space-x-4">
@@ -49,7 +49,7 @@ export default function Footer() {
               <li><Link to="/shop?cat=Beverages" className="hover:text-orange-500 transition-colors">Mango Juice</Link></li>
               <li><Link to="/shop?cat=Pulp" className="hover:text-orange-500 transition-colors">Mango Pulp</Link></li>
               <li><Link to="/shop?cat=Pickles" className="hover:text-orange-500 transition-colors">Mango Pickle</Link></li>
-              <li><Link to="/shop?cat=Papad&cat=Mango Cubes'" className="hover:text-orange-500 transition-colors">Aam Papad / Mango Cubes</Link></li>
+              <li><Link to="/shop?cat=Papad&cat=Mango Cubes'" className="hover:text-orange-500 transition-colors">Mango Cubes / Aam Papad</Link></li>
               <li><Link to="/shop?cat=Fresh Mangoes" className="hover:text-orange-500 transition-colors">Fresh Mangoes</Link></li>
             </ul>
           </div>
@@ -87,7 +87,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-          <p>© 2024 Amridh Mango. All rights reserved.</p>
+          <p>© 2026 Amridh Mango. All rights reserved.</p>
           <div className="flex space-x-8">
             <a href="#" className="hover:text-white">Privacy Policy</a>
             <a href="#" className="hover:text-white">Terms of Service</a>
