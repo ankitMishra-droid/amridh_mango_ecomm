@@ -9,7 +9,8 @@
     "build": "npm run prebuild && vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "tunnel": "npx cloudflared tunnel --url http://localhost:3000 --protocol http2"
   },
   "dependencies": {
     "@google/genai": "^1.29.0",
