@@ -23,6 +23,11 @@ import Checkout from './pages/Checkout';
 import { Link } from 'react-router-dom';
 import { FaWhatsapp } from 'react-icons/fa';
 import Events from './pages/Events';
+import PrivacyPolicy from './pages/Privacypolicy';
+import Privacypolicy from './pages/Privacypolicy';
+import ShippingPolicy from './pages/Shippingpolicy';
+import Shippingpolicy from './pages/Shippingpolicy';
+import TermsOfService from './pages/Termsofservice';
 
 export default function App() {
   return (
@@ -51,6 +56,9 @@ export default function App() {
                   <Route path="/track-order" element={<TrackOrder />} />
                   <Route path="/checkout" element={<Checkout />} />
                   <Route path="/events" element={<Events />} />
+                  <Route path="/privacy-policy" element={<Privacypolicy />} />
+                  <Route path="/shipping-policy" element={<Shippingpolicy />} />
+                  <Route path="/terms-services" element={<TermsOfService />} />
                 </Routes>
               </main>
               <Footer />

@@ -89,9 +89,9 @@ export default function Footer() {
         <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
           <p>© 2026 Amridh Mango. All rights reserved.</p>
           <div className="flex space-x-8">
-            <a href="#" className="hover:text-white">Privacy Policy</a>
-            <a href="#" className="hover:text-white">Terms of Service</a>
-            <a href="#" className="hover:text-white">Shipping Policy</a>
+            <a href="/privacy-policy" className="hover:text-white">Privacy Policy</a>
+            <a href="/terms-services" className="hover:text-white">Terms of Service</a>
+            <a href="/shipping-policy" className="hover:text-white">Shipping Policy</a>
           </div>
         </div>
       </div>
