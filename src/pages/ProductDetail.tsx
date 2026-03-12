@@ -1,284 +1,372 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'motion/react';
-import {
-  ChevronRight, FileText, ShoppingBag, CreditCard, RefreshCw,
-  AlertTriangle, Scale, Globe, Mail, Phone
-} from 'lucide-react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'motion/react';
+import { ShoppingCart, Star, ShieldCheck, Truck, Leaf, ChevronRight, Heart, ZoomIn, X, ChevronLeft } from 'lucide-react';
+import { Product } from '../types';
+import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/WishlistContext';
+import { useAuth } from '../context/AuthContext';
+import { formatPrice } from '../lib/utils';
+import ProductCard from '../components/ProductCard';
+import toast from 'react-hot-toast';
 
-const sections = [
-  {
-    id: 'eligibility',
-    icon: FileText,
-    title: 'Eligibility',
-    content: [
-      {
-        subtitle: 'Age Requirement',
-        text: 'By using our services or purchasing products from us, you confirm that you are at least 18 years old, or you are using our services under the supervision of a parent or legal guardian.',
-      },
-    ],
-  },
-  {
-    id: 'products-availability',
-    icon: ShoppingBag,
-    title: 'Products & Availability',
-    content: [
-      {
-        subtitle: 'Product Descriptions',
-        text: 'We strive to ensure that all product descriptions, images, and prices are accurate. We reserve the right to modify or discontinue products at any time without prior notice.',
-      },
-      {
-        subtitle: 'Seasonal Availability',
-        text: 'As mangoes are seasonal agricultural products, availability may vary depending on harvest conditions and supply.',
-      },
-      {
-        subtitle: 'Order Confirmation',
-        text: 'Once an order is placed, you will receive confirmation via email, SMS, or messaging platforms such as WhatsApp. We reserve the right to cancel or refuse any order due to product unavailability, incorrect pricing, or suspected fraudulent activity.',
-      },
-      {
-        subtitle: 'Quality & Freshness',
-        text: 'Our mangoes and mango products are packed with care to maintain freshness and quality. Since fresh fruit is perishable, minor variations in size, color, and taste may occur due to natural farming conditions. Customers are encouraged to check the package immediately upon delivery.',
-      },
-    ],
-  },
-  {
-    id: 'pricing-payment',
-    icon: CreditCard,
-    title: 'Pricing & Payment',
-    content: [
-      {
-        subtitle: 'Pricing',
-        text: 'All prices are listed in Indian Rupees (INR) unless stated otherwise. Prices may change without prior notice.',
-      },
-      {
-        subtitle: 'Payment Methods',
-        text: 'Payments must be made through the available payment methods such as online payment gateways, UPI, bank transfer, or cash on delivery where applicable.',
-      },
-      {
-        subtitle: 'Order Processing',
-        text: 'Orders will only be processed after successful payment confirmation.',
-      },
-    ],
-  },
-  {
-    id: 'shipping-delivery',
-    icon: RefreshCw,
-    title: 'Shipping & Delivery',
-    content: [
-      {
-        subtitle: 'Delivery Timelines',
-        text: 'Delivery timelines may vary depending on your location and product availability. While we aim to deliver products within the estimated timeframe, delays may occur due to logistics issues, weather conditions, or other unforeseen circumstances.',
-      },
-      {
-        subtitle: 'Delivery Address',
-        text: 'Customers must ensure the delivery address and contact details provided are accurate.',
-      },
-    ],
-  },
-  {
-    id: 'returns-refunds',
-    icon: RefreshCw,
-    title: 'Returns & Refunds',
-    content: [
-      {
-        subtitle: 'Eligibility',
-        text: 'Due to the perishable nature of mangoes, returns may not be accepted unless the product is damaged or spoiled upon delivery. Customers must report any issues within 24 hours of delivery with clear photos or proof.',
-      },
-      {
-        subtitle: 'Refund Process',
-        text: 'Refunds or replacements will be evaluated on a case-by-case basis.',
-      },
-    ],
-  },
-  {
-    id: 'prohibited',
-    icon: AlertTriangle,
-    title: 'Intellectual Property',
-    content: [
-      {
-        subtitle: 'Ownership',
-        text: 'All content on our website including logos, images, product descriptions, and branding related to Amridh Mango and Mango Products are the intellectual property of the company and may not be used without permission.',
-      },
-    ],
-  },
-  {
-    id: 'liability',
-    icon: Scale,
-    title: 'Limitation of Liability',
-    content: [
-      {
-        subtitle: 'Disclaimer',
-        text: 'We are not liable for delays caused by courier services or natural events, damage caused due to improper storage after delivery, or allergic reactions or misuse of products. Customers should store products according to recommended guidelines.',
-      },
-      {
-        subtitle: 'Privacy',
-        text: 'Your personal information is handled in accordance with our Privacy Policy.',
-      },
-    ],
-  },
-  {
-    id: 'governing-law',
-    icon: Globe,
-    title: 'Governing Law',
-    content: [
-      {
-        subtitle: 'Jurisdiction',
-        text: 'These Terms and Conditions shall be governed by the laws of India, and any disputes shall be subject to the jurisdiction of courts in Maharashtra, India.',
-      },
-      {
-        subtitle: 'Changes to Terms',
-        text: 'We reserve the right to update or modify these Terms and Conditions at any time. Updates will be posted on this page with the revised date.',
-      },
-    ],
-  },
-];
+type ProductWithImages = Product & { images?: string[] };
 
-export default function TermsOfService() {
-  const [activeSection, setActiveSection] = React.useState<string>('eligibility');
+export default function ProductDetail() {
+  const { id } = useParams();
+  const [product, setProduct] = React.useState<ProductWithImages | null>(null);
+  const [relatedProducts, setRelatedProducts] = React.useState<Product[]>([]);
+  const [loading, setLoading] = React.useState(true);
+  const [expanded, setExpanded] = React.useState(false);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [lightboxOpen, setLightboxOpen] = React.useState(false);
+  const { addItem } = useCart();
+  const { toggleWishlist, isInWishlist } = useWishlist();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const images = React.useMemo<string[]>(() => {
+    if (!product) return [];
+    if (product.images && product.images.length > 0) return product.images;
+    return [product.image_url];
+  }, [product]);
+
+  const hasMultipleImages = images.length > 1;
+
+  const firstParagraph = product?.description.split("</p>")[0] + "</p>";
+  const remainingDescription = product?.description.replace(firstParagraph ?? "", "");
+
+  React.useEffect(() => {
+    setLoading(true);
+    setSelectedIndex(0);
+    fetch(`/api/products`)
+      .then(res => res.json())
+      .then(data => {
+        const found = data.find((p: Product) => p.id === Number(id));
+        if (found) {
+          setProduct(found);
+          const related = data
+            .filter((p: Product) => p.category === found.category && p.id !== found.id)
+            .slice(0, 4);
+          setRelatedProducts(related);
+        }
+        setLoading(false);
+      });
+    window.scrollTo(0, 0);
+  }, [id]);
+
+  React.useEffect(() => {
+    if (!lightboxOpen) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightboxOpen(false);
+      if (e.key === 'ArrowRight') setSelectedIndex(i => (i + 1) % images.length);
+      if (e.key === 'ArrowLeft') setSelectedIndex(i => (i - 1 + images.length) % images.length);
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [lightboxOpen, images.length]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500" />
+      </div>
+    );
+  }
+
+  if (!product) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center space-y-4">
+        <h2 className="text-2xl font-bold text-gray-900">Product not found</h2>
+        <Link to="/shop" className="text-orange-600 font-bold hover:underline">Back to Shop</Link>
+      </div>
+    );
+  }
+
+  const displayPrice = user?.role === 'wholesale' ? product.wholesale_price : product.price;
+
+  const handleAddToCart = () => {
+    if (!user) {
+      toast.error('Please login to add items to cart');
+      navigate('/login');
+      return;
+    }
+    if (product.stock <= 0) {
+      toast.error('Out of stock!');
+      return;
+    }
+    addItem(product, 1);
+    toast.success(`${product.name} added to cart!`);
+  };
 
   return (
     <div className="pb-24">
-      {/* Breadcrumbs */}
+
+      {/* ── Lightbox Overlay ── */}
+      <AnimatePresence>
+        {lightboxOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4"
+            onClick={() => setLightboxOpen(false)}
+          >
+            <button
+              className="absolute top-5 right-5 text-white bg-white/15 hover:bg-white/25 rounded-full p-2.5 transition-colors z-10"
+              onClick={() => setLightboxOpen(false)}
+            >
+              <X className="h-5 w-5" />
+            </button>
+
+            {hasMultipleImages && (
+              <>
+                <button
+                  className="absolute left-5 top-1/2 -translate-y-1/2 text-white bg-white/15 hover:bg-white/25 rounded-full p-2.5 transition-colors z-10"
+                  onClick={e => { e.stopPropagation(); setSelectedIndex(i => (i - 1 + images.length) % images.length); }}
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </button>
+                <button
+                  className="absolute right-5 top-1/2 -translate-y-1/2 text-white bg-white/15 hover:bg-white/25 rounded-full p-2.5 transition-colors z-10"
+                  onClick={e => { e.stopPropagation(); setSelectedIndex(i => (i + 1) % images.length); }}
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </button>
+              </>
+            )}
+
+            <motion.img
+              key={selectedIndex}
+              src={images[selectedIndex]}
+              alt={`${product.name} ${selectedIndex + 1}`}
+              className="max-w-3xl max-h-[85vh] w-full object-contain rounded-3xl shadow-2xl"
+              referrerPolicy="no-referrer"
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              onClick={e => e.stopPropagation()}
+            />
+
+            {hasMultipleImages && (
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white text-sm font-semibold bg-black/40 px-4 py-1.5 rounded-full">
+                {selectedIndex + 1} / {images.length}
+              </div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ── Breadcrumbs ── */}
       <div className="bg-gray-50 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center space-x-2 text-sm text-gray-500">
             <Link to="/" className="hover:text-orange-600">Home</Link>
             <ChevronRight className="h-4 w-4" />
-            <span className="text-gray-900 font-medium">Terms of Service</span>
+            <Link to="/shop" className="hover:text-orange-600">Shop</Link>
+            <ChevronRight className="h-4 w-4" />
+            <span className="text-gray-900 font-medium">{product.name}</span>
           </div>
         </div>
       </div>
 
-      {/* Hero */}
-      <div className="relative bg-gradient-to-br from-orange-600 via-orange-500 to-amber-400 overflow-hidden">
-        <div className="absolute -top-20 -right-20 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-16 -left-16 w-72 h-72 bg-orange-400/10 rounded-full blur-2xl" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-3">
-                <FileText className="h-6 w-6 text-white" />
-              </div>
-              <span className="text-white font-black uppercase tracking-widest text-sm">Legal</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">Terms & Conditions</h1>
-            <p className="text-white/70 text-base max-w-xl leading-relaxed">
-              Please read these terms carefully before using our website or purchasing our products. They govern your relationship with Amridh Mango and Mango Products.
-            </p>
-            <p className="text-white/40 text-sm mt-4 font-medium">Last updated: January 1, 2025</p>
-          </motion.div>
-        </div>
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
+        {/* items-start so right column grows freely while left stays sticky */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
-          {/* Sticky Sidebar */}
-          <motion.aside
+          {/* ── Image Gallery — sticky, fixed height always ── */}
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-            className="lg:col-span-1"
+            className="lg:sticky lg:top-24 flex flex-col-reverse md:flex-row gap-3"
           >
-            <div className="lg:sticky lg:top-24 bg-white rounded-[2rem] shadow-lg p-6 border border-gray-100">
-              <p className="text-xs font-black uppercase tracking-widest text-orange-600 mb-4">Contents</p>
-              <nav className="flex flex-col gap-1">
-                {sections.map((section) => {
-                  const Icon = section.icon;
-                  return (
-                    <a
-                      key={section.id}
-                      href={`#${section.id}`}
-                      onClick={() => setActiveSection(section.id)}
-                      className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
-                        activeSection === section.id
-                          ? 'bg-orange-50 text-orange-600'
-                          : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+            {/* ── Vertical Thumbnail Strip ── */}
+            {hasMultipleImages && (
+              <div
+                className="flex flex-row md:flex-col gap-2 overflow-y-auto"
+                style={{ maxHeight: '520px' }}
+              >
+                {images.map((img, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedIndex(index)}
+                    className={`rounded-lg overflow-hidden border-2 transition-all duration-150 focus:outline-none bg-white flex-shrink-0
+                      ${selectedIndex === index
+                        ? 'border-orange-500 shadow-md'
+                        : 'border-gray-200 hover:border-orange-300'
                       }`}
-                    >
-                      <Icon className="h-4 w-4 flex-shrink-0" />
-                      {section.title}
-                    </a>
-                  );
-                })}
-              </nav>
-
-              <div className="mt-6 p-4 bg-orange-50 rounded-2xl">
-                <p className="text-xs font-black uppercase tracking-wider text-orange-600 mb-2">Need Help?</p>
-                <p className="text-gray-600 text-xs leading-relaxed mb-3">Our support team is happy to clarify any terms.</p>
-                <a href="mailto:support@amridh.com" className="flex items-center gap-2 text-orange-600 text-xs font-bold hover:underline">
-                  <Mail className="h-3.5 w-3.5" /> support@amridh.com
-                </a>
+                    style={{ width: '72px', height: '72px', minWidth: '72px', minHeight: '72px' }}
+                  >
+                    <img
+                      src={img}
+                      alt={`${product.name} view ${index + 1}`}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        display: 'block',
+                      }}
+                      referrerPolicy="no-referrer"
+                    />
+                  </button>
+                ))}
               </div>
-            </div>
-          </motion.aside>
+            )}
 
-          {/* Main Content */}
+            {/* ── Main Image — always 520px tall ── */}
+            <div
+              className="relative flex-1 rounded-[0.5rem] overflow-hidden bg-gray-100 shadow-2xl group cursor-zoom-in"
+              style={{ height: '520px' }}
+              onClick={() => setLightboxOpen(true)}
+            >
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={selectedIndex}
+                  src={images[selectedIndex]}
+                  alt={`${product.name} - view ${selectedIndex + 1}`}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block',
+                  }}
+                  referrerPolicy="no-referrer"
+                  initial={{ opacity: 0, scale: 1.03 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.22, ease: 'easeInOut' }}
+                />
+              </AnimatePresence>
+
+              {/* Zoom hint */}
+              <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity shadow">
+                <ZoomIn className="h-4 w-4 text-gray-700" />
+              </div>
+
+              {/* Counter badge */}
+              {hasMultipleImages && (
+                <div className="absolute bottom-4 right-4 bg-black/50 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full">
+                  {selectedIndex + 1} / {images.length}
+                </div>
+              )}
+
+              {/* Out of stock overlay */}
+              {product.stock <= 0 && (
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center">
+                  <span className="bg-white text-gray-900 px-8 py-3 rounded-full font-black text-xl uppercase tracking-widest">
+                    Sold Out
+                  </span>
+                </div>
+              )}
+            </div>
+          </motion.div>
+
+          {/* ── Product Info ── */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="lg:col-span-3 space-y-10"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="flex flex-col"
           >
-            {/* Intro */}
-            <div className="bg-gray-50 border-2 border-gray-200 rounded-[2rem] p-8">
-              <p className="text-gray-700 leading-relaxed">
-                Welcome to <strong className="text-gray-900">Amridh Mango and Mango Products</strong>. These Terms and Conditions govern your use of our website, services, and the purchase of our products including fresh mangoes, pulp, pickles, juices, and other related items. By accessing our website or placing an order, you agree to comply with and be bound by these Terms and Conditions.
-              </p>
+            <div className="mb-8">
+              <span className="text-orange-600 font-black uppercase tracking-widest text-sm mb-2 block">
+                {product.category}
+              </span>
+              <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 leading-tight">
+                {product.name}
+              </h1>
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="flex items-center text-yellow-500">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
+                  <span className="ml-2 text-gray-600 font-bold">4.9 (120 Reviews)</span>
+                </div>
+                <div className="h-4 w-px bg-gray-200" />
+                <span className={product.stock > 0 ? "text-emerald-600 font-bold" : "text-red-600 font-bold"}>
+                  {product.stock > 0 ? `In Stock (${product.stock} units)` : "Out of Stock"}
+                </span>
+              </div>
+              <div className="flex items-baseline space-x-4">
+                {/* <p className="text-4xl font-black text-gray-900">{formatPrice(displayPrice)}</p> */}
+                <p className="text-4xl font-black text-gray-900">RS. ---</p>
+                {user?.role === 'wholesale' && (
+                  <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-bold uppercase">
+                    Wholesale Price
+                  </span>
+                )}
+              </div>
             </div>
 
-            {sections.map((section, idx) => {
-              const Icon = section.icon;
-              return (
-                <motion.section
-                  key={section.id}
-                  id={section.id}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.05 }}
-                  className="bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden"
-                >
-                  <div className="flex items-center gap-4 p-8 pb-6 border-b border-gray-50">
-                    <div className="bg-orange-100 rounded-2xl p-3">
-                      <Icon className="h-6 w-6 text-orange-600" />
-                    </div>
-                    <div>
-                      <span className="text-xs font-black uppercase tracking-widest text-orange-500 block mb-0.5">
-                        Section {String(idx + 1).padStart(2, '0')}
-                      </span>
-                      <h2 className="text-2xl font-black text-gray-900">{section.title}</h2>
-                    </div>
-                  </div>
-                  <div className="p-8 space-y-6">
-                    {section.content.map((item, i) => (
-                      <div key={i} className="border-l-4 border-orange-200 pl-5">
-                        <h3 className="font-black text-gray-900 mb-2">{item.subtitle}</h3>
-                        <p className="text-gray-600 leading-relaxed">{item.text}</p>
-                      </div>
-                    ))}
-                  </div>
-                </motion.section>
-              );
-            })}
+            <div className="prose prose-orange max-w-none mb-4 text-gray-600">
+              <div dangerouslySetInnerHTML={{ __html: firstParagraph ?? '' }} />
+              {expanded && (
+                <div dangerouslySetInnerHTML={{ __html: remainingDescription ?? '' }} />
+              )}
+              <button
+                onClick={() => setExpanded(!expanded)}
+                className="mt-4 text-orange-600 font-semibold hover:underline cursor-pointer"
+              >
+                {expanded ? "Show Less" : "Show More"}
+              </button>
+            </div>
 
-            {/* Contact */}
-            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-[2rem] p-8 text-white">
-              <h2 className="text-2xl font-black mb-3">Contact Us</h2>
-              <p className="text-white/70 leading-relaxed mb-6">
-                For any questions or concerns regarding these Terms and Conditions, please reach out to us.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a href="mailto:legal@amridh.com" className="flex items-center gap-3 bg-white/10 hover:bg-white/20 px-6 py-4 rounded-2xl font-bold text-white transition-colors">
-                  <Mail className="h-5 w-5 text-orange-400" /> legal@amridh.com
-                </a>
-                <a href="tel:+917021489372" className="flex items-center gap-3 bg-white/10 hover:bg-white/20 px-6 py-4 rounded-2xl font-bold text-white transition-colors">
-                  <Phone className="h-5 w-5 text-orange-400" /> +91 70214 89372
-                </a>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+              <div className="flex items-center space-x-3 p-4 bg-orange-50 rounded-2xl">
+                <Leaf className="h-6 w-6 text-orange-600" />
+                <span className="text-sm font-bold text-gray-700">100% Organic</span>
               </div>
+              <div className="flex items-center space-x-3 p-4 bg-orange-50 rounded-2xl">
+                <Truck className="h-6 w-6 text-orange-600" />
+                <span className="text-sm font-bold text-gray-700">Fast Shipping</span>
+              </div>
+              <div className="flex items-center space-x-3 p-4 bg-orange-50 rounded-2xl">
+                <ShieldCheck className="h-6 w-6 text-orange-600" />
+                <span className="text-sm font-bold text-gray-700">Quality Check</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 mt-auto">
+              <button
+                onClick={handleAddToCart}
+                disabled={product.stock <= 0}
+                className="flex-1 bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-orange-700 transition-all flex items-center justify-center space-x-3 shadow-xl shadow-orange-900/20 disabled:bg-gray-300 disabled:cursor-not-allowed cursor-pointer"
+              >
+                <ShoppingCart className="h-6 w-6" />
+                <span>Add to Cart</span>
+              </button>
+              <button
+                onClick={() => toggleWishlist(product)}
+                className={`flex-1 border-2 px-10 py-5 rounded-2xl font-bold text-lg transition-all flex items-center justify-center space-x-3 ${
+                  isInWishlist(product.id)
+                    ? 'bg-red-50 border-red-200 text-red-600'
+                    : 'border-gray-200 text-gray-900 hover:bg-gray-50 cursor-pointer'
+                }`}
+              >
+                <Heart className={`h-6 w-6 ${isInWishlist(product.id) ? 'fill-current' : ''}`} />
+                <span>{isInWishlist(product.id) ? 'In Wishlist' : 'Add to Wishlist'}</span>
+              </button>
             </div>
           </motion.div>
         </div>
+
+        {/* ── Related Products ── */}
+        {relatedProducts.length > 0 && (
+          <div className="mt-32">
+            <div className="flex justify-between items-end mb-12">
+              <div>
+                <h2 className="text-3xl font-black text-gray-900 mb-2">Related Suggestions</h2>
+                <p className="text-gray-600">Customers who bought this also liked these.</p>
+              </div>
+              <Link to="/shop" className="text-orange-600 font-bold flex items-center hover:underline">
+                View All <ChevronRight className="ml-1 h-4 w-4" aria-hidden="true" />
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {relatedProducts.map(p => (
+                <ProductCard key={p.id} product={p} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

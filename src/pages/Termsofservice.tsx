@@ -8,40 +8,36 @@ import {
 
 const sections = [
   {
-    id: 'acceptance',
+    id: 'eligibility',
     icon: FileText,
-    title: 'Acceptance of Terms',
+    title: 'Eligibility',
     content: [
       {
-        subtitle: 'Agreement',
-        text: 'By accessing or using the Amridh website and purchasing our products, you confirm that you are at least 18 years of age, have read and understood these Terms of Service, and agree to be bound by them. If you do not agree with any part of these terms, please do not use our services.',
-      },
-      {
-        subtitle: 'Changes to Terms',
-        text: 'We reserve the right to modify these terms at any time. Changes will be effective immediately upon posting on our website. Your continued use of our services after changes are posted constitutes your acceptance of the updated terms. We recommend reviewing this page periodically.',
+        subtitle: 'Age Requirement',
+        text: 'By using our services or purchasing products from us, you confirm that you are at least 18 years old, or you are using our services under the supervision of a parent or legal guardian.',
       },
     ],
   },
   {
-    id: 'products-orders',
+    id: 'products-availability',
     icon: ShoppingBag,
-    title: 'Products & Orders',
+    title: 'Products & Availability',
     content: [
       {
         subtitle: 'Product Descriptions',
-        text: 'We strive to provide accurate descriptions and images of our products. However, we do not guarantee that product descriptions, images, pricing, or other content on our website are error-free. We reserve the right to correct any errors and to cancel orders placed based on incorrect information.',
+        text: 'We strive to ensure that all product descriptions, images, and prices are accurate. We reserve the right to modify or discontinue products at any time without prior notice.',
       },
       {
-        subtitle: 'Availability',
-        text: 'All products are subject to availability. We reserve the right to limit quantities of any products offered. Product availability may change without notice, especially during peak mango seasons.',
+        subtitle: 'Seasonal Availability',
+        text: 'As mangoes are seasonal agricultural products, availability may vary depending on harvest conditions and supply.',
       },
       {
-        subtitle: 'Order Acceptance',
-        text: 'Placing an order on our website constitutes an offer to purchase. We reserve the right to accept or decline your order for any reason, including but not limited to product unavailability, errors in pricing, or suspected fraudulent activity. Order confirmation via email does not guarantee final acceptance.',
+        subtitle: 'Order Confirmation',
+        text: 'Once an order is placed, you will receive confirmation via email, SMS, or messaging platforms such as WhatsApp. We reserve the right to cancel or refuse any order due to product unavailability, incorrect pricing, or suspected fraudulent activity.',
       },
       {
-        subtitle: 'Fresh Produce',
-        text: 'Alphonso mangoes and other fresh produce are natural products subject to seasonal variation. Color, size, and taste may vary between batches. This does not constitute a defect and does not qualify for a return unless the product is damaged or spoiled upon delivery.',
+        subtitle: 'Quality & Freshness',
+        text: 'Our mangoes and mango products are packed with care to maintain freshness and quality. Since fresh fruit is perishable, minor variations in size, color, and taste may occur due to natural farming conditions. Customers are encouraged to check the package immediately upon delivery.',
       },
     ],
   },
@@ -52,19 +48,30 @@ const sections = [
     content: [
       {
         subtitle: 'Pricing',
-        text: 'All prices listed on our website are in Indian Rupees (INR) and are inclusive of applicable taxes unless stated otherwise. Prices are subject to change without notice. Wholesale prices are available only to verified wholesale account holders.',
+        text: 'All prices are listed in Indian Rupees (INR) unless stated otherwise. Prices may change without prior notice.',
       },
       {
         subtitle: 'Payment Methods',
-        text: 'We accept major credit/debit cards, UPI payments, net banking, and other payment methods as listed at checkout. All transactions are processed through secure, encrypted payment gateways.',
+        text: 'Payments must be made through the available payment methods such as online payment gateways, UPI, bank transfer, or cash on delivery where applicable.',
       },
       {
-        subtitle: 'Coupon Codes',
-        text: 'Discount coupons are subject to their specific terms and expiry dates. Only one coupon may be used per order. Coupons cannot be combined with other offers unless explicitly stated. Amridh reserves the right to revoke or modify coupon terms at any time.',
+        subtitle: 'Order Processing',
+        text: 'Orders will only be processed after successful payment confirmation.',
+      },
+    ],
+  },
+  {
+    id: 'shipping-delivery',
+    icon: RefreshCw,
+    title: 'Shipping & Delivery',
+    content: [
+      {
+        subtitle: 'Delivery Timelines',
+        text: 'Delivery timelines may vary depending on your location and product availability. While we aim to deliver products within the estimated timeframe, delays may occur due to logistics issues, weather conditions, or other unforeseen circumstances.',
       },
       {
-        subtitle: 'Failed Payments',
-        text: 'If your payment fails, your order will not be confirmed. Please retry with a valid payment method. In the rare case of a double charge, contact us within 48 hours and we will issue a full refund.',
+        subtitle: 'Delivery Address',
+        text: 'Customers must ensure the delivery address and contact details provided are accurate.',
       },
     ],
   },
@@ -75,30 +82,22 @@ const sections = [
     content: [
       {
         subtitle: 'Eligibility',
-        text: 'We accept return or refund requests for damaged, spoiled, or incorrect products only. Claims must be raised within 24 hours of delivery with photographic evidence. Due to the perishable nature of our products, we are unable to accept returns for change of mind.',
+        text: 'Due to the perishable nature of mangoes, returns may not be accepted unless the product is damaged or spoiled upon delivery. Customers must report any issues within 24 hours of delivery with clear photos or proof.',
       },
       {
         subtitle: 'Refund Process',
-        text: 'Approved refunds will be credited to the original payment method within 5–7 business days. For cash-on-delivery orders, refunds will be processed via bank transfer or store credit.',
-      },
-      {
-        subtitle: 'Non-Returnable Items',
-        text: 'Opened food products, items damaged due to improper storage after delivery, and products purchased during clearance sales are not eligible for returns or refunds.',
+        text: 'Refunds or replacements will be evaluated on a case-by-case basis.',
       },
     ],
   },
   {
     id: 'prohibited',
     icon: AlertTriangle,
-    title: 'Prohibited Activities',
+    title: 'Intellectual Property',
     content: [
       {
-        subtitle: 'Misuse of Platform',
-        text: 'You agree not to misuse our platform in any way, including: using automated scripts to scrape or collect data; attempting to gain unauthorized access to our systems; submitting false or fraudulent orders; impersonating another person or entity; or using our website for any illegal purpose.',
-      },
-      {
-        subtitle: 'Intellectual Property',
-        text: 'All content on this website — including text, images, logos, product photographs, and brand identity — is owned by or licensed to Amridh and protected by intellectual property laws. You may not reproduce, distribute, or create derivative works without our explicit written permission.',
+        subtitle: 'Ownership',
+        text: 'All content on our website including logos, images, product descriptions, and branding related to Amridh Mango and Mango Products are the intellectual property of the company and may not be used without permission.',
       },
     ],
   },
@@ -109,11 +108,11 @@ const sections = [
     content: [
       {
         subtitle: 'Disclaimer',
-        text: 'To the maximum extent permitted by law, Amridh shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our website or products. Our total liability shall not exceed the amount paid by you for the specific product that is the subject of the claim.',
+        text: 'We are not liable for delays caused by courier services or natural events, damage caused due to improper storage after delivery, or allergic reactions or misuse of products. Customers should store products according to recommended guidelines.',
       },
       {
-        subtitle: 'Force Majeure',
-        text: 'Amridh is not liable for any failure to perform obligations due to circumstances beyond our reasonable control, including natural disasters, floods, droughts affecting crop yield, government restrictions, or other acts of God.',
+        subtitle: 'Privacy',
+        text: 'Your personal information is handled in accordance with our Privacy Policy.',
       },
     ],
   },
@@ -124,18 +123,18 @@ const sections = [
     content: [
       {
         subtitle: 'Jurisdiction',
-        text: 'These Terms of Service shall be governed by and construed in accordance with the laws of India. Any disputes arising under these terms shall be subject to the exclusive jurisdiction of the courts in Mumbai, Maharashtra.',
+        text: 'These Terms and Conditions shall be governed by the laws of India, and any disputes shall be subject to the jurisdiction of courts in Maharashtra, India.',
       },
       {
-        subtitle: 'Dispute Resolution',
-        text: 'Before initiating legal action, we encourage you to contact us to resolve any disputes amicably. We are committed to finding fair solutions for our customers.',
+        subtitle: 'Changes to Terms',
+        text: 'We reserve the right to update or modify these Terms and Conditions at any time. Updates will be posted on this page with the revised date.',
       },
     ],
   },
 ];
 
 export default function TermsOfService() {
-  const [activeSection, setActiveSection] = React.useState<string>('acceptance');
+  const [activeSection, setActiveSection] = React.useState<string>('eligibility');
 
   return (
     <div className="pb-24">
@@ -162,9 +161,9 @@ export default function TermsOfService() {
               </div>
               <span className="text-white font-black uppercase tracking-widest text-sm">Legal</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">Terms of Service</h1>
+            <h1 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">Terms & Conditions</h1>
             <p className="text-white/70 text-base max-w-xl leading-relaxed">
-              Please read these terms carefully before using our website or purchasing our products. They govern your relationship with Amridh.
+              Please read these terms carefully before using our website or purchasing our products. They govern your relationship with Amridh Mango and Mango Products.
             </p>
             <p className="text-white/40 text-sm mt-4 font-medium">Last updated: January 1, 2025</p>
           </motion.div>
@@ -224,7 +223,7 @@ export default function TermsOfService() {
             {/* Intro */}
             <div className="bg-gray-50 border-2 border-gray-200 rounded-[2rem] p-8">
               <p className="text-gray-700 leading-relaxed">
-                Welcome to <strong className="text-gray-900">Amridh</strong>. These Terms of Service ("Terms") govern your use of our website located at <strong className="text-orange-600">amridh.com</strong> and the purchase of our products. By accessing our website or placing an order, you agree to these Terms in full.
+                Welcome to <strong className="text-gray-900">Amridh Mango and Mango Products</strong>. These Terms and Conditions govern your use of our website, services, and the purchase of our products including fresh mangoes, pulp, pickles, juices, and other related items. By accessing our website or placing an order, you agree to comply with and be bound by these Terms and Conditions.
               </p>
             </div>
 
@@ -267,7 +266,7 @@ export default function TermsOfService() {
             <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-[2rem] p-8 text-white">
               <h2 className="text-2xl font-black mb-3">Contact Us</h2>
               <p className="text-white/70 leading-relaxed mb-6">
-                If you have questions about these Terms of Service, please reach out to us.
+                For any questions or concerns regarding these Terms and Conditions, please reach out to us.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href="mailto:legal@amridh.com" className="flex items-center gap-3 bg-white/10 hover:bg-white/20 px-6 py-4 rounded-2xl font-bold text-white transition-colors">
