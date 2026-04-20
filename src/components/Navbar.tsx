@@ -84,10 +84,10 @@ export default function Navbar() {
             <Link to="/bulk-booking" className="text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest transition-colors">Bulk</Link>
             <Link to="/corporate-gifting" className="text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest transition-colors">Gifting</Link>
             <Link to="/events" className="text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest transition-colors">Events</Link>
-            <Link to="/track-order" className="text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest flex items-center gap-1 transition-colors">
+            {/* <Link to="/track-order" className="text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest flex items-center gap-1 transition-colors">
               <Truck className="h-3 w-3" />
               <span>Track</span>
-            </Link>
+            </Link> */}
             <Link to="/contact" className="text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest transition-colors">Contact</Link>
           </div>
 

@@ -84,7 +84,7 @@ if (productCount.count === 0) {
   }[] = [
     {
       data: [
-        "Mango Pulp",
+        "Mango Pulp (850g)",
         "Pulp",
         400,
         300,

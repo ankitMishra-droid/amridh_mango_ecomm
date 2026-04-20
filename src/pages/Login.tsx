@@ -8,14 +8,23 @@ export default function Login() {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [name, setName] = React.useState('');
+  const [phone, setPhone] = React.useState('');
   const [role, setRole] = React.useState<'customer' | 'wholesale'>('customer');
   const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!isLogin && !validPhone(phone)) {
+      toast.error('Enter a valid 10-digit phone number');
+      return;
+    }
+
     const endpoint = isLogin ? '/api/login' : '/api/register';
-    const body = isLogin ? { email, password } : { email, password, name, role };
+    const body = isLogin
+      ? { email, password }
+      : { email, password, name, role, phone };
 
     try {
       const res = await fetch(endpoint, {
@@ -24,7 +33,13 @@ export default function Login() {
         body: JSON.stringify(body)
       });
 
-      const data = await res.json();
+      let data;
+      try {
+        data = await res.json();
+      } catch {
+        data = {};
+      }
+
       if (res.ok) {
         login(data.token, data.user);
         toast.success(isLogin ? 'Welcome back!' : 'Account created!');
@@ -32,9 +47,14 @@ export default function Login() {
       } else {
         toast.error(data.error || 'Something went wrong');
       }
-    } catch (e) {
+    } catch {
       toast.error('Connection error');
     }
+  };
+
+  const validPhone = (num: string) => {
+    const regex = /^\d{10}$/;
+    return regex.test(num);
   };
 
   return (
@@ -49,8 +69,8 @@ export default function Login() {
             <>
               <div>
                 <label className="block text-sm font-bold text-gray-700 mb-2">Full Name</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -58,8 +78,21 @@ export default function Login() {
                 />
               </div>
               <div>
+                <label className="block text-sm font-bold text-gray-700 mb-2 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">Phone Number</label>
+                <input
+                  type="text"
+                  required
+                  value={phone}
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/\D/g, '').slice(0, 10);
+                    setPhone(value);
+                  }}
+                  className="w-full px-6 py-3 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-orange-500 outline-none"
+                />
+              </div>
+              <div>
                 <label className="block text-sm font-bold text-gray-700 mb-2">Account Type</label>
-                <select 
+                <select
                   value={role}
                   onChange={(e) => setRole(e.target.value as any)}
                   className="w-full px-6 py-3 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-orange-500 outline-none"
@@ -73,8 +106,8 @@ export default function Login() {
 
           <div>
             <label className="block text-sm font-bold text-gray-700 mb-2">Email Address</label>
-            <input 
-              type="email" 
+            <input
+              type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -84,8 +117,8 @@ export default function Login() {
 
           <div>
             <label className="block text-sm font-bold text-gray-700 mb-2">Password</label>
-            <input 
-              type="password" 
+            <input
+              type="password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -93,7 +126,7 @@ export default function Login() {
             />
           </div>
 
-          <button 
+          <button
             type="submit"
             className="w-full bg-orange-600 text-white py-4 rounded-2xl font-bold text-lg hover:bg-orange-700 transition-all shadow-lg shadow-orange-200"
           >
@@ -102,7 +135,7 @@ export default function Login() {
         </form>
 
         <div className="mt-8 text-center">
-          <button 
+          <button
             onClick={() => setIsLogin(!isLogin)}
             className="text-orange-600 font-bold hover:underline"
           >
