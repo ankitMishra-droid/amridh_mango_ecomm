@@ -86,10 +86,10 @@ if (productCount.count === 0) {
       data: [
         "Mango Pulp (850g)",
         "Pulp",
-        400,
+        450,
         300,
         300,
-        `<h3>100% pure Alphonso mango pulp.</h3><br><p>Amridh Mango Pulp is a premium, ready-to-use product made from 100% pure Alphonso mangoes. Carefully processed to preserve the fruit's natural sweetness, vibrant color, and rich flavor, our mango pulp offers a convenient way to enjoy the essence of ripe mangoes all year round.</p><br><p>Premium Alphonso Mango Puree – The Crown Jewel of Nature's Finest Treasures</p><br><p>Welcome to Amridh, where we bring you the purest treasures of nature. Among our most celebrated offerings stands the legendary Alphonso Mango Puree — a product that embodies richness, aroma, and unmatched tropical flavor.</p><br><p>Carefully crafted from hand-selected Alphonso mangoes grown in premium orchards, our puree captures the true essence of India's most prized mango variety. Every batch is processed under controlled ripening conditions to preserve its natural sweetness, vibrant color, and signature fragrance — ensuring consistent, export-quality excellence year after year.<p><br><p>What Makes Amridh Alphonso Mango Puree Exceptional?<p><br><p>🥭 Made from Authentic Alphonso Mangoes</p><br><p>We source our mangoes from trusted growers in Ratnagiri, Maharashtra — the heartland of Alphonso cultivation. Each mango is carefully handpicked at peak ripeness to ensure the highest quality and flavor in every jar.</p><br><p>🌿 Rich in Natural Goodness</p><br><p>Alphonso mangoes are naturally packed with:</p><br><p>🌿 Nutrient-Rich Natural Goodn</p>`,
+        `<h3>100% pure Alphonso mango pulp.</h3><br><p>Amirdh Mango Pulp is a premium, ready-to-use product made from 100% pure Alphonso mangoes. Carefully processed to preserve the fruit's natural sweetness, vibrant color, and rich flavor, our mango pulp offers a convenient way to enjoy the essence of ripe mangoes all year round.</p><br><p>Premium Alphonso Mango Puree – The Crown Jewel of Nature's Finest Treasures</p><br><p>Welcome to Amirdh, where we bring you the purest treasures of nature. Among our most celebrated offerings stands the legendary Alphonso Mango Puree — a product that embodies richness, aroma, and unmatched tropical flavor.</p><br><p>Carefully crafted from hand-selected Alphonso mangoes grown in premium orchards, our puree captures the true essence of India's most prized mango variety. Every batch is processed under controlled ripening conditions to preserve its natural sweetness, vibrant color, and signature fragrance — ensuring consistent, export-quality excellence year after year.<p><br><p>What Makes Amirdh Alphonso Mango Puree Exceptional?<p><br><p>🥭 Made from Authentic Alphonso Mangoes</p><br><p>We source our mangoes from trusted growers in Ratnagiri, Maharashtra — the heartland of Alphonso cultivation. Each mango is carefully handpicked at peak ripeness to ensure the highest quality and flavor in every jar.</p><br><p>🌿 Rich in Natural Goodness</p><br><p>Alphonso mangoes are naturally packed with:</p><br><p>🌿 Nutrient-Rich Natural Goodn</p>`,
         "/images/pulp.jpeg",
       ],
       extraImages: ["/images/tiles4-02.jpg"],
@@ -100,7 +100,7 @@ if (productCount.count === 0) {
         "Pickles",
         250,
         180,
-        500,
+        200,
         `
 <h3>Traditional spicy and tangy mango pickle.</h3><br>
 <p>Mango pickle is a bold, spicy, and tangy condiment made from raw, unripe mangoes mixed with aromatic spices, salt, and oil. It is a traditional favorite in many households, especially across India and other South Asian countries.</p><br>
@@ -125,7 +125,7 @@ if (productCount.count === 0) {
         200,
         150,
         150,
-        `<h3>Mango Cubes (Aam Papad) – A Bite-Sized Burst of Real Mango Goodness</h3><br><p>Relive the authentic taste of traditional Indian mango delight with Amridh Mango Cubes (Aam Papad) — crafted from premium quality mango pulp and carefully processed to preserve natural flavor, color, and nutrition.</p><br><p>Our mango cubes offer the perfect balance of sweetness and tanginess, delivering a chewy, fruity indulgence in convenient bite-sized pieces. Made from sun-ripened mangoes, this timeless treat combines tradition with modern quality standards.</p><br><h4>What Makes Amridh Mango Cubes Special?</h4><br><p>🥭 Made from Real Mango Pulp</p><br><p>Prepared using high-quality mango pulp, our Aam Papad cubes capture the rich tropical essence and natural sweetness of ripe mangoes.</p><br>
+        `<h3>Mango Cubes (Aam Papad) – A Bite-Sized Burst of Real Mango Goodness</h3><br><p>Relive the authentic taste of traditional Indian mango delight with Amirdh Mango Cubes (Aam Papad) — crafted from premium quality mango pulp and carefully processed to preserve natural flavor, color, and nutrition.</p><br><p>Our mango cubes offer the perfect balance of sweetness and tanginess, delivering a chewy, fruity indulgence in convenient bite-sized pieces. Made from sun-ripened mangoes, this timeless treat combines tradition with modern quality standards.</p><br><h4>What Makes Amirdh Mango Cubes Special?</h4><br><p>🥭 Made from Real Mango Pulp</p><br><p>Prepared using high-quality mango pulp, our Aam Papad cubes capture the rich tropical essence and natural sweetness of ripe mangoes.</p><br>
 <h4>🌿 Naturally Flavorful & Nutrient-Rich</h4><p>Mangoes are naturally rich in:</p>
 <ul>
 <li>Vitamin A</li>
@@ -144,7 +144,7 @@ if (productCount.count === 0) {
 </ul>
 <p>Their soft, chewy texture and authentic mango taste make them a nostalgic favorite.</p>
 <br><p>✔ Hygienically Processed & Quality Assured
-At Amridh, we ensure:</p>
+At Amirdh, we ensure:</p>
 <br><ul>
 <li>Premium grade mango pulp selection</li>
 <li>Controlled processing for consistent taste</li>
@@ -152,7 +152,7 @@ At Amridh, we ensure:</p>
 <li>Strict quality checks for safety and freshness</li>
 </ul><br>
 <p>Every batch is crafted to maintain the authentic flavor and vibrant color that mango lovers cherish.</p><br><p>A Traditional Indian Delight with Modern Quality
-Mango Cubes (Aam Papad) are a classic fruit confection enjoyed across generations. Amridh brings you this traditional mango sweet in a hygienically prepared, export-quality format — perfect for retail, bulk supply, and international markets.</p><br><p>Enjoy the chewy, fruity richness of real mango in every bite.</p>
+Mango Cubes (Aam Papad) are a classic fruit confection enjoyed across generations. Amirdh brings you this traditional mango sweet in a hygienically prepared, export-quality format — perfect for retail, bulk supply, and international markets.</p><br><p>Enjoy the chewy, fruity richness of real mango in every bite.</p>
 `,
         "/images/image.png",
       ],
@@ -165,7 +165,7 @@ Mango Cubes (Aam Papad) are a classic fruit confection enjoyed across generation
         150,
         110,
         1000,
-        `<h3>Refreshing natural mango juice.</h3><br><p>Amridh Mango Juice is a nutrient-dense tropical beverage made by blending ripe mango pulp with water, ice, and optional natural sweeteners. Bursting with rich flavor and natural goodness, it delivers a thick, smooth texture that captures the true essence of mango.</p><br><p>Naturally high in Vitamin A, Vitamin C, antioxidants, and dietary fiber, this refreshing drink helps support skin health, boost immunity, and provide natural energy — making it a perfect summer staple.</p><br><p>Unlike many other fruits, mangoes cannot be extracted using a regular juicer because they are high in fiber. The fiber holds much of the fruit's flavor and nutrition, which is why mango juice is best prepared by blending the whole pulp rather than traditional juicing. This method preserves its wholesome taste, natural thickness, and full nutritional value.</p><br><p>Best served chilled, Amridh Mango Juice is a delicious and healthy way to enjoy the king of fruits in every sip.</p>`,
+        `<h3>Refreshing natural mango juice.</h3><br><p>Amirdh Mango Juice is a nutrient-dense tropical beverage made by blending ripe mango pulp with water, ice, and optional natural sweeteners. Bursting with rich flavor and natural goodness, it delivers a thick, smooth texture that captures the true essence of mango.</p><br><p>Naturally high in Vitamin A, Vitamin C, antioxidants, and dietary fiber, this refreshing drink helps support skin health, boost immunity, and provide natural energy — making it a perfect summer staple.</p><br><p>Unlike many other fruits, mangoes cannot be extracted using a regular juicer because they are high in fiber. The fiber holds much of the fruit's flavor and nutrition, which is why mango juice is best prepared by blending the whole pulp rather than traditional juicing. This method preserves its wholesome taste, natural thickness, and full nutritional value.</p><br><p>Best served chilled, Amirdh Mango Juice is a delicious and healthy way to enjoy the king of fruits in every sip.</p>`,
         "/images/juice.jpeg",
       ],
       extraImages: ["/images/tilles-2-01.jpg"],
@@ -230,7 +230,7 @@ Mango Cubes (Aam Papad) are a classic fruit confection enjoyed across generation
         300,
         220,
         80,
-        `<p>Premium Alphonso Mango Jam – A Taste of Royal Indulgence</p><br><p>Experience the richness of nature with Amridh Alphonso Mango Jam, crafted from the finest handpicked Alphonso mangoes. Known as the King of Mangoes, Alphonso brings an unmatched sweetness, vibrant golden color, and irresistible tropical aroma — now preserved in a smooth, luscious jam.</p><br><p>Our premium mango jam captures the authentic taste of sun-ripened Alphonso mangoes, delivering a delightful burst of flavor in every spoonful.</p><br><p>Why Choose Amridh Alphonso Mango Jam?</p><br><p>🥭 Made from Authentic Alphonso Mangoes</p><br><p>We use carefully selected, export-quality Alphonso mangoes sourced from trusted orchards. Each batch is prepared to retain the fruit's natural sweetness, rich pulp texture, and signature fragrance.</p><br><p>🌿 Rich in Natural Goodness - Alphonso mangoes are naturally packed with:</p><br><ul>
+        `<p>Premium Alphonso Mango Jam – A Taste of Royal Indulgence</p><br><p>Experience the richness of nature with Amirdh Alphonso Mango Jam, crafted from the finest handpicked Alphonso mangoes. Known as the King of Mangoes, Alphonso brings an unmatched sweetness, vibrant golden color, and irresistible tropical aroma — now preserved in a smooth, luscious jam.</p><br><p>Our premium mango jam captures the authentic taste of sun-ripened Alphonso mangoes, delivering a delightful burst of flavor in every spoonful.</p><br><p>Why Choose Amirdh Alphonso Mango Jam?</p><br><p>🥭 Made from Authentic Alphonso Mangoes</p><br><p>We use carefully selected, export-quality Alphonso mangoes sourced from trusted orchards. Each batch is prepared to retain the fruit's natural sweetness, rich pulp texture, and signature fragrance.</p><br><p>🌿 Rich in Natural Goodness - Alphonso mangoes are naturally packed with:</p><br><ul>
 <li>Vitamin A</li>
 <li>Vitamin C</li>
 <li>Antioxidants</li>
@@ -243,7 +243,7 @@ Mango Cubes (Aam Papad) are a classic fruit confection enjoyed across generation
 <li>Filling cakes, pastries & donuts</li>
 <li>Topping pancakes & waffles</li>
 <li>Pairing with desserts & cheeseboards</li>
-</ul><br><p>Its smooth consistency and vibrant taste make it a family favorite across all age groups.</p><br><p>✔ Premium Quality & Hygienic Processing</p><br><p>At Amridh, quality is our promise. Our Alphonso mango jam is:</p><br><ul>
+</ul><br><p>Its smooth consistency and vibrant taste make it a family favorite across all age groups.</p><br><p>✔ Premium Quality & Hygienic Processing</p><br><p>At Amirdh, quality is our promise. Our Alphonso mango jam is:</p><br><ul>
 <li>Made from high fruit pulp content</li>
 <li>Carefully processed under hygienic conditions</li>
 <li>Free from artificial flavors</li>
@@ -251,7 +251,7 @@ Mango Cubes (Aam Papad) are a classic fruit confection enjoyed across generation
 <li>Crafted for consistent taste & texture</li>
 </ul><br><p>We ensure every jar reflects purity, freshness, and the true essence of Alphonso mangoes.</p><br><p>The True Taste of Alphonso in Every Jar</p><br>
 
-<p>With its naturally sweet flavor, rich golden hue, and tropical aroma, Amridh Alphonso Mango Jam brings you the authentic taste of premium mangoes all year round.</p><br><p>Whether for breakfast spreads, bakery creations, or gourmet desserts, our mango jam adds a royal touch to every bite.</p>`,
+<p>With its naturally sweet flavor, rich golden hue, and tropical aroma, Amirdh Alphonso Mango Jam brings you the authentic taste of premium mangoes all year round.</p><br><p>Whether for breakfast spreads, bakery creations, or gourmet desserts, our mango jam adds a royal touch to every bite.</p>`,
         "/images/jam.jpeg",
       ],
       extraImages: ["/images/tilles.jpg"],

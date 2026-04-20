@@ -107,8 +107,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, redirectToShop }) =>
         />
         <div className="flex items-center justify-between mt-auto">
           <div>
-            {/* <p className="text-lg md:text-xl font-black text-gray-900">{formatPrice(displayPrice)}</p> */}
-            <p className="text-lg md:text-xl font-black text-gray-900">RS. ---</p>
+            <p className="text-lg md:text-xl font-black text-gray-900">{formatPrice(displayPrice)}</p>
+            {/* <p className="text-lg md:text-xl font-black text-gray-900">RS. ---</p> */}
             {user?.role === 'wholesale' && (
               <p className="text-[8px] md:text-[10px] text-orange-600 font-bold uppercase">Wholesale Price</p>
             )}
