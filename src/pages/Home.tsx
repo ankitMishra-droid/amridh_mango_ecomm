@@ -26,13 +26,14 @@ const HERO_SLIDES = [
     bgColor: "from-orange-400 via-orange-500 to-yellow-500"
   },
   {
-    image: "/images/banner-img3.jpg",
+    image: "/images/1.jpeg",
     // productImg: "/images/Banner-Img-3.png ", // Juice
     mobileImage: "/images/amirdh-mango-09.jpg",
     title: "Enjoy the rich aroma of Alphonso Mango Pulp",
     subtitle: "100% natural, cold-pressed juice with no added preservatives.",
     accent: "Fresh Pulp",
-    bgColor: "from-yellow-300 via-yellow-500 to-orange-500"
+    bgColor: "from-yellow-300 via-yellow-500 to-orange-500",
+    contentPosition: "right"
   }
 ];
 
@@ -104,6 +105,8 @@ export default function Home() {
   const nextTestimonial = () => setCurrentTestimonial(prev => (prev + 1) % TESTIMONIALS.length);
   const prevTestimonial = () => setCurrentTestimonial(prev => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
 
+  const isRightContent = HERO_SLIDES[currentSlide].contentPosition === "right";
+
   return (
     <div className="space-y-24 pb-24">
       {/* Hero Slider - Redesigned for Background Images & Mobile Perfection */}
@@ -126,19 +129,60 @@ export default function Home() {
               className="w-full h-full object-center object-center"
               referrerPolicy="no-referrer"
             />
-            {/* Sunburst Effect from the image */}
-            {/* <div className="absolute inset-0 opacity-40 pointer-events-none overflow-hidden">
-              <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(circle,rgba(255,255,255,0.6)_0%,transparent_60%)] animate-pulse" />
-              <div className="absolute inset-0 bg-[repeating-conic-gradient(from_0deg,transparent_0deg_15deg,rgba(255,255,255,0.05)_15deg_30deg)]" />
-            </div> */}
-            {/* Perfection color overlay - Darker on right for text readability on desktop */}
-            <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-l from-black/60 via-black/20 to-transparent" />
+            {/* Perfection color overlay - switches gradient direction based on content position */}
+            <div className={cn(
+              "absolute inset-0",
+              isRightContent
+                ? "bg-gradient-to-b lg:bg-gradient-to-r from-black/60 via-black/20 to-transparent"
+                : "bg-gradient-to-b lg:bg-gradient-to-l from-black/60 via-black/20 to-transparent"
+            )} />
           </motion.div>
         </AnimatePresence>
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-12">
-          {/* Left Side: Product Image (Now on left for desktop) */}
-          <div className="w-full mt-[-8rem] lg:mt-0 lg:w-1/2 text-center lg:text-left flex flex-col items-center lg:items-end">
+          
+          {/* On desktop: if contentPosition is "right", render a spacer first, then content on the right */}
+          {/* On mobile: always show content (stacked) */}
+
+          {/* Spacer / Product image placeholder for left side when content is right */}
+          {isRightContent && (
+            <div className="hidden lg:flex w-full lg:w-1/2 justify-center lg:justify-start">
+              <motion.div
+                key={`product-${currentSlide}`}
+                initial={{ opacity: 0, scale: 0.8, x: -50 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                transition={{ delay: 0.5, duration: 0.8, type: "spring" }}
+                className="relative"
+              >
+                <div className="relative z-10 w-96 h-full rounded overflow-hidden">
+                  <img
+                    src={HERO_SLIDES[currentSlide].productImg}
+                    // alt="Product"
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <motion.div
+                  animate={{ y: [0, -15, 0] }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                  className="absolute -top-10 -left-10 w-32 h-32 bg-yellow-400/30 rounded-full blur-3xl"
+                />
+                <motion.div
+                  animate={{ y: [0, 15, 0] }}
+                  transition={{ duration: 5, repeat: Infinity }}
+                  className="absolute -bottom-10 -right-10 w-40 h-40 bg-orange-500/30 rounded-full blur-3xl"
+                />
+              </motion.div>
+            </div>
+          )}
+
+          {/* Text Content */}
+          <div className={cn(
+            "w-full mt-[-8rem] lg:mt-0 lg:w-1/2 text-center flex flex-col",
+            isRightContent
+              ? "lg:text-right lg:items-end"
+              : "lg:text-left lg:items-end"
+          )}>
             <motion.div
               key={`content-${currentSlide}`}
               initial={{ opacity: 0, y: 20 }}
@@ -154,7 +198,10 @@ export default function Home() {
               {/* <p className="text-base md:text-lg lg:text-xl text-white/90 mb-8 md:mb-10 leading-relaxed max-w-xl mx-auto lg:mr-0 drop-shadow-md">
                 {HERO_SLIDES[currentSlide].subtitle}
               </p> */}
-              <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+              <div className={cn(
+                "flex flex-wrap gap-4 justify-center",
+                isRightContent ? "lg:justify-end" : "lg:justify-start"
+              )}>
                 <Link
                   to="/shop"
                   className="hidden md:flex bg-orange-600 text-white px-6 py-2.5 md:px-8 md:py-3 rounded-full font-bold text-sm md:text-base hover:bg-orange-700 transition-all flex items-center group shadow-2xl"
@@ -172,36 +219,38 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Right Side: Text Content (Primary on Mobile, Right on Desktop) */}
-          <div className="hidden lg:flex w-full lg:w-1/2 justify-center lg:justify-start">
-            <motion.div
-              key={`product-${currentSlide}`}
-              initial={{ opacity: 0, scale: 0.8, x: -50 }}
-              animate={{ opacity: 1, scale: 1, x: 0 }}
-              transition={{ delay: 0.5, duration: 0.8, type: "spring" }}
-              className="relative"
-            >
-              <div className="relative z-10 w-96 h-full rounded overflow-hidden">
-                <img
-                  src={HERO_SLIDES[currentSlide].productImg}
-                  // alt="Product" 
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
+          {/* Right Side: Product image — shown for slides 1 & 2 only (not right-content slide) */}
+          {!isRightContent && (
+            <div className="hidden lg:flex w-full lg:w-1/2 justify-center lg:justify-start">
+              <motion.div
+                key={`product-${currentSlide}`}
+                initial={{ opacity: 0, scale: 0.8, x: -50 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                transition={{ delay: 0.5, duration: 0.8, type: "spring" }}
+                className="relative"
+              >
+                <div className="relative z-10 w-96 h-full rounded overflow-hidden">
+                  <img
+                    src={HERO_SLIDES[currentSlide].productImg}
+                    // alt="Product" 
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                {/* Floating Decorative Elements */}
+                <motion.div
+                  animate={{ y: [0, -15, 0] }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                  className="absolute -top-10 -left-10 w-32 h-32 bg-yellow-400/30 rounded-full blur-3xl"
                 />
-              </div>
-              {/* Floating Decorative Elements */}
-              <motion.div
-                animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="absolute -top-10 -left-10 w-32 h-32 bg-yellow-400/30 rounded-full blur-3xl"
-              />
-              <motion.div
-                animate={{ y: [0, 15, 0] }}
-                transition={{ duration: 5, repeat: Infinity }}
-                className="absolute -bottom-10 -right-10 w-40 h-40 bg-orange-500/30 rounded-full blur-3xl"
-              />
-            </motion.div>
-          </div>
+                <motion.div
+                  animate={{ y: [0, 15, 0] }}
+                  transition={{ duration: 5, repeat: Infinity }}
+                  className="absolute -bottom-10 -right-10 w-40 h-40 bg-orange-500/30 rounded-full blur-3xl"
+                />
+              </motion.div>
+            </div>
+          )}
         </div>
 
         {/* Slider Controls */}
