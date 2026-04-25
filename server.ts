@@ -1,6 +1,6 @@
 import express from "express";
 import { createServer as createViteServer } from "vite";
-import db from "./src/db.ts";
+import db, { ensureUserColumns } from "./src/db.ts";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
@@ -12,7 +12,6 @@ async function startServer() {
   const PORT = 3000;
 
   // Ensure phone column exists (safe to run every time)
-  db.exec(`ALTER TABLE users ADD COLUMN phone TEXT`);
 
   // Auth Routes
   app.post("/api/register", async (req, res) => {
@@ -170,6 +169,8 @@ async function startServer() {
   } else {
     app.use(express.static("dist"));
   }
+
+  ensureUserColumns();
 
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on http://localhost:${PORT}`);

@@ -58,6 +58,21 @@ db.exec(`
   );
 `);
 
+export function ensureUserColumns() {
+  const columns = db.prepare(`PRAGMA table_info(users)`).all();
+
+  const hasPhone = columns.some((col: any) => col.name === "phone");
+
+  if (!hasPhone) {
+    try {
+      db.exec(`ALTER TABLE users ADD COLUMN phone TEXT`);
+      console.log("✅ phone column added");
+    } catch (err) {
+      console.log("⚠️ phone column already exists (ignored)");
+    }
+  }
+}
+
 // ============================
 // Seed Initial Products
 // ============================
