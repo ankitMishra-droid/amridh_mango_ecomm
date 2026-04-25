@@ -97,7 +97,7 @@ const sections = [
     content: [
       {
         subtitle: 'Ownership',
-        text: 'All content on our website including logos, images, product descriptions, and branding related to Amridh Mango and Mango Products are the intellectual property of the company and may not be used without permission.',
+        text: 'All content on our website including logos, images, product descriptions, and branding related to Amirdh Mango and Mango Products are the intellectual property of the company and may not be used without permission.',
       },
     ],
   },
@@ -163,7 +163,7 @@ export default function TermsOfService() {
             </div>
             <h1 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">Terms & Conditions</h1>
             <p className="text-white/70 text-base max-w-xl leading-relaxed">
-              Please read these terms carefully before using our website or purchasing our products. They govern your relationship with Amridh Mango and Mango Products.
+              Please read these terms carefully before using our website or purchasing our products. They govern your relationship with Amirdh Mango and Mango Products.
             </p>
             <p className="text-white/40 text-sm mt-4 font-medium">Last updated: January 1, 2025</p>
           </motion.div>
@@ -206,8 +206,8 @@ export default function TermsOfService() {
               <div className="mt-6 p-4 bg-orange-50 rounded-2xl">
                 <p className="text-xs font-black uppercase tracking-wider text-orange-600 mb-2">Need Help?</p>
                 <p className="text-gray-600 text-xs leading-relaxed mb-3">Our support team is happy to clarify any terms.</p>
-                <a href="mailto:support@amridh.com" className="flex items-center gap-2 text-orange-600 text-xs font-bold hover:underline">
-                  <Mail className="h-3.5 w-3.5" /> support@amridh.com
+                <a href="mailto:support@Amirdh.com" className="flex items-center gap-2 text-orange-600 text-xs font-bold hover:underline">
+                  <Mail className="h-3.5 w-3.5" /> support@Amirdh.com
                 </a>
               </div>
             </div>
@@ -223,7 +223,7 @@ export default function TermsOfService() {
             {/* Intro */}
             <div className="bg-gray-50 border-2 border-gray-200 rounded-[2rem] p-8">
               <p className="text-gray-700 leading-relaxed">
-                Welcome to <strong className="text-gray-900">Amridh Mango and Mango Products</strong>. These Terms and Conditions govern your use of our website, services, and the purchase of our products including fresh mangoes, pulp, pickles, juices, and other related items. By accessing our website or placing an order, you agree to comply with and be bound by these Terms and Conditions.
+                Welcome to <strong className="text-gray-900">Amirdh Mango and Mango Products</strong>. These Terms and Conditions govern your use of our website, services, and the purchase of our products including fresh mangoes, pulp, pickles, juices, and other related items. By accessing our website or placing an order, you agree to comply with and be bound by these Terms and Conditions.
               </p>
             </div>
 
@@ -269,8 +269,8 @@ export default function TermsOfService() {
                 For any questions or concerns regarding these Terms and Conditions, please reach out to us.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href="mailto:legal@amridh.com" className="flex items-center gap-3 bg-white/10 hover:bg-white/20 px-6 py-4 rounded-2xl font-bold text-white transition-colors">
-                  <Mail className="h-5 w-5 text-orange-400" /> legal@amridh.com
+                <a href="mailto:legal@Amirdh.com" className="flex items-center gap-3 bg-white/10 hover:bg-white/20 px-6 py-4 rounded-2xl font-bold text-white transition-colors">
+                  <Mail className="h-5 w-5 text-orange-400" /> legal@Amirdh.com
                 </a>
                 <a href="tel:+917021489372" className="flex items-center gap-3 bg-white/10 hover:bg-white/20 px-6 py-4 rounded-2xl font-bold text-white transition-colors">
                   <Phone className="h-5 w-5 text-orange-400" /> +91 70214 89372

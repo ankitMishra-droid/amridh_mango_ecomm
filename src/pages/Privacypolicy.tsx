@@ -45,7 +45,7 @@ const sections = [
     content: [
       {
         subtitle: 'We Do Not Sell Your Data',
-        text: 'Amridh Mango and Mango Products does not sell or rent your personal information to any third parties.',
+        text: 'Amirdh Mango and Mango Products does not sell or rent your personal information to any third parties.',
       },
       {
         subtitle: 'Service Partners',
@@ -145,7 +145,7 @@ export default function PrivacyPolicy() {
             </div>
             <h1 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">Privacy Policy</h1>
             <p className="text-white/80 text-base max-w-xl leading-relaxed">
-              Amridh Mango and Mango Products values your privacy and is committed to protecting the personal information you share with us.
+              Amirdh Mango and Mango Products values your privacy and is committed to protecting the personal information you share with us.
             </p>
             <p className="text-white/60 text-sm mt-4 font-medium">Last updated: January 1, 2025</p>
           </motion.div>
@@ -189,8 +189,8 @@ export default function PrivacyPolicy() {
               <div className="mt-6 p-4 bg-orange-50 rounded-2xl">
                 <p className="text-xs font-black uppercase tracking-wider text-orange-600 mb-2">Questions?</p>
                 <p className="text-gray-600 text-xs leading-relaxed mb-3">Contact our privacy team for any concerns.</p>
-                <a href="mailto:hello@amridhmango.com" className="flex items-center gap-2 text-orange-600 text-xs font-bold hover:underline">
-                  <Mail className="h-3.5 w-3.5" /> hello@amridhmango.com
+                <a href="mailto:hello@Amirdhmango.com" className="flex items-center gap-2 text-orange-600 text-xs font-bold hover:underline">
+                  <Mail className="h-3.5 w-3.5" /> hello@Amirdhmango.com
                 </a>
               </div>
             </div>
@@ -206,7 +206,7 @@ export default function PrivacyPolicy() {
             {/* Intro box */}
             <div className="bg-orange-50 border-2 border-orange-100 rounded-[2rem] p-8">
               <p className="text-gray-700 leading-relaxed">
-                This Privacy Policy explains how <strong className="text-gray-900">Amridh Mango and Mango Products</strong> ("we", "us", or "our") collects, uses, discloses, and safeguards your information when you visit our website, purchase our products, or interact with our services. By using our website or purchasing our products, you agree to this Privacy Policy.
+                This Privacy Policy explains how <strong className="text-gray-900">Amirdh Mango and Mango Products</strong> ("we", "us", or "our") collects, uses, discloses, and safeguards your information when you visit our website, purchase our products, or interact with our services. By using our website or purchasing our products, you agree to this Privacy Policy.
               </p>
             </div>
 
@@ -247,8 +247,8 @@ export default function PrivacyPolicy() {
                 If you have questions about this Privacy Policy or how we handle your information, please contact us:
               </p>
               <div className="flex flex-col sm:flex-row gap-4 flex-wrap">
-                <a href="mailto:hello@amridhmango.com" className="flex items-center gap-3 bg-white px-6 py-4 rounded-2xl shadow-sm font-bold text-gray-900 hover:shadow-md transition-shadow">
-                  <Mail className="h-5 w-5 text-orange-600" /> hello@amridhmango.com
+                <a href="mailto:hello@Amirdhmango.com" className="flex items-center gap-3 bg-white px-6 py-4 rounded-2xl shadow-sm font-bold text-gray-900 hover:shadow-md transition-shadow">
+                  <Mail className="h-5 w-5 text-orange-600" /> hello@Amirdhmango.com
                 </a>
                 <a href="tel:+919876543210" className="flex items-center gap-3 bg-white px-6 py-4 rounded-2xl shadow-sm font-bold text-gray-900 hover:shadow-md transition-shadow">
                   <Phone className="h-5 w-5 text-orange-600" /> +91 98765 43210

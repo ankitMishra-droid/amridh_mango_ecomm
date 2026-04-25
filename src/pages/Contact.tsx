@@ -51,7 +51,7 @@ export default function Contact() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Email Us</h3>
               <p className="text-gray-600 mb-4">We'll respond within 24 hours.</p>
-              <a href="mailto:hello@amridhmango.com" className="text-blue-600 font-bold text-lg hover:underline">hello@amridhmango.com</a>
+              <a href="mailto:hello@Amirdhmango.com" className="text-blue-600 font-bold text-lg hover:underline">hello@Amirdhmango.com</a>
             </div>
 
             <div className="bg-white p-8 rounded-3xl shadow-sm border border-orange-50 hover:shadow-xl transition-all">

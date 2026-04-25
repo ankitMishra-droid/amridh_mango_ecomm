@@ -26,7 +26,7 @@ export default function BulkBooking() {
             Bulk Booking & <span className="text-yellow-300">Wholesale</span>
           </motion.h1>
           <p className="text-xl text-orange-50 max-w-3xl mx-auto leading-relaxed">
-            Partner with Amridh Mango for premium quality mangoes in bulk. 
+            Partner with Amirdh Mango for premium quality mangoes in bulk. 
             Ideal for retailers, distributors, and large-scale events.
           </p>
         </div>
@@ -72,7 +72,7 @@ export default function BulkBooking() {
                 </div>
                 <div className="flex items-center space-x-3 text-gray-600">
                   <Mail className="h-5 w-5 text-orange-600" />
-                  <span>wholesale@amridhmango.com</span>
+                  <span>wholesale@Amirdhmango.com</span>
                 </div>
                 <div className="flex items-center space-x-3 text-gray-600">
                   <MapPin className="h-5 w-5 text-orange-600" />

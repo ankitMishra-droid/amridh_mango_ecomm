@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="space-y-6">
             <Link to="/" className="flex items-center space-x-2">
-              <img src={logo} alt="Amridh Logo" className="h-16 w-28" />
+              <img src={logo} alt="Amirdh Logo" className="h-16 w-28" />
             </Link>
             <p className="text-gray-400 leading-relaxed">
               Bringing the world's finest organic mangoes and it's products directly from our orchards to your table. 
@@ -67,27 +67,27 @@ export default function Footer() {
               </li>
               <li className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-orange-500 shrink-0" />
-                <span>hello@amridhmango.com</span>
+                <span>hello@Amirdhmango.com</span>
               </li>
             </ul>
 
             <div className="mt-8 flex items-center space-x-4">
-              <Link to="https://www.jiomart.com/?tab=smart-buys" className="text-sm font-semibold text-gray-400 uppercase tracking-wide"><img src="/images/jiomart-.png" alt="Amridh Mango Logo" className="w-12 h-16 object-contain" /></Link>
+              <Link to="https://www.jiomart.com/?tab=smart-buys" className="text-sm font-semibold text-gray-400 uppercase tracking-wide"><img src="/images/jiomart-.png" alt="Amirdh Mango Logo" className="w-12 h-16 object-contain" /></Link>
               <Link to="https://www.zepto.com/" className="text-sm font-semibold text-gray-400 uppercase tracking-wide">
-              <img src="/images/zepto.png" alt="Amridh Mango Logo" className="w-12 h-16 object-contain" />
+              <img src="/images/zepto.png" alt="Amirdh Mango Logo" className="w-12 h-16 object-contain" />
               </Link>
               <Link to="https://www.bigbasket.com/" className="text-sm font-semibold text-gray-400 uppercase tracking-wide">
-              <img src="/images/bigbasket.png" alt="Amridh Mango Logo" className="w-12 h-16 object-contain" />
+              <img src="/images/bigbasket.png" alt="Amirdh Mango Logo" className="w-12 h-16 object-contain" />
               </Link>
               <Link to="https://www.instamart.com/" className="text-sm font-semibold text-gray-400 uppercase tracking-wide">
-              <img src="/images/Instamart-03.png" alt="Amridh Mango Logo" className="w-12 h-16 object-contain" />
+              <img src="/images/Instamart-03.png" alt="Amirdh Mango Logo" className="w-12 h-16 object-contain" />
               </Link>
             </div>
           </div>
         </div>
 
         <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-          <p>© 2026 Amridh Mango. All rights reserved.</p>
+          <p>© 2026 Amirdh Mango. All rights reserved.</p>
           <div className="flex space-x-8">
             <a href="privacy-policy" className="hover:text-white">Privacy Policy</a>
             <a href="terms-of-service" className="hover:text-white">Terms of Service</a>

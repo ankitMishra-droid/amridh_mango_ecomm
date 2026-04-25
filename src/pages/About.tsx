@@ -48,7 +48,7 @@ export default function About() {
             Our Story
           </motion.h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            From the Orchards of Ratnagiri &amp; Devgad to Your Home — Rooted in Tradition, Driven by Quality.
+            From the Orchards of Ratnagiri Alphonso Mangoes and Alphonso Mango Pulp  to Your Home, Rooted in Tradition, Driven by Quality.
           </p>
         </div>
       </section>
@@ -57,17 +57,14 @@ export default function About() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         {/* Intro — full width */}
         <div className="max-w-4xl mx-auto text-center mb-20">
-          <h2 className="text-4xl font-black text-gray-900 leading-tight mb-8">
+          {/* <h2 className="text-4xl font-black text-gray-900 leading-tight mb-8">
             Rooted in Tradition, <span className="text-orange-600">Driven by Quality.</span>
-          </h2>
+          </h2> */}
           <p className="text-lg text-gray-600 leading-relaxed mb-6">
-            Every mango has a story, and ours begins in the sun-kissed orchards of Ratnagiri and Devgad, the heartland of the world's finest Alphonso mangoes. <strong className="text-gray-800">Amridh Mango</strong> started as a small family orchard in the Konkan region. Today, we stand as a symbol of purity and authentic taste. Our mission is simple: to ensure that every mango lover experiences the true, unadulterated flavor of Indian summer.
+            Every Alphonso mango has a story, and ours begins in the sun-kissed orchards of Ratnagiri , the heartland of the world’s finest Alphonso mangoes.Amirdh Mango pulp oacked in tin, started as a small family orchard in the Konkan region. Today, we stand as a symbol of purity and authentic  Alphonso mango   taste. Our mission is simple: to ensure that every  Alphonso mango    lover experiences the true, unadulterated flavor of Indian summer.We don't just sell  Alphonso mango    fruit and its products; we share a heritage. Every Alphonso Mangoes, Kesar mangoes, and Dasheri mangoes are hand-picked at the peak of its ripeness, ensuring the perfect balance of sweetness and aroma. For generations, farmers in this region have nurtured the Alpnonso mango trees with care, patience, and deep respect for nature. The unique coastal climate, rich soil, and traditional farming practices give Alphonso (Hapus) mangoes and its products their unmatched sweetness, aroma, and vibrant golden color.
           </p>
           <p className="text-lg text-gray-600 leading-relaxed mb-6">
-            We don't just sell fruits; we share a heritage. Every Alphonso, Kesar, and Dasheri is hand-picked at the peak of its ripeness, ensuring the perfect balance of sweetness and aroma. For generations, farmers in this region have nurtured mango trees with care, patience, and deep respect for nature. The unique coastal climate, rich soil, and traditional farming practices give Alphonso (Hapus) mangoes their unmatched sweetness, aroma, and vibrant golden color.
-          </p>
-          <p className="text-lg text-gray-600 leading-relaxed">
-            Our journey began with a simple vision — to bring the authentic taste of farm-fresh Alphonso mangoes directly to people who truly appreciate quality and purity.
+            Our journey began with a simple vision — to bring the authentic taste of farm-fresh Ratnagiri Alphonso mangoes,  Ratanagiri Alphonso Mango pulp and its Products directly to people who truly appreciate quality and purity.
           </p>
         </div>
 
@@ -83,7 +80,7 @@ export default function About() {
                 <h3 className="text-2xl font-black text-gray-900">Rooted in Tradition</h3>
               </div>
               <p className="text-lg text-gray-600 leading-relaxed">
-                We work closely with trusted local farmers who have been growing mangoes for decades. Each mango is handpicked at the right stage of maturity, naturally ripened, and carefully sorted to ensure only the finest fruits reach you. By sourcing directly from the orchards, we not only ensure freshness and authenticity, but also support the farming communities who dedicate their lives to growing the King of Fruits.
+                We work closely with trusted local farmers who have been growing the Alphonso  mangoes for decades. Each Alphonso mango is handpicked at the right stage of maturity, naturally ripened, and carefully sorted to ensure only the finest fruits reach you.By sourcing directly from the orchards, we not only ensure freshness and authenticity, but also support the farming communities who dedicate their lives to growing the King of Fruits RATNAGIRI  ALPHONSO MANGOES AND ALPHONSO MANGO PULP.
               </p>
             </div>
 
@@ -96,7 +93,10 @@ export default function About() {
                 <h3 className="text-2xl font-black text-gray-900">Beyond Fresh Mangoes</h3>
               </div>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Our love for Alphonso mangoes inspired us to create a range of premium mango products that capture the same authentic flavor. From fresh mangoes to delicious mango-based delights, every product is crafted with the same commitment to quality, taste, and natural goodness. Whether it's a box of fresh Alphonso mangoes or a mango product made from the finest pulp, our goal is simple — to deliver the true taste of Konkan to your home.
+                Our love for Alphonso mangoes inspired us to create a range of premium mango products. Ratnagiri Alphonso Mango Pulp that capture the same authentic flavor.From fresh mangoes to delicious mango-based delights, every product is crafted with the same commitment to quality, taste, and natural goodness.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Whether it's a tin of fresh Alphonso mango pulp or a mango products made from the finest Alphonso Mango pulp, our goal is simple — to deliver the true taste of Konkan to your home.
               </p>
             </div>
 
@@ -109,7 +109,10 @@ export default function About() {
                 <h3 className="text-2xl font-black text-gray-900">Sharing Sweetness</h3>
               </div>
               <p className="text-lg text-gray-600 leading-relaxed">
-                For us, mangoes are more than just fruit — they are a symbol of joy, celebration, and togetherness. Whether you're enjoying them with family, gifting them to loved ones, or sharing them with clients and colleagues, we want every box to carry the sweetness of the season and the warmth of our orchards.
+                For us, Alphonso mango pulp are more than just a Mango pulp — they are a symbol of joy, celebration, and togetherness.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Whether you’re enjoying them with family, gifting them to loved ones, or sharing with friends.
               </p>
             </div>
           </div>
@@ -143,8 +146,8 @@ export default function About() {
 
         {/* From Our Orchards to Your Table — closing tagline */}
         <div className="bg-gray-900 rounded-[2.5rem] p-10 md:p-16 text-center">
-          <h3 className="text-2xl md:text-3xl font-black text-white mb-3">From Our Orchards to Your Table</h3>
-          <p className="text-orange-400 text-lg font-semibold tracking-wide">Authentic. Fresh. Naturally Sweet — Amridh Products</p>
+          <h3 className="text-2xl md:text-3xl font-black text-white mb-3">From Our Ratnagiri Alphonso Mangoes Orchards to Your Table</h3>
+          <p className="text-orange-400 text-lg font-semibold tracking-wide">Authentic. Fresh. Naturally Sweet Amirdh Ratnagiri Alphonso Mango Pulp and its Mango Products.</p>
         </div>
       </section>
 
@@ -178,8 +181,8 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <div>
             <h2 className="text-4xl font-black text-gray-900 mb-10 leading-tight">
-              Why Choose Amirdh Alphonso Mangoes &amp; <br />
-              <span className="text-orange-600">Amridh Products as a Gift?</span>
+              Why Our Fresh Ratnagiri &amp; <br />
+              <span className="text-orange-600">Alphonso Mangoes Are Special</span>
             </h2>
             <ul className="space-y-6">
               {whyChooseItems.map((item, i) => (

@@ -38,9 +38,9 @@ export default function Navbar() {
               {/* <Leaf className="h-5 w-5 text-white fill-white" /> */}
             {/* </div> */}
             {/* <span className="text-xl font-black tracking-tighter text-gray-900">
-              AMRIDH
+              Amirdh
             </span> */}
-            <img src={logo} alt="Amridh Logo" width={120} height={40} className="object-contain" />
+            <img src={logo} alt="Amirdh Logo" width={120} height={40} className="object-contain" />
           </Link>
 
           <div className="flex items-center space-x-8">
@@ -141,7 +141,7 @@ export default function Navbar() {
       <nav className="fixed top-0 left-0 right-0 z-50 lg:hidden w-full bg-white/95 backdrop-blur-lg border-b border-orange-100 shadow-sm">
         <div className="px-6 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-            <img src={logo} alt="Amridh Logo" className="h-10 w-24" />
+            <img src={logo} alt="Amirdh Logo" className="h-10 w-24" />
           </Link>
 
           <div className="flex items-center space-x-4">
@@ -183,7 +183,7 @@ export default function Navbar() {
               <div className="flex justify-between items-center mb-8">
                 <div className="flex items-center space-x-2">
                   <Leaf className="h-6 w-6 text-orange-500 fill-orange-500" />
-                  <span className="text-xl font-bold">Amridh Menu</span>
+                  <span className="text-xl font-bold">Amirdh Menu</span>
                 </div>
                 <button onClick={() => setIsOpen(false)} className="p-2 bg-gray-100 rounded-full">
                   <X className="h-6 w-6 text-gray-500" />

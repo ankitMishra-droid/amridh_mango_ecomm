@@ -41,7 +41,7 @@ const TESTIMONIALS = [
   {
     name: "Rajesh Kumar",
     role: "Wholesale Partner",
-    text: "The quality of Alphonso mango pulp and its products from Amridh is unmatched. My customers keep coming back for more. The wholesale pricing is very competitive.",
+    text: "The quality of Alphonso mango pulp and its products from Amirdh is unmatched. My customers keep coming back for more. The wholesale pricing is very competitive.",
     avatar: "https://i.pravatar.cc/150?u=rajesh"
   },
   {

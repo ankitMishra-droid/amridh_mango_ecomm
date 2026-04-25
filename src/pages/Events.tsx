@@ -84,7 +84,7 @@ const events: Event[] = [
     },
     {
         id: 3,
-        title: 'Amridh Mango Food Expo',
+        title: 'Amirdh Mango Food Expo',
         date: 'July 20, 2025',
         time: '11:00 AM – 8:00 PM',
         location: 'Pune Exhibition Centre, Pune',
@@ -92,7 +92,7 @@ const events: Event[] = [
         category: 'Expo',
         badge: 'Upcoming',
         description:
-            'Amridh takes centre stage at Pune\'s biggest food expo. Experience the full universe of mango products — from farm-fresh Alphonso boxes to our artisanal jams, pickles, pulp, cubes, and juices. Interactive stalls, live cooking shows by celebrity chefs, and a dedicated kids\' mango zone make this a must-visit for every mango lover.',
+            'Amirdh takes centre stage at Pune\'s biggest food expo. Experience the full universe of mango products — from farm-fresh Alphonso boxes to our artisanal jams, pickles, pulp, cubes, and juices. Interactive stalls, live cooking shows by celebrity chefs, and a dedicated kids\' mango zone make this a must-visit for every mango lover.',
         highlights: [
             'Celebrity chef live cooking show',
             'Mango product universe on display',
@@ -102,7 +102,7 @@ const events: Event[] = [
             'Photography competition with prizes',
         ],
         gallery: [
-            { src: '/images/Product-showcases_image1-27.webp', caption: 'Grand Amridh stall at the expo' },
+            { src: '/images/Product-showcases_image1-27.webp', caption: 'Grand Amirdh stall at the expo' },
             //   { src: '/images/cubes-2.jpeg', caption: 'Mango cubes & papad tasting bar' },
             //   { src: '/images/juice-2.jpeg', caption: 'Live mango juice counter' },
             //   { src: '/images/jam-2.jpeg', caption: 'Artisan jam & preserve stall' },
