@@ -65,18 +65,18 @@ export default function Shop() {
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="relative">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-            <input 
-              type="text" 
+            <input
+              type="text"
               placeholder="Search mangoes..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="pl-12 pr-6 py-3 rounded-2xl border border-gray-200 focus:ring-2 focus:ring-orange-500 outline-none w-full sm:w-64"
             />
           </div>
-          
+
           <div className="relative">
             <Filter className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-            <select 
+            <select
               value={category}
               onChange={(e) => {
                 const val = e.target.value;
@@ -102,9 +102,27 @@ export default function Shop() {
 
       {filtered.length > 0 ? (
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
-          {filtered.map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+          {filtered.map(product => {
+            const isPulp = product.category === "Pulp"; // adjust if needed
+
+            return (
+              <div key={product.id} className="relative">
+                {/* Product Card */}
+                <div className={!isPulp ? "opacity-50 pointer-events-none" : ""}>
+                  <ProductCard product={product} />
+                </div>
+
+                {/* Available Soon Overlay */}
+                {!isPulp && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-white/70 backdrop-blur-sm rounded-2xl">
+                    <span className="text-xs font-bold bg-orange-600 text-white px-3 py-1 rounded-full shadow">
+                      Available Soon
+                    </span>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       ) : (
         <div className="text-center py-20">

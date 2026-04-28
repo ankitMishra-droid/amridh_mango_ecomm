@@ -13,7 +13,7 @@ export default function Footer() {
               <img src={logo} alt="Amirdh Logo" className="h-16 w-28" />
             </Link>
             <p className="text-gray-400 leading-relaxed">
-              Bringing the world's finest organic mangoes and it's products directly from our orchards to your table. 
+              Bringing the world's finest organic mangoes and it's products directly from our orchards to your table.
               Sustainability and quality in every bite.
             </p>
             <div className="flex space-x-4">
@@ -45,12 +45,34 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Categories</h4>
             <ul className="space-y-4">
-              <li><Link to="/shop?cat=Jam" className="hover:text-orange-500 transition-colors">Mango Jam</Link></li>
-              <li><Link to="/shop?cat=Beverages" className="hover:text-orange-500 transition-colors">Mango Juice</Link></li>
-              <li><Link to="/shop?cat=Pulp" className="hover:text-orange-500 transition-colors">Mango Pulp</Link></li>
-              <li><Link to="/shop?cat=Pickles" className="hover:text-orange-500 transition-colors">Mango Pickle</Link></li>
-              <li><Link to="/shop?cat=Papad&cat=Mango Cubes'" className="hover:text-orange-500 transition-colors">Mango Cubes / Aam Papad</Link></li>
-              <li><Link to="/shop?cat=Fresh Mangoes" className="hover:text-orange-500 transition-colors">Fresh Mangoes</Link></li>
+              {[
+                { name: "Mango Pulp", path: "/shop?cat=Pulp", available: true },
+                { name: "Mango Jam", path: "/shop?cat=Jam", available: false },
+                { name: "Mango Juice", path: "/shop?cat=Beverages", available: false },
+                { name: "Mango Pickle", path: "/shop?cat=Pickles", available: false },
+                { name: "Mango Cubes / Aam Papad", path: "/shop?cat=Papad&cat=Mango Cubes", available: false },
+                { name: "Fresh Mangoes", path: "/shop?cat=Fresh Mangoes", available: false },
+              ].map(cat => (
+                <li key={cat.name}>
+                  <Link
+                    to={cat.available ? cat.path : "#"}
+                    className={
+                      cat.available
+                        ? "hover:text-orange-500 transition-colors"
+                        : "text-gray-500 cursor-not-allowed"
+                    }
+                    style={!cat.available ? { pointerEvents: "none", opacity: 0.6 } : {}}
+                  >
+                    {cat.name}
+
+                    {!cat.available && (
+                      <span className="ml-2 text-[10px] bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full">
+                        Available Soon
+                      </span>
+                    )}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -74,13 +96,13 @@ export default function Footer() {
             <div className="mt-8 flex items-center space-x-4">
               <Link to="https://www.jiomart.com/?tab=smart-buys" className="text-sm font-semibold text-gray-400 uppercase tracking-wide"><img src="/images/jiomart-.png" alt="Amirdh Mango Logo" className="w-12 h-16 object-contain" /></Link>
               <Link to="https://www.zepto.com/" className="text-sm font-semibold text-gray-400 uppercase tracking-wide">
-              <img src="/images/zepto.png" alt="Amirdh Mango Logo" className="w-12 h-16 object-contain" />
+                <img src="/images/zepto.png" alt="Amirdh Mango Logo" className="w-12 h-16 object-contain" />
               </Link>
               <Link to="https://www.bigbasket.com/" className="text-sm font-semibold text-gray-400 uppercase tracking-wide">
-              <img src="/images/bigbasket.png" alt="Amirdh Mango Logo" className="w-12 h-16 object-contain" />
+                <img src="/images/bigbasket.png" alt="Amirdh Mango Logo" className="w-12 h-16 object-contain" />
               </Link>
               <Link to="https://www.instamart.com/" className="text-sm font-semibold text-gray-400 uppercase tracking-wide">
-              <img src="/images/Instamart-03.png" alt="Amirdh Mango Logo" className="w-12 h-16 object-contain" />
+                <img src="/images/Instamart-03.png" alt="Amirdh Mango Logo" className="w-12 h-16 object-contain" />
               </Link>
             </div>
           </div>

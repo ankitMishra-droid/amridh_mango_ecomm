@@ -19,14 +19,14 @@ export default function Navbar() {
   const cartCount = items.reduce((acc, item) => acc + item.quantity, 0);
 
   const productCategories = [
-    { name: 'Mango Jam', path: '/shop?cat=Jam' },
-    { name: 'Mango Juice', path: '/shop?cat=Beverages' },
-    { name: 'Mango Pulp', path: '/shop?cat=Pulp' },
-    { name: 'Mango Pickle', path: '/shop?cat=Pickles' },
-    { name: 'Mango Cubes / Aam Papad', path: '/shop?cat=Papad&cat=Mango Cubes' },
-    { name: 'Fresh Mangoes', path: '/shop?cat=Fresh Mangoes' },
-    // { name: 'Mango Cubes', path: '/shop?cat=Cubes' },
+    { name: 'Mango Pulp', path: '/shop?cat=Pulp', available: true },
+    { name: 'Mango Jam', path: '/shop?cat=Jam', available: false },
+    { name: 'Mango Juice', path: '/shop?cat=Beverages', available: false },
+    { name: 'Mango Pickle', path: '/shop?cat=Pickles', available: false },
+    { name: 'Mango Cubes / Aam Papad', path: '/shop?cat=Papad&cat=Mango Cubes', available: false },
+    { name: 'Fresh Mangoes', path: '/shop?cat=Fresh Mangoes', available: false },
   ];
+
 
   return (
     <>
@@ -35,7 +35,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2 shrink-0 group">
             {/* <div className="bg-orange-500 p-1.5 rounded-lg group-hover:rotate-12 transition-transform"> */}
-              {/* <Leaf className="h-5 w-5 text-white fill-white" /> */}
+            {/* <Leaf className="h-5 w-5 text-white fill-white" /> */}
             {/* </div> */}
             {/* <span className="text-xl font-black tracking-tighter text-gray-900">
               Amirdh
@@ -69,11 +69,23 @@ export default function Navbar() {
                     {productCategories.map((cat) => (
                       <Link
                         key={cat.name}
-                        to={cat.path}
-                        className="block px-4 py-2 text-xs font-bold text-gray-600 hover:bg-orange-50 hover:text-orange-600 transition-colors"
-                        onClick={() => setIsProductOpen(false)}
+                        to={cat.available ? cat.path : "#"}
+                        className={cn(
+                          "block px-4 py-2 text-xs font-bold transition-colors",
+                          cat.available
+                            ? "text-gray-600 hover:bg-orange-50 hover:text-orange-600"
+                            : "text-gray-400 cursor-not-allowed"
+                        )}
+                        style={!cat.available ? { pointerEvents: "none", opacity: 0.6 } : {}}
+                        onClick={() => cat.available && setIsProductOpen(false)}
                       >
                         {cat.name}
+
+                        {!cat.available && (
+                          <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
+                            Available Soon
+                          </span>
+                        )}
                       </Link>
                     ))}
                   </motion.div>

@@ -4,15 +4,15 @@ import { Leaf, Award, Users, MapPin, Heart, CheckCircle, Gift, Star, Calendar, M
 
 export default function About() {
   const whyChooseItems = [
-    { title: "Premium Quality", desc: "Carefully handpicked from trusted orchards in Ratnagiri and Devgad to ensure superior taste, freshness, and authenticity." },
+    { title: "Premium Quality", desc: "Carefully handpicked from trusted orchards in Ratnagiri  to ensure superior taste, freshness, and authenticity." },
     { title: "Healthy & Delicious", desc: "Naturally rich in vitamins, antioxidants, and nutrients, mangoes are a wholesome and delightful treat." },
     { title: "Perfect for Every Occasion", desc: "An ideal gift for birthdays, anniversaries, festivals, weddings, and corporate gifting." },
     { title: "Memorable & Unique", desc: "Stand out from ordinary gifts with a seasonal, premium, and naturally sweet experience." },
-    { title: "Elegant Gift Packaging", desc: "Beautifully packed mango boxes designed perfectly for personal and corporate gifting." },
+    { title: "Elegant Gift Packaging", desc: "Beautifully packed Alphonso mango pulp tin designed perfectly for personal and corporate gifting." },
   ];
 
   const howItWorksItems = [
-    { icon: Gift, title: "Fill the Gifting Form", desc: "Enter recipient details, select your mango variety or gift package, and add a personalized message." },
+    { icon: Gift, title: "Fill the Gifting Form", desc: "Enter recipient details, select your mango  tin and products variety or gift package, and add a personalized message." },
     { icon: Calendar, title: "Choose Your Delivery Date", desc: "Schedule delivery so your gift arrives at the perfect moment." },
     { icon: MessageSquare, title: "Add a Personal Touch", desc: "Include a heartfelt message to make your gift even more special." },
     { icon: CreditCard, title: "Make Payment Securely", desc: "Complete your order using our safe and easy online payment system." },
@@ -182,7 +182,7 @@ export default function About() {
           <div>
             <h2 className="text-4xl font-black text-gray-900 mb-10 leading-tight">
               Why Our Fresh Ratnagiri &amp; <br />
-              <span className="text-orange-600">Alphonso Mangoes Are Special</span>
+              <span className="text-orange-600">Alphonso Mango Pulp Are Special</span>
             </h2>
             <ul className="space-y-6">
               {whyChooseItems.map((item, i) => (
@@ -204,9 +204,7 @@ export default function About() {
             </div>
             <h3 className="text-2xl font-black text-gray-900">Perfect for Corporate Gifting</h3>
             <p className="text-gray-600 leading-relaxed">
-              Looking for a unique corporate gift for your clients or employees? Premium Alphonso mango boxes
-              and Mango products make a thoughtful and refreshing alternative to traditional gifts. They express
-              gratitude, appreciation, and care while offering a healthy and luxurious experience.
+              Looking for a unique corporate gift for your clients or employees? Premium Alphonso mango pulp tins and Mango products make a thoughtful and refreshing alternative to traditional gifts. They express gratitude, appreciation, and care while offering a healthy and luxurious experience.
             </p>
             <div>
               <p className="text-sm font-bold text-gray-700 uppercase tracking-widest mb-4">Ideal for:</p>
@@ -231,7 +229,7 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black text-gray-900 mb-4">How It Works</h2>
-            <p className="text-gray-600">Simple steps to send the perfect mango gift.</p>
+            <p className="text-gray-600">Simple steps to send the perfect  Alphonso mango product gift.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {howItWorksItems.map((item, i) => (
@@ -256,8 +254,7 @@ export default function About() {
           <div className="max-w-xl">
             <h2 className="text-4xl font-black mb-6">Visit Our Orchards</h2>
             <p className="text-xl text-orange-50 mb-8 leading-relaxed">
-              Experience the magic of the mango season firsthand. We organize orchard tours during
-              the peak harvest months of April and May.
+              Experience the magic of the mango pulp season firsthand. We organize orchard tours.
             </p>
             <div className="flex items-center space-x-3">
               <MapPin className="h-6 w-6" />

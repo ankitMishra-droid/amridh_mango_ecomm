@@ -11,11 +11,11 @@ export default function CorporateGifting() {
   };
 
   const whyChooseItems = [
-    { title: "Premium Quality", desc: "Carefully handpicked from trusted orchards in Ratnagiri and Devgad to ensure superior taste, freshness, and authenticity." },
+    { title: "Premium Quality", desc: "Carefully handpicked from trusted orchards in Ratnagiri to ensure superior taste, freshness, and authenticity." },
     { title: "Healthy & Delicious", desc: "Naturally rich in vitamins, antioxidants, and nutrients, mangoes are a wholesome and delightful treat." },
     { title: "Perfect for Every Occasion", desc: "An ideal gift for birthdays, anniversaries, festivals, weddings, and corporate gifting." },
     { title: "Memorable & Unique", desc: "Stand out from ordinary gifts with a seasonal, premium, and naturally sweet experience." },
-    { title: "Elegant Gift Packaging", desc: "Beautifully packed mango boxes designed perfectly for personal and corporate gifting." },
+    { title: "Elegant Gift Packaging", desc: "Beautifully packed mango pulp tin designed perfectly for personal and corporate gifting." },
   ];
 
   const howItWorksItems = [
@@ -51,7 +51,7 @@ export default function CorporateGifting() {
             Premium <span className="text-yellow-300">Corporate</span> Gifting
           </motion.h1>
           <p className="text-xl text-white max-w-3xl mx-auto leading-relaxed">
-            A Premium Gift of Sweetness from Ratnagiri &amp; Devgad
+            A Premium Gift of Sweetness from Ratnagiri Alphonso Mango
           </p>
         </div>
       </section>
@@ -73,25 +73,20 @@ export default function CorporateGifting() {
                   <span className="text-orange-600">Impression.</span>
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  Delight your loved ones with the unmatched taste and freshness of premium Alphonso mangoes.
-                  Sourced directly from the finest orchards of Ratnagiri and Devgad, these mangoes—fondly known
-                  as Hapus—are celebrated for their rich aroma, vibrant golden color, and irresistible sweetness.
+                  Delight your loved ones with the unmatched taste and freshness of premium Ratnagiri Alphonso mango pulp and mango products. Sourced directly from the finest orchards of Ratnagiri , these mangoes—fondly known as Hapus—are celebrated for their rich aroma, vibrant golden color, and irresistible sweetness.
                   <br /><br />
-                  Whether you're looking for a thoughtful corporate gift, a festive surprise, or a special gesture
-                  for family and friends, Alphonso mango gifting is a memorable and meaningful choice.
+                  Whether you're looking for a thoughtful corporate gift, a festive surprise, or a special gesture for family and friends, Alphonso mango products gifting is a memorable and meaningful choice.
                   <br /><br />
-                  A beautifully packed box of handpicked Alphonso or Kesar mangoes and mango products is more
-                  than just a gift—it's a gesture of warmth, appreciation, and indulgence that leaves a lasting
-                  impression.
+                  A beautifully packed Ratnagiri Alphonso Mango pulp tin  and mango products   made from handpicked Alphonso  mangoes is more than just a gift—it's a gesture of warmth, appreciation, and indulgence that leaves a lasting impression.
                   <br /><br />
-                  Celebrate every occasion with the King of Fruits and share the joy of authentic mango goodness.
+                  Celebrate every occasion with the King of Fruits  Alphonso Mango pulp and share the joy of authentic mango goodness.
                 </p>
               </div>
 
               {/* Why Choose */}
               <div>
                 <h3 className="text-2xl font-black text-gray-900 mb-6">
-                  Why Choose Amirdh Alphonso Mangoes &amp; Mango Products as a Gift?
+                  Why Choose Amirdh Ratnagiri  Alphonso &amp; Mango Pulp & Mango Products as a Gift?
                 </h3>
                 <ul className="space-y-5">
                   {whyChooseItems.map((item, i) => (

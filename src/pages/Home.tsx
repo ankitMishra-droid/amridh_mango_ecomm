@@ -8,6 +8,16 @@ import { cn } from '../lib/utils';
 
 const HERO_SLIDES = [
   {
+    image: "/images/1.jpeg",
+    // productImg: "/images/Banner-Img-3.png ", // Juice
+    mobileImage: "/images/amirdh-mango-09.jpg",
+    title: "Enjoy the rich aroma of Alphonso Mango Pulp",
+    subtitle: "100% natural, cold-pressed juice with no added preservatives.",
+    accent: "Fresh Pulp",
+    bgColor: "from-yellow-300 via-yellow-500 to-orange-500",
+    contentPosition: "right"
+  },
+  {
     image: "/images/banner-img.jpg",
     // productImg: "/images/Banner-Img-1.png", // Pulp can/jar
     mobileImage: "/images/mb-bg.jpg",
@@ -25,16 +35,6 @@ const HERO_SLIDES = [
     accent: "Pure Juice",
     bgColor: "from-orange-400 via-orange-500 to-yellow-500"
   },
-  {
-    image: "/images/1.jpeg",
-    // productImg: "/images/Banner-Img-3.png ", // Juice
-    mobileImage: "/images/amirdh-mango-09.jpg",
-    title: "Enjoy the rich aroma of Alphonso Mango Pulp",
-    subtitle: "100% natural, cold-pressed juice with no added preservatives.",
-    accent: "Fresh Pulp",
-    bgColor: "from-yellow-300 via-yellow-500 to-orange-500",
-    contentPosition: "right"
-  }
 ];
 
 const TESTIMONIALS = [
@@ -111,7 +111,7 @@ export default function Home() {
     <div className="space-y-24 pb-24">
       {/* Hero Slider - Redesigned for Background Images & Mobile Perfection */}
       <section className="relative h-[85vh] lg:h-[90vh] rounded flex items-center overflow-hidden">
-        
+
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -140,7 +140,7 @@ export default function Home() {
         </AnimatePresence>
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-12">
-          
+
           {/* On desktop: if contentPosition is "right", render a spacer first, then content on the right */}
           {/* On mobile: always show content (stacked) */}
 
@@ -338,13 +338,32 @@ export default function Home() {
           <div>
             <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 text-center md:text-left">Seasonal Favorites</h2>
             <div className="flex flex-wrap justify-center md:justify-start gap-4">
-              {['Fresh Mangoes', 'Pickles', 'Pulp', 'Jam', 'Cubes', 'Beverages'].map(cat => (
+              {[
+                { name: 'Fresh Mangoes', available: false },
+                { name: 'Pickles', available: false },
+                { name: 'Pulp', available: true },
+                { name: 'Jam', available: false },
+                { name: 'Cubes', available: false },
+                { name: 'Beverages', available: false },
+              ].map(cat => (
                 <Link
-                  key={cat}
-                  to={`/shop?cat=${cat}`}
-                  className="text-xs font-bold px-4 py-2 rounded-full border border-orange-100 text-gray-600 hover:bg-orange-600 hover:text-white transition-all"
+                  key={cat.name}
+                  to={cat.available ? `/shop?cat=${cat.name}` : "#"}
+                  className={cn(
+                    "text-xs font-bold px-4 py-2 rounded-full border transition-all",
+                    cat.available
+                      ? "border-orange-100 text-gray-600 hover:bg-orange-600 hover:text-white"
+                      : "border-gray-200 text-gray-400 cursor-not-allowed"
+                  )}
+                  style={!cat.available ? { pointerEvents: "none", opacity: 0.6 } : {}}
                 >
-                  {cat}
+                  {cat.name}
+
+                  {!cat.available && (
+                    <span className="ml-2 text-[10px] bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full">
+                      Available Soon
+                    </span>
+                  )}
                 </Link>
               ))}
             </div>
@@ -354,10 +373,34 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+        {/* <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
           {products.map(product => (
             <ProductCard key={product.id} product={product} redirectToShop />
-          ))}
+          ))} */}
+
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+            {products.map(product => {
+              const isPulp = product.category === "Pulp"; // adjust if your field name differs
+
+              return (
+                <div key={product.id} className="relative">
+                  {/* Product Card */}
+                  <div className={!isPulp ? "opacity-50 pointer-events-none" : ""}>
+                    <ProductCard product={product} redirectToShop={isPulp} />
+                  </div>
+
+                  {/* Available Soon Overlay */}
+                  {!isPulp && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-white/70 backdrop-blur-sm rounded-2xl">
+                      <span className="text-xs font-bold bg-orange-600 text-white px-3 py-1 rounded-full shadow">
+                        Available Soon
+                      </span>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          {/* </div> */}
         </div>
 
         <div className="mt-12 text-center md:hidden">
@@ -369,84 +412,84 @@ export default function Home() {
             <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
         </div>
-      </section>
+      </section >
 
-      {/* Testimonial Carousel */}
-      <section className="bg-orange-50 py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-black text-gray-900 mb-4">What Our Followers Say</h2>
-            <div className="flex justify-center space-x-1 text-yellow-500">
-              {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
-            </div>
-          </div>
-
-          <div className="relative max-w-4xl mx-auto">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentTestimonial}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.1 }}
-                className="bg-white p-12 md:p-16 rounded-[3rem] shadow-xl text-center relative"
-              >
-                <Quote className="absolute top-10 left-10 h-12 w-12 text-orange-100" />
-                <p className="text-2xl md:text-3xl font-medium text-gray-800 mb-10 italic leading-relaxed">
-                  "{TESTIMONIALS[currentTestimonial].text}"
-                </p>
-                <div className="flex flex-col items-center">
-                  <img
-                    src={TESTIMONIALS[currentTestimonial].avatar}
-                    alt={TESTIMONIALS[currentTestimonial].name}
-                    className="w-20 h-20 rounded-full border-4 border-orange-100 mb-4"
-                  />
-                  <h4 className="text-xl font-bold text-gray-900">{TESTIMONIALS[currentTestimonial].name}</h4>
-                  <p className="text-orange-600 font-bold text-sm uppercase tracking-wider">{TESTIMONIALS[currentTestimonial].role}</p>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            <div className="absolute top-1/2 -translate-y-1/2 -left-6 md:-left-12">
-              <button onClick={prevTestimonial} className="p-4 rounded-full bg-white shadow-lg text-gray-400 hover:text-orange-600 transition-all cursor-pointer">
-                <ChevronLeft className="h-6 w-6" />
-              </button>
-            </div>
-            <div className="absolute top-1/2 -translate-y-1/2 -right-6 md:-right-12">
-              <button onClick={nextTestimonial} className="p-4 rounded-full bg-white shadow-lg text-gray-400 hover:text-orange-600 transition-all cursor-pointer">
-                <ChevronRight className="h-6 w-6" />
-              </button>
-            </div>
+    {/* Testimonial Carousel */ }
+    < section className = "bg-orange-50 py-24" >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-black text-gray-900 mb-4">What Our Followers Say</h2>
+          <div className="flex justify-center space-x-1 text-yellow-500">
+            {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
           </div>
         </div>
-      </section>
 
-      {/* Join the Mango Club Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-[3rem] p-12 md:p-20 text-center text-white relative overflow-hidden shadow-2xl">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500/10 rounded-full translate-x-32 -translate-y-32 blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-yellow-500/10 rounded-full -translate-x-32 translate-y-32 blur-3xl" />
+        <div className="relative max-w-4xl mx-auto">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentTestimonial}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.1 }}
+              className="bg-white p-12 md:p-16 rounded-[3rem] shadow-xl text-center relative"
+            >
+              <Quote className="absolute top-10 left-10 h-12 w-12 text-orange-100" />
+              <p className="text-2xl md:text-3xl font-medium text-gray-800 mb-10 italic leading-relaxed">
+                "{TESTIMONIALS[currentTestimonial].text}"
+              </p>
+              <div className="flex flex-col items-center">
+                <img
+                  src={TESTIMONIALS[currentTestimonial].avatar}
+                  alt={TESTIMONIALS[currentTestimonial].name}
+                  className="w-20 h-20 rounded-full border-4 border-orange-100 mb-4"
+                />
+                <h4 className="text-xl font-bold text-gray-900">{TESTIMONIALS[currentTestimonial].name}</h4>
+                <p className="text-orange-600 font-bold text-sm uppercase tracking-wider">{TESTIMONIALS[currentTestimonial].role}</p>
+              </div>
+            </motion.div>
+          </AnimatePresence>
 
-          <div className="relative z-10 max-w-3xl mx-auto">
-            <span className="text-orange-500 font-black uppercase tracking-widest text-sm mb-6 block">Exclusive Community</span>
-            <h2 className="text-4xl md:text-6xl font-black mb-8">Join the Amirdh Club</h2>
-            <p className="text-xl text-gray-400 mb-12 leading-relaxed">
-              Be the first to know about seasonal harvests, limited varieties, and exclusive member-only discounts.
-              Get <span className="text-orange-500 font-bold">10% OFF</span> your first order today!
-            </p>
-            <form className="flex flex-col sm:flex-row gap-4 justify-center" onSubmit={(e) => e.preventDefault()}>
-              <input
-                type="email"
-                placeholder="Enter your email address"
-                className="px-8 py-5 rounded-2xl border border-orange-500 focus:ring-4 focus:ring-orange-500/50 text-white outline-none text-lg"
-              />
-              <button className="bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-orange-700 transition-all shadow-lg shadow-orange-900/40 cursor-pointer">
-                Subscribe Now
-              </button>
-            </form>
-            <p className="mt-6 text-sm text-gray-500">We respect your privacy. Unsubscribe at any time.</p>
+          <div className="absolute top-1/2 -translate-y-1/2 -left-6 md:-left-12">
+            <button onClick={prevTestimonial} className="p-4 rounded-full bg-white shadow-lg text-gray-400 hover:text-orange-600 transition-all cursor-pointer">
+              <ChevronLeft className="h-6 w-6" />
+            </button>
+          </div>
+          <div className="absolute top-1/2 -translate-y-1/2 -right-6 md:-right-12">
+            <button onClick={nextTestimonial} className="p-4 rounded-full bg-white shadow-lg text-gray-400 hover:text-orange-600 transition-all cursor-pointer">
+              <ChevronRight className="h-6 w-6" />
+            </button>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+      </section >
+
+    {/* Join the Mango Club Section */ }
+    < section className = "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" >
+      <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-[3rem] p-12 md:p-20 text-center text-white relative overflow-hidden shadow-2xl">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500/10 rounded-full translate-x-32 -translate-y-32 blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-yellow-500/10 rounded-full -translate-x-32 translate-y-32 blur-3xl" />
+
+        <div className="relative z-10 max-w-3xl mx-auto">
+          <span className="text-orange-500 font-black uppercase tracking-widest text-sm mb-6 block">Exclusive Community</span>
+          <h2 className="text-4xl md:text-6xl font-black mb-8">Join the Amirdh Club</h2>
+          <p className="text-xl text-gray-400 mb-12 leading-relaxed">
+            Be the first to know about seasonal harvests, limited varieties, and exclusive member-only discounts.
+            Get <span className="text-orange-500 font-bold">10% OFF</span> your first order today!
+          </p>
+          <form className="flex flex-col sm:flex-row gap-4 justify-center" onSubmit={(e) => e.preventDefault()}>
+            <input
+              type="email"
+              placeholder="Enter your email address"
+              className="px-8 py-5 rounded-2xl border border-orange-500 focus:ring-4 focus:ring-orange-500/50 text-white outline-none text-lg"
+            />
+            <button className="bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-orange-700 transition-all shadow-lg shadow-orange-900/40 cursor-pointer">
+              Subscribe Now
+            </button>
+          </form>
+          <p className="mt-6 text-sm text-gray-500">We respect your privacy. Unsubscribe at any time.</p>
+        </div>
+      </div>
+      </section >
+    </div >
   );
 }

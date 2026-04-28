@@ -286,7 +286,7 @@ export default function ProductDetail() {
                 </span>
               </div>
               <div className="flex items-baseline space-x-4">
-                <p className="text-4xl font-black text-gray-900">{formatPrice(displayPrice)}</p>
+                <p className="text-4xl font-black text-gray-900">{product.category == "Pulp" ? formatPrice(displayPrice) : "RS. ---"}</p>
                 {/* <p className="text-4xl font-black text-gray-900">RS. ---</p> */}
                 {user?.role === 'wholesale' && (
                   <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-bold uppercase">
