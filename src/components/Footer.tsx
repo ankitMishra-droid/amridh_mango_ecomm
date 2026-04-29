@@ -55,21 +55,12 @@ export default function Footer() {
               ].map(cat => (
                 <li key={cat.name}>
                   <Link
-                    to={cat.available ? cat.path : "#"}
+                    to={cat.path}
                     className={
-                      cat.available
-                        ? "hover:text-orange-500 transition-colors"
-                        : "text-gray-500 cursor-not-allowed"
+                      "hover:text-orange-500 transition-colors"
                     }
-                    style={!cat.available ? { pointerEvents: "none", opacity: 0.6 } : {}}
                   >
                     {cat.name}
-
-                    {!cat.available && (
-                      <span className="ml-2 text-[10px] bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full">
-                        Available Soon
-                      </span>
-                    )}
                   </Link>
                 </li>
               ))}

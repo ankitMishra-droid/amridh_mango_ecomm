@@ -69,23 +69,13 @@ export default function Navbar() {
                     {productCategories.map((cat) => (
                       <Link
                         key={cat.name}
-                        to={cat.available ? cat.path : "#"}
+                        to={cat.path}
                         className={cn(
-                          "block px-4 py-2 text-xs font-bold transition-colors",
-                          cat.available
-                            ? "text-gray-600 hover:bg-orange-50 hover:text-orange-600"
-                            : "text-gray-400 cursor-not-allowed"
-                        )}
-                        style={!cat.available ? { pointerEvents: "none", opacity: 0.6 } : {}}
+                          "block px-4 py-2 text-xs font-bold transition-colors text-gray-600 hover:bg-orange-50 hover:text-orange-600"
+                          )}
                         onClick={() => cat.available && setIsProductOpen(false)}
                       >
                         {cat.name}
-
-                        {!cat.available && (
-                          <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
-                            Available Soon
-                          </span>
-                        )}
                       </Link>
                     ))}
                   </motion.div>

@@ -348,22 +348,12 @@ export default function Home() {
               ].map(cat => (
                 <Link
                   key={cat.name}
-                  to={cat.available ? `/shop?cat=${cat.name}` : "#"}
+                  to={`/shop?cat=${cat.name}`}
                   className={cn(
-                    "text-xs font-bold px-4 py-2 rounded-full border transition-all",
-                    cat.available
-                      ? "border-orange-100 text-gray-600 hover:bg-orange-600 hover:text-white"
-                      : "border-gray-200 text-gray-400 cursor-not-allowed"
-                  )}
-                  style={!cat.available ? { pointerEvents: "none", opacity: 0.6 } : {}}
+                    "text-xs font-bold px-4 py-2 rounded-full border transition-all border-orange-100 text-gray-600 hover:bg-orange-600 hover:text-white"
+                    )}
                 >
                   {cat.name}
-
-                  {!cat.available && (
-                    <span className="ml-2 text-[10px] bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full">
-                      Available Soon
-                    </span>
-                  )}
                 </Link>
               ))}
             </div>
@@ -373,34 +363,10 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
           {products.map(product => (
             <ProductCard key={product.id} product={product} redirectToShop />
-          ))} */}
-
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
-            {products.map(product => {
-              const isPulp = product.category === "Pulp"; // adjust if your field name differs
-
-              return (
-                <div key={product.id} className="relative">
-                  {/* Product Card */}
-                  <div className={!isPulp ? "opacity-50 pointer-events-none" : ""}>
-                    <ProductCard product={product} redirectToShop={isPulp} />
-                  </div>
-
-                  {/* Available Soon Overlay */}
-                  {!isPulp && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-white/70 backdrop-blur-sm rounded-2xl">
-                      <span className="text-xs font-bold bg-orange-600 text-white px-3 py-1 rounded-full shadow">
-                        Available Soon
-                      </span>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          {/* </div> */}
+        ))}
         </div>
 
         <div className="mt-12 text-center md:hidden">

@@ -103,23 +103,12 @@ export default function Shop() {
       {filtered.length > 0 ? (
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
           {filtered.map(product => {
-            const isPulp = product.category === "Pulp"; // adjust if needed
-
             return (
               <div key={product.id} className="relative">
                 {/* Product Card */}
-                <div className={!isPulp ? "opacity-50 pointer-events-none" : ""}>
+                <div className="">
                   <ProductCard product={product} />
                 </div>
-
-                {/* Available Soon Overlay */}
-                {!isPulp && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-white/70 backdrop-blur-sm rounded-2xl">
-                    <span className="text-xs font-bold bg-orange-600 text-white px-3 py-1 rounded-full shadow">
-                      Available Soon
-                    </span>
-                  </div>
-                )}
               </div>
             );
           })}

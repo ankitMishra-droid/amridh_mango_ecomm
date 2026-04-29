@@ -270,7 +270,7 @@ export default function ProductDetail() {
           >
             <div className="mb-8">
               <span className="text-orange-600 font-black uppercase tracking-widest text-sm mb-2 block">
-                {product.category}
+                {product.category} <span className='text-xs text-orange-500 bg-orange-200 p-1 rounded-full lowercase'>Available Soon</span>
               </span>
               <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 leading-tight">
                 {product.name}
@@ -325,14 +325,14 @@ export default function ProductDetail() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-              <button
+              {/* <button
                 onClick={handleAddToCart}
                 disabled={product.stock <= 0}
                 className="flex-1 bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-orange-700 transition-all flex items-center justify-center space-x-3 shadow-xl shadow-orange-900/20 disabled:bg-gray-300 disabled:cursor-not-allowed cursor-pointer"
               >
                 <ShoppingCart className="h-6 w-6" />
                 <span>Add to Cart</span>
-              </button>
+              </button> */}
               <button
                 onClick={() => toggleWishlist(product)}
                 className={`flex-1 border-2 px-10 py-5 rounded-2xl font-bold text-lg transition-all flex items-center justify-center space-x-3 ${
