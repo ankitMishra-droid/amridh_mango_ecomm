@@ -104,9 +104,13 @@ if (productCount.count === 0) {
           450,
           300,
           300,
-          `<h3>Amirdh Ratnagiri Alphonso Mango Pulp Packed in Tin</h3><br>
+          `<h3>Ratnagiri Alphonso Mango Pulp (Tinned)</h3><br>
 
   <h4>Alphonso Mango Pulp – Premium Sweet & Natural Mango Pulp</h4><br>
+  
+  <p>The unopened tin has a shelf life of up to 2 years when stored in a cool, dry place even room temperature.</p><br>
+
+  <p>Once opened, the pulp should ideally be consumed within 24 hours. This helps maintain its freshness, natural taste, and prevents spoilage.</p><br>
 
   <p>Enjoy the authentic taste of India’s finest mango variety with our fresh Alphonso Mango Pulp. Made from carefully selected, fully ripened Ratnagiri Alphonso mangoes, this premium mango pulp delivers rich sweetness, vibrant golden color, and irresistible aroma that makes Alphonso mangoes famous worldwide.</p><br>
 
