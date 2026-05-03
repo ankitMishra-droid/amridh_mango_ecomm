@@ -1,12 +1,13 @@
 export interface Product {
-  id: number;
+  id: string | number;
   name: string;
   category: string;
   price: number;
-  wholesale_price: number;
+  wholesale_price?: number;
   stock: number;
-  description: string;
-  image_url: string;
+  description?: string;
+  image_url?: string;
+  sku?: string;
 }
 
 export interface User {

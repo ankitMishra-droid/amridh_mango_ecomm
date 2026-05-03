@@ -42,7 +42,7 @@ export default function ProductDetail() {
     fetch(`/api/products`)
       .then(res => res.json())
       .then(data => {
-        const found = data.find((p: Product) => p.id === Number(id));
+        const found = data.find((p: Product) => String(p.id) === String(id));
         if (found) {
           setProduct(found);
           const related = data

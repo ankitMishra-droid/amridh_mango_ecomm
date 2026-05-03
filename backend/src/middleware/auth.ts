@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { env } from '../config/env.js';
 
-export interface JwtUser { id: number; role: 'admin' | 'customer'; email: string; name?: string }
+export interface JwtUser { id: string; role: 'admin' | 'customer'; email: string; name?: string }
 
 export function requireAuth(req: Request & { user?: JwtUser }, res: Response, next: NextFunction) {
   const bearer = req.headers.authorization;

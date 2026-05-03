@@ -43,15 +43,40 @@ export default function Checkout() {
 
   const handlePlaceOrder = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!user) {
+      toast.error('Please log in to place an order');
+      navigate('/login?redirect=/checkout');
+      return;
+    }
+
     setIsProcessing(true);
 
-    // Simulate order processing
-    setTimeout(() => {
+    try {
+      const res = await fetch('/api/orders', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('mango_token')}`
+        },
+        body: JSON.stringify({ 
+          items,
+          shippingData: formData,
+          paymentMethod
+        })
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to place order');
+      }
+
       setIsProcessing(false);
       setIsSuccess(true);
       clearCart();
       toast.success('Order placed successfully!');
-    }, 2000);
+    } catch (error) {
+      setIsProcessing(false);
+      toast.error('Failed to process order. Please try again.');
+    }
   };
 
   if (isSuccess) {
