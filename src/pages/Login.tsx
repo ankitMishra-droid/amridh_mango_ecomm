@@ -11,6 +11,7 @@ export default function Login() {
   const [password, setPassword] = React.useState('');
   const [name, setName] = React.useState('');
   const [registerPhone, setRegisterPhone] = React.useState('');
+  const [forgotEmail, setForgotEmail] = React.useState('');
   const [role, setRole] = React.useState<'customer' | 'wholesale'>('customer');
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -210,6 +211,28 @@ export default function Login() {
             {isLogin ? 'Login' : 'Register'}
           </button>
         </form>
+
+        {isLogin && (
+          <div className="mt-4">
+            <input
+              type="email"
+              placeholder="Enter email for password reset"
+              value={forgotEmail}
+              onChange={(e) => setForgotEmail(e.target.value)}
+              className="w-full px-4 py-2 rounded-xl border border-gray-200"
+            />
+            <button
+              type="button"
+              onClick={async () => {
+                if (!forgotEmail) return toast.error('Enter email first');
+                const r = await fetch('/api/forgot-password', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: forgotEmail }) });
+                if (r.ok) toast.success('Reset link request submitted');
+                else toast.error('Could not submit request');
+              }}
+              className="mt-2 text-sm text-orange-600 font-semibold"
+            >Forgot password?</button>
+          </div>
+        )}
 
         <div className="mt-8 text-center">
           <button
