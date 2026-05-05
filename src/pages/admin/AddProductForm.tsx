@@ -7,7 +7,7 @@ export default function AddProductForm({ initialData, onClose }: { initialData?:
   const dispatch = useAppDispatch();
   const [isUploading, setIsUploading] = useState(false);
   const [formData, setFormData] = useState<{
-    name: string, category: string, description: string, price: number, stock: number, sku: string, image_url: string, images: string[], status: 'Available' | 'Coming Soon' | 'Sold Out'
+    name: string, category: string, description: string, price: number, stock: number, sku: string, image_url: string, images: string[], status: 'Available' | 'Available Soon' | 'Sold Out'
   }>(initialData || {
     name: '', category: '', description: '', price: 0, stock: 0, sku: '', image_url: '', images: [], status: 'Available'
   });
@@ -15,7 +15,7 @@ export default function AddProductForm({ initialData, onClose }: { initialData?:
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files.length === 0) return;
     setIsUploading(true);
-    
+
     const uploadData = new FormData();
     for (let i = 0; i < e.target.files.length; i++) {
       uploadData.append('images', e.target.files[i]);
@@ -31,15 +31,15 @@ export default function AddProductForm({ initialData, onClose }: { initialData?:
       if (res.ok) {
         const newUrls = data.urls;
         setFormData(prev => {
-           let primary = prev.image_url;
-           let additional = prev.images || [];
-           if (!primary && newUrls.length > 0) {
-             primary = newUrls[0];
-             additional = [...additional, ...newUrls.slice(1)];
-           } else {
-             additional = [...additional, ...newUrls];
-           }
-           return { ...prev, image_url: primary, images: additional };
+          let primary = prev.image_url;
+          let additional = prev.images || [];
+          if (!primary && newUrls.length > 0) {
+            primary = newUrls[0];
+            additional = [...additional, ...newUrls.slice(1)];
+          } else {
+            additional = [...additional, ...newUrls];
+          }
+          return { ...prev, image_url: primary, images: additional };
         });
         toast.success('Images uploaded successfully!');
       } else {
@@ -57,11 +57,11 @@ export default function AddProductForm({ initialData, onClose }: { initialData?:
       toast.error('Please fill all required fields');
       return;
     }
-    
-    await dispatch(saveProduct({ 
-      id: initialData?.id, 
-      data: formData, 
-      isAdding: !initialData 
+
+    await dispatch(saveProduct({
+      id: initialData?.id,
+      data: formData,
+      isAdding: !initialData
     }));
     onClose();
   };
@@ -69,53 +69,53 @@ export default function AddProductForm({ initialData, onClose }: { initialData?:
   return (
     <div className="bg-white p-8 rounded-3xl border border-gray-200 shadow-xl mb-8">
       <h3 className="font-black text-2xl text-gray-900 mb-6">{initialData ? 'Edit Product' : 'Add New Product'}</h3>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <div className="md:col-span-2">
           <label className="block text-xs font-bold text-gray-500 uppercase mb-2">Product Name</label>
-          <input type="text" placeholder="e.g. Alphonso Mango Box (1 Dozen)" className="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
+          <input type="text" placeholder="e.g. Alphonso Mango Box (1 Dozen)" className="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
         </div>
-        
+
         <div>
           <label className="block text-xs font-bold text-gray-500 uppercase mb-2">Category</label>
-          <input type="text" placeholder="e.g. Mangoes" className="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all" value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} />
+          <input type="text" placeholder="e.g. Mangoes" className="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all" value={formData.category} onChange={e => setFormData({ ...formData, category: e.target.value })} />
         </div>
         <div>
           <label className="block text-xs font-bold text-gray-500 uppercase mb-2">SKU</label>
-          <input type="text" placeholder="e.g. ALPH-1DZ" className="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all" value={formData.sku} onChange={e => setFormData({...formData, sku: e.target.value})} />
+          <input type="text" placeholder="e.g. ALPH-1DZ" className="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all" value={formData.sku} onChange={e => setFormData({ ...formData, sku: e.target.value })} />
         </div>
 
         <div>
           <label className="block text-xs font-bold text-gray-500 uppercase mb-2">Price (₹)</label>
-          <input type="number" placeholder="0.00" className="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all" value={formData.price || ''} onChange={e => setFormData({...formData, price: Number(e.target.value)})} />
+          <input type="number" placeholder="0.00" className="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all" value={formData.price || ''} onChange={e => setFormData({ ...formData, price: Number(e.target.value) })} />
         </div>
         <div>
           <label className="block text-xs font-bold text-gray-500 uppercase mb-2">Stock Quantity</label>
-          <input type="number" placeholder="0" className="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all" value={formData.stock || ''} onChange={e => setFormData({...formData, stock: Number(e.target.value)})} />
+          <input type="number" placeholder="0" className="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all" value={formData.stock || ''} onChange={e => setFormData({ ...formData, stock: Number(e.target.value) })} />
         </div>
         <div>
           <label className="block text-xs font-bold text-gray-500 uppercase mb-2">Status</label>
-          <select className="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all" value={formData.status || 'Available'} onChange={e => setFormData({...formData, status: e.target.value as any})}>
+          <select className="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all" value={formData.status || 'Available'} onChange={e => setFormData({ ...formData, status: e.target.value as any })}>
             <option value="Available">Available</option>
-            <option value="Coming Soon">Coming Soon</option>
+            <option value="Available Soon">Available Soon</option>
             <option value="Sold Out">Sold Out</option>
           </select>
         </div>
 
         <div className="md:col-span-2">
           <label className="block text-xs font-bold text-gray-500 uppercase mb-2">Description</label>
-          <textarea rows={4} placeholder="Product description..." className="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all" value={formData.description || ''} onChange={e => setFormData({...formData, description: e.target.value})} />
+          <textarea rows={4} placeholder="Product description..." className="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all" value={formData.description || ''} onChange={e => setFormData({ ...formData, description: e.target.value })} />
         </div>
       </div>
 
       <div className="border-t border-gray-100 pt-6 mb-6">
         <label className="block text-sm font-bold text-gray-900 mb-4">Product Images</label>
-        
+
         {/* File Upload Option */}
         <div className="mb-6 p-8 border-2 border-dashed border-orange-200 rounded-2xl bg-orange-50/30 hover:bg-orange-50 transition-colors text-center relative group cursor-pointer">
-          <input 
-            type="file" 
-            multiple 
+          <input
+            type="file"
+            multiple
             accept="image/*"
             onChange={handleFileUpload}
             disabled={isUploading}
@@ -138,19 +138,19 @@ export default function AddProductForm({ initialData, onClose }: { initialData?:
         </div>
 
         <div className="relative flex items-center py-5">
-            <div className="flex-grow border-t border-gray-200"></div>
-            <span className="flex-shrink-0 mx-4 text-gray-400 text-xs font-bold uppercase tracking-widest">Or Provide Links</span>
-            <div className="flex-grow border-t border-gray-200"></div>
+          <div className="flex-grow border-t border-gray-200"></div>
+          <span className="flex-shrink-0 mx-4 text-gray-400 text-xs font-bold uppercase tracking-widest">Or Provide Links</span>
+          <div className="flex-grow border-t border-gray-200"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="block text-xs font-bold text-gray-500 uppercase mb-2">Primary Image URL</label>
-            <input type="text" placeholder="https://example.com/image.jpg" className="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all" value={formData.image_url} onChange={e => setFormData({...formData, image_url: e.target.value})} />
+            <input type="text" placeholder="https://example.com/image.jpg" className="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all" value={formData.image_url} onChange={e => setFormData({ ...formData, image_url: e.target.value })} />
           </div>
           <div>
             <label className="block text-xs font-bold text-gray-500 uppercase mb-2">Additional Images (Comma Separated)</label>
-            <input type="text" placeholder="url1.jpg, url2.jpg" className="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all" value={(formData as any).images?.join(', ') || ''} onChange={e => setFormData({...formData, images: e.target.value.split(',').map(s => s.trim()).filter(Boolean)} as any)} />
+            <input type="text" placeholder="url1.jpg, url2.jpg" className="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all" value={(formData as any).images?.join(', ') || ''} onChange={e => setFormData({ ...formData, images: e.target.value.split(',').map(s => s.trim()).filter(Boolean) } as any)} />
           </div>
         </div>
       </div>

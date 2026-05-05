@@ -251,15 +251,15 @@ export default function ProductDetail() {
                 </div>
               )}
 
-              {/* Coming Soon overlay */}
-              {product.status === 'Coming Soon' && (
+              {/* Available Soon overlay */}
+              {product.status === 'Available Soon' && (
                 <div className="absolute inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center">
                   <span className="bg-white text-gray-900 px-8 py-3 rounded-full font-black text-xl uppercase tracking-widest">
-                    Coming Soon
+                    Available Soon
                   </span>
                 </div>
               )}              {/* Out of stock overlay */}
-              {(product.stock <= 0 || product.status === 'Sold Out') && product.status !== 'Coming Soon' && (
+              {(product.stock <= 0 || product.status === 'Sold Out') && product.status !== 'Available Soon' && (
                 <div className="absolute inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center">
                   <span className="bg-white text-gray-900 px-8 py-3 rounded-full font-black text-xl uppercase tracking-widest">
                     Sold Out
@@ -277,7 +277,7 @@ export default function ProductDetail() {
           >
             <div className="mb-8">
               <span className="text-orange-600 font-black uppercase tracking-widest text-sm mb-2 block">
-                {product.category} {product.status === 'Coming Soon' && <span className='text-xs text-orange-500 bg-orange-200 p-1 rounded-full lowercase'>Coming Soon</span>}
+                {product.category} {product.status === 'Available Soon' && <span className='text-xs text-orange-500 bg-orange-200 p-1 rounded-full lowercase'>Available Soon</span>}
               </span>
               <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 leading-tight">
                 {product.name}
@@ -293,12 +293,12 @@ export default function ProductDetail() {
                 </span>
               </div>
               <div className="flex items-baseline space-x-4">
-                {product.status === 'Coming Soon' ? (
-                  <p className="text-3xl md:text-4xl font-black text-orange-600 uppercase tracking-wide">Coming Soon</p>
+                {product.status === 'Available Soon' ? (
+                  <p className="text-3xl md:text-4xl font-black text-orange-600 uppercase tracking-wide">Available Soon</p>
                 ) : (
                   <p className="text-4xl font-black text-gray-900">{formatPrice(displayPrice)}</p>
                 )}
-                {user?.role === 'wholesale' && product.status !== 'Coming Soon' && (
+                {user?.role === 'wholesale' && product.status !== 'Available Soon' && (
                   <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-bold uppercase">
                     Wholesale Price
                   </span>
@@ -337,21 +337,21 @@ export default function ProductDetail() {
             <div className="flex flex-col sm:flex-row gap-4 mt-auto">
               <button
                 onClick={handleAddToCart}
-                disabled={product.stock <= 0 || product.status === 'Coming Soon' || product.status === 'Sold Out'}
+                disabled={product.stock <= 0 || product.status === 'Available Soon' || product.status === 'Sold Out'}
                 className="flex-1 bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-orange-700 transition-all flex items-center justify-center space-x-3 shadow-xl shadow-orange-900/20 disabled:bg-gray-300 disabled:cursor-not-allowed cursor-pointer"
               >
-                {product.status !== 'Coming Soon' && <ShoppingCart className="h-6 w-6" />}
+                {product.status !== 'Available Soon' && <ShoppingCart className="h-6 w-6" />}
                 <span>
-                  {product.status === 'Coming Soon'
-                    ? 'Coming Soon'
+                  {product.status === 'Available Soon'
+                    ? 'Available Soon'
                     : (product.stock <= 0 || product.status === 'Sold Out') ? 'Out of Stock' : 'Add to Cart'}
                 </span>
               </button>
               <button
                 onClick={() => toggleWishlist(product)}
                 className={`flex-1 border-2 px-10 py-5 rounded-2xl font-bold text-lg transition-all flex items-center justify-center space-x-3 ${isInWishlist(product.id)
-                    ? 'bg-red-50 border-red-200 text-red-600'
-                    : 'border-gray-200 text-gray-900 hover:bg-gray-50 cursor-pointer'
+                  ? 'bg-red-50 border-red-200 text-red-600'
+                  : 'border-gray-200 text-gray-900 hover:bg-gray-50 cursor-pointer'
                   }`}
               >
                 <Heart className={`h-6 w-6 ${isInWishlist(product.id) ? 'fill-current' : ''}`} />

@@ -67,17 +67,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, redirectToShop }) =>
           referrerPolicy="no-referrer"
         />
         <div className="absolute top-4 right-4 flex flex-col gap-2 self-end justify-center" style={{ alignItems: 'self-end', justifyContent: 'center' }}>
-          {product.status === 'Coming Soon' && (
+          {product.status === 'Available Soon' && (
             <span className="bg-orange-500 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider w-fit">
-              Coming Soon
+              Available Soon
             </span>
           )}
-          {product.stock < 20 && product.stock > 0 && product.status !== 'Coming Soon' && product.status !== 'Sold Out' && (
+          {product.stock < 20 && product.stock > 0 && product.status !== 'Available Soon' && product.status !== 'Sold Out' && (
             <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider w-fit">
               Low Stock
             </span>
           )}
-          {(product.stock <= 0 || product.status === 'Sold Out') && product.status !== 'Coming Soon' && (
+          {(product.stock <= 0 || product.status === 'Sold Out') && product.status !== 'Available Soon' && (
             <span className="bg-gray-800 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider w-fit">
               Sold Out
             </span>
@@ -112,22 +112,22 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, redirectToShop }) =>
         />
         <div className="flex items-center justify-between mt-auto">
           <div>
-            {product.status === 'Coming Soon' ? (
-              <p className="text-base md:text-lg font-black text-orange-600 uppercase tracking-wide">Coming Soon</p>
+            {product.status === 'Available Soon' ? (
+              <p className="text-base md:text-lg font-black text-orange-600 uppercase tracking-wide">Available Soon</p>
             ) : (
               <p className="text-lg md:text-xl font-black text-gray-900">{formatPrice(displayPrice)}</p>
             )}
-            {user?.role === 'wholesale' && product.status !== 'Coming Soon' && (
+            {user?.role === 'wholesale' && product.status !== 'Available Soon' && (
               <p className="text-[8px] md:text-[10px] text-orange-600 font-bold uppercase">Wholesale Price</p>
             )}
           </div>
 
           <button
             onClick={handleAddToCart}
-            disabled={product.stock <= 0 || product.status === 'Coming Soon' || product.status === 'Sold Out'}
+            disabled={product.stock <= 0 || product.status === 'Available Soon' || product.status === 'Sold Out'}
             className={cn(
               "p-2 md:p-3 rounded-xl transition-all relative z-10",
-              (product.stock > 0 && product.status !== 'Coming Soon' && product.status !== 'Sold Out')
+              (product.stock > 0 && product.status !== 'Available Soon' && product.status !== 'Sold Out')
                 ? "bg-orange-600 text-white hover:bg-orange-700 shadow-lg shadow-orange-200 cursor-pointer"
                 : "bg-gray-100 text-gray-400 cursor-not-allowed"
             )}

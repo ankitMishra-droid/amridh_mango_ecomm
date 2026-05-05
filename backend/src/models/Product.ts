@@ -22,7 +22,7 @@ const ProductSchema: Schema = new Schema({
   sku: { type: String, unique: true, required: true },
   image_url: { type: String },
   images: [{ type: String }],
-  status: { type: String, enum: ['Available', 'Coming Soon', 'Sold Out'], default: 'Available' }
+  status: { type: String, enum: ['Available', 'Available Soon', 'Sold Out'], default: 'Available' }
 }, { timestamps: true });
 
 ProductSchema.plugin(paginate);
