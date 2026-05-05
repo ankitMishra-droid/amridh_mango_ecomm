@@ -10,6 +10,7 @@ export interface IProduct extends Document {
   sku: string;
   image_url: string;
   images: string[];
+  status: string;
 }
 
 const ProductSchema: Schema = new Schema({
@@ -20,7 +21,8 @@ const ProductSchema: Schema = new Schema({
   stock: { type: Number, default: 0 },
   sku: { type: String, unique: true, required: true },
   image_url: { type: String },
-  images: [{ type: String }]
+  images: [{ type: String }],
+  status: { type: String, enum: ['Available', 'Coming Soon'], default: 'Available' }
 }, { timestamps: true });
 
 ProductSchema.plugin(paginate);

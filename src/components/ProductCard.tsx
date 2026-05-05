@@ -107,20 +107,23 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, redirectToShop }) =>
         />
         <div className="flex items-center justify-between mt-auto">
           <div>
-            <p className="text-lg md:text-xl font-black text-gray-900">{product.category == "Pulp" ? formatPrice(displayPrice) : "RS. ---"}</p>
-            {/* <p className="text-lg md:text-xl font-black text-gray-900">RS. ---</p> */}
-            {user?.role === 'wholesale' && (
+            {product.status === 'Coming Soon' ? (
+              <p className="text-base md:text-lg font-black text-orange-600 uppercase tracking-wide">Available Soon</p>
+            ) : (
+              <p className="text-lg md:text-xl font-black text-gray-900">{formatPrice(displayPrice)}</p>
+            )}
+            {user?.role === 'wholesale' && product.status !== 'Coming Soon' && (
               <p className="text-[8px] md:text-[10px] text-orange-600 font-bold uppercase">Wholesale Price</p>
             )}
           </div>
 
           <button
             onClick={handleAddToCart}
-            disabled={product.stock === 0}
+            disabled={product.stock === 0 || product.status === 'Coming Soon'}
             className={cn(
-              "p-2 md:p-3 rounded-xl transition-all relative z-10 cursor-pointer",
-              product.stock > 0
-                ? "bg-orange-600 text-white hover:bg-orange-700 shadow-lg shadow-orange-200"
+              "p-2 md:p-3 rounded-xl transition-all relative z-10",
+              (product.stock > 0 && product.status !== 'Coming Soon')
+                ? "bg-orange-600 text-white hover:bg-orange-700 shadow-lg shadow-orange-200 cursor-pointer"
                 : "bg-gray-100 text-gray-400 cursor-not-allowed"
             )}
           >

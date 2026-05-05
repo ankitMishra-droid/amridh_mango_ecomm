@@ -8,6 +8,7 @@ export interface Product {
   description?: string;
   image_url?: string;
   sku?: string;
+  status?: 'Available' | 'Coming Soon';
 }
 
 export interface User {

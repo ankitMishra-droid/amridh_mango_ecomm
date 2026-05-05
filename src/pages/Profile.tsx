@@ -5,16 +5,23 @@ import { formatPrice } from '../lib/utils';
 import { Package, Truck, CheckCircle, Clock } from 'lucide-react';
 
 export default function Profile() {
-  const { user } = useAuth();
+  const { user, token } = useAuth();
   const [orders, setOrders] = React.useState<Order[]>([]);
 
   React.useEffect(() => {
-    if (user) {
-      fetch(`/api/orders/user/${user.id}`)
+    if (user && token) {
+      fetch(`/api/orders/user/${user.id}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
         .then(res => res.json())
-        .then(data => setOrders(data));
+        .then(data => {
+          if (!data.error) setOrders(data);
+        })
+        .catch(err => console.error('Failed to fetch orders:', err));
     }
-  }, [user]);
+  }, [user, token]);
 
   const getStatusIcon = (status: string) => {
     switch (status) {

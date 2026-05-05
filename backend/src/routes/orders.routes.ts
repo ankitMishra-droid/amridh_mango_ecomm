@@ -6,4 +6,6 @@ export const orderRouter = Router();
 
 orderRouter.post('/', requireAuth, OrderController.createOrder);
 orderRouter.get('/', requireAuth, OrderController.getOrders);
+orderRouter.get('/user/:userId', requireAuth, OrderController.getUserOrders);
+orderRouter.get('/:id', OrderController.getOrderById);
 orderRouter.patch('/:id/status', requireAuth, requireAdmin, OrderController.updateOrderStatus);

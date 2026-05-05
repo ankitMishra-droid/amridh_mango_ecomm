@@ -7,9 +7,9 @@ export default function AddProductForm({ initialData, onClose }: { initialData?:
   const dispatch = useAppDispatch();
   const [isUploading, setIsUploading] = useState(false);
   const [formData, setFormData] = useState<{
-    name: string, category: string, description: string, price: number, stock: number, sku: string, image_url: string, images: string[]
+    name: string, category: string, description: string, price: number, stock: number, sku: string, image_url: string, images: string[], status: 'Available' | 'Coming Soon'
   }>(initialData || {
-    name: '', category: '', description: '', price: 0, stock: 0, sku: '', image_url: '', images: []
+    name: '', category: '', description: '', price: 0, stock: 0, sku: '', image_url: '', images: [], status: 'Available'
   });
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -92,6 +92,13 @@ export default function AddProductForm({ initialData, onClose }: { initialData?:
         <div>
           <label className="block text-xs font-bold text-gray-500 uppercase mb-2">Stock Quantity</label>
           <input type="number" placeholder="0" className="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all" value={formData.stock || ''} onChange={e => setFormData({...formData, stock: Number(e.target.value)})} />
+        </div>
+        <div>
+          <label className="block text-xs font-bold text-gray-500 uppercase mb-2">Status</label>
+          <select className="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all" value={formData.status || 'Available'} onChange={e => setFormData({...formData, status: e.target.value as any})}>
+            <option value="Available">Available</option>
+            <option value="Coming Soon">Coming Soon</option>
+          </select>
         </div>
 
         <div className="md:col-span-2">

@@ -58,4 +58,50 @@ export class OrderController {
       res.status(500).json({ error: 'Failed to update order status' });
     }
   }
+
+  public static async getUserOrders(req: Request, res: Response): Promise<void> {
+    try {
+      // Validate that users can only fetch their own orders, or admin can fetch anyone's
+      const authUser = (req as any).user;
+      if (authUser.role !== 'admin' && authUser.id !== req.params.userId) {
+        res.status(403).json({ error: 'Unauthorized' });
+        return;
+      }
+
+      const orders = await Order.find({ user_id: req.params.userId }).sort({ createdAt: -1 });
+      res.json(orders.map(o => ({
+        id: o._id,
+        user_id: o.user_id,
+        total: o.total,
+        status: o.status,
+        items: o.items,
+        user_name: o.user_name,
+        created_at: o.createdAt
+      })));
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to fetch user orders' });
+    }
+  }
+
+  public static async getOrderById(req: Request, res: Response): Promise<void> {
+    try {
+      const order = await Order.findById(req.params.id);
+      if (!order) {
+        res.status(404).json({ error: 'Order not found' });
+        return;
+      }
+      res.json({
+        id: order._id,
+        user_id: order.user_id,
+        total: order.total,
+        status: order.status,
+        items: order.items,
+        user_name: order.user_name,
+        created_at: order.createdAt,
+        updated_at: order.updatedAt
+      });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to fetch order details' });
+    }
+  }
 }

@@ -1,35 +1,62 @@
 import React, { useState } from 'react';
 import { Package, Search, Truck, CheckCircle, Clock, MapPin } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import toast from 'react-hot-toast';
 
 export default function TrackOrder() {
   const [orderId, setOrderId] = useState('');
   const [trackingData, setTrackingData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
-  const handleTrack = (e: React.FormEvent) => {
+  const handleTrack = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!orderId) return;
 
     setLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      setTrackingData({
-        id: orderId,
-        status: 'In Transit',
-        estimatedDelivery: 'March 5, 2026',
-        currentLocation: 'Mumbai Distribution Center',
-        history: [
-          { status: 'Order Placed', date: 'Feb 28, 2026, 10:00 AM', completed: true },
-          { status: 'Packed & Ready', date: 'Feb 28, 2026, 02:30 PM', completed: true },
-          { status: 'Shipped', date: 'March 1, 2026, 09:00 AM', completed: true },
-          { status: 'In Transit', date: 'March 1, 2026, 04:15 PM', completed: false },
-          { status: 'Out for Delivery', date: 'Pending', completed: false },
-          { status: 'Delivered', date: 'Pending', completed: false },
-        ]
-      });
+    try {
+      // The order ID might have a prefix like #AM-, so strip it if needed, or if the backend uses MongoDB ObjectIDs, the user will enter exactly the ID.
+      // Usually, MongoDB _id is a 24-character hex string.
+      const cleanId = orderId.replace(/[^a-zA-Z0-9]/g, '');
+      const res = await fetch(`/api/orders/${cleanId}`);
+      const data = await res.json();
+      
+      if (!res.ok || data.error) {
+        toast.error(data.error || 'Order not found. Please check the ID.');
+        setTrackingData(null);
+      } else {
+        // Construct the history based on the current status
+        const statuses = ['Placed', 'Packed', 'Shipped', 'In Transit', 'Out for Delivery', 'Delivered'];
+        const currentIndex = statuses.indexOf(data.status);
+        
+        const history = statuses.map((status, index) => {
+          let dateStr = 'Pending';
+          if (index === 0) dateStr = new Date(data.created_at).toLocaleString();
+          else if (index <= currentIndex && data.updated_at) dateStr = new Date(data.updated_at).toLocaleString();
+          
+          return {
+            status,
+            date: dateStr,
+            completed: index <= currentIndex
+          };
+        });
+
+        // Add 3-5 days for estimated delivery from created_at
+        const estDeliveryDate = new Date(data.created_at);
+        estDeliveryDate.setDate(estDeliveryDate.getDate() + 4);
+
+        setTrackingData({
+          id: data.id,
+          status: data.status,
+          estimatedDelivery: estDeliveryDate.toDateString(),
+          currentLocation: data.status === 'Delivered' ? 'Delivered to Customer' : 'Processing Facility',
+          history
+        });
+      }
+    } catch (error) {
+      toast.error('Failed to track order. Please try again.');
+    } finally {
       setLoading(false);
-    }, 1500);
+    }
   };
 
   return (
