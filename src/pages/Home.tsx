@@ -87,7 +87,14 @@ export default function Home() {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
       })
-      .then(data => setProducts(data.slice(0, 4)))
+      .then(data => {
+        const sortedData = [...data].sort((a: Product, b: Product) => {
+          if (a.status === 'Available' && b.status !== 'Available') return -1;
+          if (a.status !== 'Available' && b.status === 'Available') return 1;
+          return 0;
+        });
+        setProducts(sortedData.slice(0, 4));
+      })
       .catch(err => {
         console.error('home products fetch failed', err);
       });
