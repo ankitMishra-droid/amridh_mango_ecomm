@@ -21,7 +21,7 @@ export default function ProductList() {
           <h1 className="text-3xl font-black text-gray-900">Inventory & SKU Management</h1>
           <p className="text-gray-500 mt-1">Manage your product catalog, pricing, and stock levels.</p>
         </div>
-        <button 
+        <button
           onClick={() => { setIsAdding(true); setEditingProduct(null); }}
           className="flex items-center gap-2 bg-orange-600 text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-orange-700 transition-colors shadow-sm"
         >
@@ -30,9 +30,9 @@ export default function ProductList() {
       </div>
 
       {(isAdding || editingProduct) && (
-        <AddProductForm 
-          initialData={editingProduct} 
-          onClose={() => { setIsAdding(false); setEditingProduct(null); }} 
+        <AddProductForm
+          initialData={editingProduct}
+          onClose={() => { setIsAdding(false); setEditingProduct(null); }}
         />
       )}
 
@@ -59,16 +59,14 @@ export default function ProductList() {
                   </div>
                 </td>
                 <td className="px-6 py-4">
-                  <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                    p.stock > 10 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-                  }`}>
+                  <span className={`px-3 py-1 rounded-full text-xs font-bold ${p.stock > 10 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+                    }`}>
                     {p.stock} units
                   </span>
                 </td>
                 <td className="px-6 py-4">
-                  <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                    p.status === 'Coming Soon' ? 'bg-orange-100 text-orange-700' : p.status === 'Sold Out' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'
-                  }`}>
+                  <span className={`px-3 py-1 rounded-full text-xs font-bold ${p.status === 'Available Soon' ? 'bg-orange-100 text-orange-700' : p.status === 'Sold Out' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'
+                    }`}>
                     {p.status || 'Available'}
                   </span>
                 </td>
@@ -77,7 +75,7 @@ export default function ProductList() {
                     <Edit2 className="h-5 w-5" />
                   </button>
                   <button onClick={() => {
-                    if(confirm('Are you sure you want to delete this product?')) {
+                    if (confirm('Are you sure you want to delete this product?')) {
                       dispatch(deleteProduct(p.id));
                     }
                   }} className="text-red-600 hover:bg-red-50 p-2 rounded-lg transition-colors">
