@@ -7,7 +7,7 @@ export default function AddProductForm({ initialData, onClose }: { initialData?:
   const dispatch = useAppDispatch();
   const [isUploading, setIsUploading] = useState(false);
   const [formData, setFormData] = useState<{
-    name: string, category: string, description: string, price: number, stock: number, sku: string, image_url: string, images: string[], status: 'Available' | 'Coming Soon'
+    name: string, category: string, description: string, price: number, stock: number, sku: string, image_url: string, images: string[], status: 'Available' | 'Coming Soon' | 'Sold Out'
   }>(initialData || {
     name: '', category: '', description: '', price: 0, stock: 0, sku: '', image_url: '', images: [], status: 'Available'
   });
@@ -98,6 +98,7 @@ export default function AddProductForm({ initialData, onClose }: { initialData?:
           <select className="w-full border border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-orange-500 outline-none transition-all" value={formData.status || 'Available'} onChange={e => setFormData({...formData, status: e.target.value as any})}>
             <option value="Available">Available</option>
             <option value="Coming Soon">Coming Soon</option>
+            <option value="Sold Out">Sold Out</option>
           </select>
         </div>
 

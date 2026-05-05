@@ -67,7 +67,7 @@ export default function ProductList() {
                 </td>
                 <td className="px-6 py-4">
                   <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                    p.status === 'Coming Soon' ? 'bg-orange-100 text-orange-700' : 'bg-blue-100 text-blue-700'
+                    p.status === 'Coming Soon' ? 'bg-orange-100 text-orange-700' : p.status === 'Sold Out' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'
                   }`}>
                     {p.status || 'Available'}
                   </span>

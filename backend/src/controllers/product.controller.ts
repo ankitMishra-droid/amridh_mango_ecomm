@@ -38,7 +38,8 @@ export class ProductController {
             stock: p.stock,
             sku: p.sku,
             image_url: p.image_url,
-            images: p.images
+            images: p.images,
+            status: p.status
           })));
           return;
       }
@@ -51,8 +52,8 @@ export class ProductController {
 
   public static async createProduct(req: Request, res: Response): Promise<void> {
     try {
-      const { name, category, description, price, stock, sku, image_url, images = [] } = req.body;
-      const product = new Product({ name, category, description, price, stock, sku, image_url, images });
+      const { name, category, description, price, stock, sku, image_url, images = [], status } = req.body;
+      const product = new Product({ name, category, description, price, stock, sku, image_url, images, status });
       await product.save();
       res.json({ id: product._id });
     } catch (error) {
@@ -62,8 +63,8 @@ export class ProductController {
 
   public static async updateProduct(req: Request, res: Response): Promise<void> {
     try {
-      const { name, category, description, price, stock, sku, image_url } = req.body;
-      await Product.findByIdAndUpdate(req.params.id, { name, category, description, price, stock, sku, image_url });
+      const { name, category, description, price, stock, sku, image_url, images = [], status } = req.body;
+      await Product.findByIdAndUpdate(req.params.id, { name, category, description, price, stock, sku, image_url, images, status });
       res.json({ success: true });
     } catch (error) {
       res.status(500).json({ error: 'Failed to update product' });

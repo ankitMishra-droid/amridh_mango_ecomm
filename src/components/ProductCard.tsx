@@ -63,23 +63,28 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, redirectToShop }) =>
         <img
           src={product.image_url}
           alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500  "
           referrerPolicy="no-referrer"
         />
-        <div className="absolute top-4 right-4 flex flex-col gap-2">
-          {product.stock < 20 && product.stock > 0 && (
-            <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">
+        <div className="absolute top-4 right-4 flex flex-col gap-2 self-end justify-center" style={{ alignItems: 'self-end', justifyContent: 'center' }}>
+          {product.status === 'Coming Soon' && (
+            <span className="bg-orange-500 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider w-fit">
+              Coming Soon
+            </span>
+          )}
+          {product.stock < 20 && product.stock > 0 && product.status !== 'Coming Soon' && product.status !== 'Sold Out' && (
+            <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider w-fit">
               Low Stock
             </span>
           )}
-          {product.stock === 0 && (
-            <span className="bg-gray-800 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">
+          {(product.stock <= 0 || product.status === 'Sold Out') && product.status !== 'Coming Soon' && (
+            <span className="bg-gray-800 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider w-fit">
               Sold Out
             </span>
           )}
           <button
             onClick={handleToggleWishlist}
-            className={`p-2 rounded-full shadow-lg transition-all ${isInWishlist(product.id) ? 'bg-red-500 text-white' : 'bg-white text-gray-400 hover:text-red-500'}`}
+            className={`p-2 rounded-full shadow-lg transition-all w-fit ${isInWishlist(product.id) ? 'bg-red-500 text-white' : 'bg-white text-gray-400 hover:text-red-500'}`}
           >
             <Heart className={`h-5 w-5 ${isInWishlist(product.id) ? 'fill-current' : ''}`} />
           </button>
@@ -108,7 +113,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, redirectToShop }) =>
         <div className="flex items-center justify-between mt-auto">
           <div>
             {product.status === 'Coming Soon' ? (
-              <p className="text-base md:text-lg font-black text-orange-600 uppercase tracking-wide">Available Soon</p>
+              <p className="text-base md:text-lg font-black text-orange-600 uppercase tracking-wide">Coming Soon</p>
             ) : (
               <p className="text-lg md:text-xl font-black text-gray-900">{formatPrice(displayPrice)}</p>
             )}
@@ -119,10 +124,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, redirectToShop }) =>
 
           <button
             onClick={handleAddToCart}
-            disabled={product.stock === 0 || product.status === 'Coming Soon'}
+            disabled={product.stock <= 0 || product.status === 'Coming Soon' || product.status === 'Sold Out'}
             className={cn(
               "p-2 md:p-3 rounded-xl transition-all relative z-10",
-              (product.stock > 0 && product.status !== 'Coming Soon')
+              (product.stock > 0 && product.status !== 'Coming Soon' && product.status !== 'Sold Out')
                 ? "bg-orange-600 text-white hover:bg-orange-700 shadow-lg shadow-orange-200 cursor-pointer"
                 : "bg-gray-100 text-gray-400 cursor-not-allowed"
             )}

@@ -66,7 +66,8 @@ export const saveProduct = createAsyncThunk(
         body: JSON.stringify(data)
       });
       if (!res.ok) throw new Error('Failed to save product');
-      return await res.json();
+      const responseData = await res.json();
+      return isAdding ? { id: responseData.id, ...data } : { id, ...data };
     } catch (err: any) {
       return rejectWithValue(err.message);
     }

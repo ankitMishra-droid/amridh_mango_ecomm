@@ -251,11 +251,18 @@ export default function ProductDetail() {
                 </div>
               )}
 
-              {/* Out of stock overlay */}
-              {product.stock <= 0 && (
+              {/* Coming Soon overlay */}
+              {product.status === 'Coming Soon' && (
                 <div className="absolute inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center">
                   <span className="bg-white text-gray-900 px-8 py-3 rounded-full font-black text-xl uppercase tracking-widest">
-                    Available Soon
+                    Coming Soon
+                  </span>
+                </div>
+              )}              {/* Out of stock overlay */}
+              {(product.stock <= 0 || product.status === 'Sold Out') && product.status !== 'Coming Soon' && (
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center">
+                  <span className="bg-white text-gray-900 px-8 py-3 rounded-full font-black text-xl uppercase tracking-widest">
+                    Sold Out
                   </span>
                 </div>
               )}
@@ -270,7 +277,7 @@ export default function ProductDetail() {
           >
             <div className="mb-8">
               <span className="text-orange-600 font-black uppercase tracking-widest text-sm mb-2 block">
-                {product.category} {product.status === 'Coming Soon' && <span className='text-xs text-orange-500 bg-orange-200 p-1 rounded-full lowercase'>Available Soon</span>}
+                {product.category} {product.status === 'Coming Soon' && <span className='text-xs text-orange-500 bg-orange-200 p-1 rounded-full lowercase'>Coming Soon</span>}
               </span>
               <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 leading-tight">
                 {product.name}
@@ -281,13 +288,13 @@ export default function ProductDetail() {
                   <span className="ml-2 text-gray-600 font-bold">4.9 (120 Reviews)</span>
                 </div>
                 <div className="h-4 w-px bg-gray-200" />
-                <span className={product.stock > 0 ? "text-emerald-600 font-bold" : "text-red-600 font-bold"}>
-                  {product.stock > 0 ? `In Stock (${product.stock} units)` : "Out of Stock"}
+                <span className={product.stock > 0 && product.status !== 'Sold Out' ? "text-emerald-600 font-bold" : "text-red-600 font-bold"}>
+                  {product.stock > 0 && product.status !== 'Sold Out' ? `In Stock (${product.stock} units)` : "Out of Stock"}
                 </span>
               </div>
               <div className="flex items-baseline space-x-4">
                 {product.status === 'Coming Soon' ? (
-                  <p className="text-3xl md:text-4xl font-black text-orange-600 uppercase tracking-wide">Available Soon</p>
+                  <p className="text-3xl md:text-4xl font-black text-orange-600 uppercase tracking-wide">Coming Soon</p>
                 ) : (
                   <p className="text-4xl font-black text-gray-900">{formatPrice(displayPrice)}</p>
                 )}
@@ -330,14 +337,14 @@ export default function ProductDetail() {
             <div className="flex flex-col sm:flex-row gap-4 mt-auto">
               <button
                 onClick={handleAddToCart}
-                disabled={product.stock <= 0 || product.status === 'Coming Soon'}
+                disabled={product.stock <= 0 || product.status === 'Coming Soon' || product.status === 'Sold Out'}
                 className="flex-1 bg-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-orange-700 transition-all flex items-center justify-center space-x-3 shadow-xl shadow-orange-900/20 disabled:bg-gray-300 disabled:cursor-not-allowed cursor-pointer"
               >
                 {product.status !== 'Coming Soon' && <ShoppingCart className="h-6 w-6" />}
                 <span>
                   {product.status === 'Coming Soon'
-                    ? 'Available Soon'
-                    : product.stock <= 0 ? 'Out of Stock' : 'Add to Cart'}
+                    ? 'Coming Soon'
+                    : (product.stock <= 0 || product.status === 'Sold Out') ? 'Out of Stock' : 'Add to Cart'}
                 </span>
               </button>
               <button
