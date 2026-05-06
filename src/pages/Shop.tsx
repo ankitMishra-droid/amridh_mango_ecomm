@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Product } from '../types';
 import ProductCard from '../components/ProductCard';
-import { Search, Filter } from 'lucide-react';
+import { Search, Filter, TrendingUpDown } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function Shop() {
   const [products, setProducts] = React.useState<Product[]>([]);
   const [search, setSearch] = React.useState('');
+  const [loading, setLoading] = useState(true)
   const [category, setCategory] = React.useState('All');
 
   // read query params from URL so we can pre‑select a category
@@ -17,6 +18,7 @@ export default function Shop() {
     // always call the Netlify redirect path; the rules in netlify.toml
     // will forward `/api/*` to the proper function. this keeps the
     // client code simple and works regardless of hostname.
+    setLoading(true);
     const shopUrl = '/api/products';
     console.debug('fetching shop products from', shopUrl);
     fetch(shopUrl)
@@ -24,9 +26,13 @@ export default function Shop() {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
       })
-      .then(data => setProducts(data))
+      .then(data => {
+        setProducts(data)
+        setLoading(false);
+      })
       .catch(err => {
         console.error('failed to fetch products', err);
+        setLoading(false);
       });
   }, []);
 
@@ -40,7 +46,6 @@ export default function Shop() {
     }
   }, [location.search, products]);
 
-
   const categories = ['All', ...new Set(products.map(p => p.category))];
 
   const filtered = products.filter(p => {
@@ -53,6 +58,15 @@ export default function Shop() {
   React.useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, [category]);
+
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center py-20 min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500" />
+        <p className="mt-4 text-gray-600">Loading products...</p>
+      </div>
+    )
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
