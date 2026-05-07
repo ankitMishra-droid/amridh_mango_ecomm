@@ -6,6 +6,9 @@ export interface IOrder extends Document {
   status: string;
   items: any[];
   user_name?: string;
+  shippingData?: any;
+  paymentMethod?: string;
+  paymentStatus?: string;
 }
 
 const OrderSchema: Schema = new Schema({
@@ -15,7 +18,8 @@ const OrderSchema: Schema = new Schema({
   items: [{ type: Schema.Types.Mixed }], // Storing array of items directly
   user_name: { type: String },
   shippingData: { type: Schema.Types.Mixed },
-  paymentMethod: { type: String }
+  paymentMethod: { type: String },
+  paymentStatus: { type: String, default: 'Pending' }
 }, { timestamps: true });
 
 export const Order = mongoose.model<IOrder>('Order', OrderSchema);

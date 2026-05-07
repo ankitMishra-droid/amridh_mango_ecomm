@@ -11,17 +11,18 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null);
-
-  useEffect(() => {
-    const savedToken = localStorage.getItem('mango_token');
-    const savedUser = localStorage.getItem('mango_user');
-    if (savedToken && savedUser) {
-      setToken(savedToken);
-      setUser(JSON.parse(savedUser));
+  const [user, setUser] = useState<User | null>(() => {
+    try {
+      const saved = localStorage.getItem('mango_user');
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
     }
-  }, []);
+  });
+  
+  const [token, setToken] = useState<string | null>(() => {
+    return localStorage.getItem('mango_token');
+  });
 
   const login = (newToken: string, newUser: User) => {
     setToken(newToken);

@@ -9,12 +9,25 @@ export interface User {
   name?: string;
   phone?: string;
   createdAt: string;
+  addresses?: any[];
+}
+
+interface PaginatedResponse<T> {
+  docs: T[];
+  totalDocs: number;
+  limit: number;
+  totalPages: number;
+  page: number;
 }
 
 interface AdminState {
   products: Product[];
   orders: Order[];
   users: User[];
+  
+  paginatedProducts: PaginatedResponse<Product> | null;
+  paginatedUsers: PaginatedResponse<User> | null;
+
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
 }
@@ -23,6 +36,8 @@ const initialState: AdminState = {
   products: [],
   orders: [],
   users: [],
+  paginatedProducts: null,
+  paginatedUsers: null,
   status: 'idle',
   error: null,
 };
@@ -32,7 +47,7 @@ export const fetchAdminData = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const [productsRes, ordersRes, usersRes] = await Promise.all([
-        fetch('/api/products'),
+        fetch('/api/products'), // no paginate=true means it returns all
         fetch('/api/orders', { headers: { 'Authorization': `Bearer ${localStorage.getItem('mango_token')}` } }),
         fetch('/api/users', { headers: { 'Authorization': `Bearer ${localStorage.getItem('mango_token')}` } })
       ]);
@@ -45,6 +60,72 @@ export const fetchAdminData = createAsyncThunk(
       const users = Array.isArray(usersData) ? usersData : [];
       
       return { products, orders, users };
+    } catch (err: any) {
+      return rejectWithValue(err.message);
+    }
+  }
+);
+
+export const fetchPaginatedProducts = createAsyncThunk(
+  'admin/fetchPaginatedProducts',
+  async (params: { page: number; search: string; stockFilter: string }, { rejectWithValue }) => {
+    try {
+      const q = new URLSearchParams({
+        paginate: 'true',
+        page: params.page.toString(),
+        limit: '10'
+      });
+      if (params.search) q.append('search', params.search);
+      if (params.stockFilter) q.append('stockFilter', params.stockFilter);
+
+      const res = await fetch(`/api/products?${q.toString()}`);
+      if (!res.ok) throw new Error('Failed to fetch products');
+      return await res.json();
+    } catch (err: any) {
+      return rejectWithValue(err.message);
+    }
+  }
+);
+
+export const fetchPaginatedUsers = createAsyncThunk(
+  'admin/fetchPaginatedUsers',
+  async (params: { page: number; search: string }, { rejectWithValue }) => {
+    try {
+      const q = new URLSearchParams({
+        paginate: 'true',
+        page: params.page.toString(),
+        limit: '10'
+      });
+      if (params.search) q.append('search', params.search);
+
+      const res = await fetch(`/api/users?${q.toString()}`, {
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('mango_token')}` }
+      });
+      if (!res.ok) throw new Error('Failed to fetch users');
+      return await res.json();
+    } catch (err: any) {
+      return rejectWithValue(err.message);
+    }
+  }
+);
+
+export const createAdminUser = createAsyncThunk(
+  'admin/createAdminUser',
+  async (data: any, { rejectWithValue }) => {
+    try {
+      const res = await fetch('/api/users/admin', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('mango_token')}`
+        },
+        body: JSON.stringify(data)
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || 'Failed to create admin');
+      }
+      return await res.json();
     } catch (err: any) {
       return rejectWithValue(err.message);
     }
@@ -174,6 +255,21 @@ const adminSlice = createSlice({
       .addCase(fetchAdminData.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload as string;
+      })
+      .addCase(fetchPaginatedProducts.fulfilled, (state, action) => {
+        state.paginatedProducts = action.payload;
+      })
+      .addCase(fetchPaginatedUsers.fulfilled, (state, action) => {
+        state.paginatedUsers = action.payload;
+      })
+      .addCase(createAdminUser.fulfilled, (state, action) => {
+        toast.success('Admin user created successfully');
+        if (state.paginatedUsers) {
+          state.paginatedUsers.docs.unshift(action.payload);
+        }
+      })
+      .addCase(createAdminUser.rejected, (state, action) => {
+        toast.error((action.payload as string) || 'Error creating admin');
       })
       .addCase(saveProduct.fulfilled, (state, action) => {
         const product = action.payload;

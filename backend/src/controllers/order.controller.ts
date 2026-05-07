@@ -35,14 +35,18 @@ export class OrderController {
 
   public static async getOrders(req: Request, res: Response): Promise<void> {
     try {
-      const orders = await Order.find().sort({ createdAt: -1 });
+      const orders = await Order.find().populate('user_id', 'email phone name').sort({ createdAt: -1 });
       res.json(orders.map(o => ({
         id: o._id,
         user_id: o.user_id,
         total: o.total,
         status: o.status,
         items: o.items,
-        user_name: o.user_name
+        user_name: o.user_name,
+        shippingData: o.shippingData,
+        paymentMethod: o.paymentMethod,
+        paymentStatus: o.paymentStatus,
+        created_at: (o as any).createdAt
       })));
     } catch (error) {
       res.status(500).json({ error: 'Failed to fetch orders' });
@@ -68,7 +72,7 @@ export class OrderController {
         return;
       }
 
-      const orders = await Order.find({ user_id: req.params.userId }).sort({ createdAt: -1 });
+      const orders = await Order.find({ user_id: req.params.userId }).populate('user_id', 'email phone name').sort({ createdAt: -1 });
       res.json(orders.map(o => ({
         id: o._id,
         user_id: o.user_id,
@@ -76,7 +80,10 @@ export class OrderController {
         status: o.status,
         items: o.items,
         user_name: o.user_name,
-        created_at: o.createdAt
+        shippingData: o.shippingData,
+        paymentMethod: o.paymentMethod,
+        paymentStatus: o.paymentStatus,
+        created_at: (o as any).createdAt
       })));
     } catch (error) {
       res.status(500).json({ error: 'Failed to fetch user orders' });
@@ -85,7 +92,7 @@ export class OrderController {
 
   public static async getOrderById(req: Request, res: Response): Promise<void> {
     try {
-      const order = await Order.findById(req.params.id);
+      const order = await Order.findById(req.params.id).populate('user_id', 'email phone name');
       if (!order) {
         res.status(404).json({ error: 'Order not found' });
         return;
@@ -97,8 +104,11 @@ export class OrderController {
         status: order.status,
         items: order.items,
         user_name: order.user_name,
-        created_at: order.createdAt,
-        updated_at: order.updatedAt
+        shippingData: order.shippingData,
+        paymentMethod: order.paymentMethod,
+        paymentStatus: order.paymentStatus,
+        created_at: (order as any).createdAt,
+        updated_at: (order as any).updatedAt
       });
     } catch (error) {
       res.status(500).json({ error: 'Failed to fetch order details' });

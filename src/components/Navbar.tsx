@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useRef, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { ShoppingCart, User, LogOut, Menu, X, Leaf, ChevronDown, Heart, Truck, Home, Search } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
@@ -14,7 +14,24 @@ export default function Navbar() {
   const { items: wishlistItems } = useWishlist();
   const [isOpen, setIsOpen] = React.useState(false);
   const [isProductOpen, setIsProductOpen] = React.useState(false);
+  const productDropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (productDropdownRef.current && !productDropdownRef.current.contains(event.target as Node)) {
+        setIsProductOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const getLinkClass = (path: string) => {
+    const isActive = location.pathname === path || (path === '/shop' && location.pathname.startsWith('/shop'));
+    return `font-bold text-[10px] uppercase tracking-widest transition-colors ${isActive ? 'text-orange-600' : 'text-gray-500 hover:text-orange-600'}`;
+  };
 
   const cartCount = items.reduce((acc, item) => acc + item.quantity, 0);
 
@@ -44,14 +61,15 @@ export default function Navbar() {
           </Link>
 
           <div className="flex items-center space-x-8">
-            <Link to="/" className="text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest transition-colors">Home</Link>
+            <Link to="/" className={getLinkClass('/')}>Home</Link>
 
-            <Link to="/about" className="text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest transition-colors">About Us</Link>
+            <Link to="/about" className={getLinkClass('/about')}>About Us</Link>
 
-            <div className="relative group">
+            <div className="relative group" ref={productDropdownRef}>
               <button
                 onMouseEnter={() => setIsProductOpen(true)}
-                className="flex items-center space-x-1 text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest transition-colors"
+                onClick={() => setIsProductOpen(!isProductOpen)}
+                className={`flex items-center space-x-1 ${getLinkClass('/shop')}`}
               >
                 <span>Products</span>
                 <ChevronDown className="h-3 w-3" />
@@ -83,14 +101,14 @@ export default function Navbar() {
               </AnimatePresence>
             </div>
 
-            <Link to="/bulk-booking" className="text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest transition-colors">Bulk</Link>
-            <Link to="/corporate-gifting" className="text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest transition-colors">Gifting</Link>
-            <Link to="/events" className="text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest transition-colors">Events</Link>
-            {/* <Link to="/track-order" className="text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest flex items-center gap-1 transition-colors">
+            <Link to="/bulk-booking" className={getLinkClass('/bulk-booking')}>Bulk</Link>
+            <Link to="/corporate-gifting" className={getLinkClass('/corporate-gifting')}>Gifting</Link>
+            <Link to="/events" className={getLinkClass('/events')}>Events</Link>
+            {/* <Link to="/track-order" className={getLinkClass('/track-order')}>
               <Truck className="h-3 w-3" />
               <span>Track</span>
             </Link> */}
-            <Link to="/contact" className="text-gray-500 hover:text-orange-600 font-bold text-[10px] uppercase tracking-widest transition-colors">Contact</Link>
+            <Link to="/contact" className={getLinkClass('/contact')}>Contact</Link>
           </div>
 
           <div className="flex items-center space-x-6">

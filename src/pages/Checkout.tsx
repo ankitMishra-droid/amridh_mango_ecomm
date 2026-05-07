@@ -26,6 +26,39 @@ export default function Checkout() {
     zipCode: '',
   });
 
+  const [selectedAddressId, setSelectedAddressId] = useState<string | null>(null);
+
+  React.useEffect(() => {
+    if (user?.addresses && user.addresses.length > 0) {
+      const defaultAddr = user.addresses.find(a => a.isDefault) || user.addresses[0];
+      setSelectedAddressId(defaultAddr._id);
+      setFormData({
+        firstName: defaultAddr.firstName,
+        lastName: defaultAddr.lastName,
+        email: user.email || '',
+        phone: defaultAddr.phone,
+        address: defaultAddr.address,
+        city: defaultAddr.city,
+        state: defaultAddr.state,
+        zipCode: defaultAddr.zipCode,
+      });
+    }
+  }, [user]);
+
+  const handleSelectAddress = (addr: any) => {
+    setSelectedAddressId(addr._id);
+    setFormData({
+      firstName: addr.firstName,
+      lastName: addr.lastName,
+      email: user?.email || '',
+      phone: addr.phone,
+      address: addr.address,
+      city: addr.city,
+      state: addr.state,
+      zipCode: addr.zipCode,
+    });
+  };
+
   if (items.length === 0 && !isSuccess) {
     return (
       <div className="min-h-[70vh] flex flex-col items-center justify-center px-4">
@@ -133,6 +166,37 @@ export default function Checkout() {
                   <MapPin className="h-6 w-6 text-orange-600" />
                   <span>Shipping Information</span>
                 </h2>
+
+                {user?.addresses && user.addresses.length > 0 && (
+                  <div className="mb-8 p-6 bg-orange-50 rounded-2xl border border-orange-100">
+                    <h3 className="text-sm font-bold text-gray-700 uppercase tracking-widest mb-4">Saved Addresses</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {user.addresses.map((addr) => (
+                        <div 
+                          key={addr._id}
+                          onClick={() => handleSelectAddress(addr)}
+                          className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
+                            selectedAddressId === addr._id 
+                              ? 'border-orange-600 bg-white shadow-sm' 
+                              : 'border-transparent bg-white/50 hover:bg-white hover:border-orange-200'
+                          }`}
+                        >
+                          <div className="flex items-start gap-3">
+                            <div className={`mt-1 h-5 w-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${selectedAddressId === addr._id ? 'border-orange-600' : 'border-gray-300'}`}>
+                              {selectedAddressId === addr._id && <div className="h-2.5 w-2.5 rounded-full bg-orange-600" />}
+                            </div>
+                            <div>
+                              <p className="font-bold text-gray-900">{addr.firstName} {addr.lastName}</p>
+                              <p className="text-sm text-gray-600 mt-1 line-clamp-1">{addr.address}</p>
+                              <p className="text-sm text-gray-600">{addr.city}, {addr.zipCode}</p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-gray-700 uppercase tracking-widest">First Name</label>

@@ -4,14 +4,23 @@ import { Product } from '../models/Product.js';
 export class ProductController {
   public static async getProducts(req: Request, res: Response): Promise<void> {
     try {
-      const { page = 1, limit = 10, search, category } = req.query;
+      const { page = 1, limit = 10, search, category, stockFilter } = req.query;
       
       const query: any = {};
       if (search) {
-        query.name = { $regex: search as string, $options: 'i' };
+        const searchRegex = { $regex: search as string, $options: 'i' };
+        query.$or = [
+          { name: searchRegex },
+          { sku: searchRegex }
+        ];
       }
       if (category && category !== 'All') {
         query.category = category;
+      }
+      if (stockFilter) {
+        if (stockFilter === 'inStock') query.stock = { $gt: 0 };
+        else if (stockFilter === 'outOfStock') query.stock = 0;
+        else if (stockFilter === 'lowStock') query.stock = { $gt: 0, $lt: 10 };
       }
 
       const options = {

@@ -23,13 +23,16 @@ export interface CartItem extends Product {
 }
 
 export interface Order {
-  id: number;
-  user_id: number;
+  id: number | string;
+  user_id: string | number;
   user_name?: string;
   total: number;
-  status: 'Placed' | 'Packed' | 'Shipped' | 'Delivered';
+  status: 'Placed' | 'Packed' | 'Shipped' | 'Delivered' | string;
   created_at: string;
   items: CartItem[];
+  shippingData?: any;
+  paymentMethod?: string;
+  paymentStatus?: string;
 }
 
 export interface Coupon {
